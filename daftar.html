@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pendaftaran Kemitraan — Tumbuh Pangan | Bersama Menumbuhkan Manfaat Pangan</title>
+  <meta name="description" content="Formulir pendaftaran kemitraan Tumbuh Pangan untuk Donatur Pangan (Pelaku Usaha F&B) dan Mitra Penyalur (Lembaga Sosial & Komunitas).">
+  <meta name="theme-color" content="#14532D">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Script & Configuration -->
+  <script src="./tailwind.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: '#14532D',
+            primary: '#27864B',
+            secondary: '#4C9A61',
+            'light-green': '#E8F5E9',
+            'soft-mint': '#F5FAF5',
+            'main-text': '#173C2F',
+            'secondary-text': '#52665B',
+            'border-color': '#DCE9DE',
+            'warm-yellow': '#F4D77B',
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          boxShadow: {
+            'soft': '0 4px 20px -2px rgba(20, 83, 45, 0.06), 0 2px 6px -1px rgba(20, 83, 45, 0.04)',
+            'card': '0 10px 30px -4px rgba(20, 83, 45, 0.08), 0 4px 12px -2px rgba(20, 83, 45, 0.04)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    body {
+      color: #173C2F;
+      background-color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#F9FAF9] text-main-text antialiased selection:bg-light-green selection:text-forest flex flex-col min-h-screen">
+
+  <!-- A. Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-border-color transition-shadow duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg p-1" aria-label="Tumbuh Pangan Beranda">
+          <img src="logo.svg" alt="Tumbuh Pangan Logo" class="h-11 w-auto" width="220" height="55">
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-7" aria-label="Navigasi Utama">
+          <a href="index.html" class="text-sm font-semibold text-secondary-text hover:text-primary transition-colors focus:outline-none focus-visible:text-primary">Beranda</a>
+          <a href="tentang.html" class="text-sm font-semibold text-secondary-text hover:text-primary transition-colors focus:outline-none focus-visible:text-primary">Tentang</a>
+          <a href="index.html#cara-kerja" class="text-sm font-semibold text-secondary-text hover:text-primary transition-colors focus:outline-none focus-visible:text-primary">Cara Kerja</a>
+          <a href="index.html#fitur" class="text-sm font-semibold text-secondary-text hover:text-primary transition-colors focus:outline-none focus-visible:text-primary">Fitur</a>
+          <a href="index.html#dampak" class="text-sm font-semibold text-secondary-text hover:text-primary transition-colors focus:outline-none focus-visible:text-primary">Dampak</a>
+          <a href="index.html#faq" class="text-sm font-semibold text-secondary-text hover:text-primary transition-colors focus:outline-none focus-visible:text-primary">FAQ</a>
+        </nav>
+
+        <!-- Desktop Right CTA -->
+        <div class="hidden md:flex items-center gap-4">
+          <a href="login.html" class="text-sm font-bold text-forest hover:text-primary transition-colors px-3 py-2 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            Masuk
+          </a>
+          <a href="login.html" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-white bg-primary hover:bg-forest rounded-full transition-all shadow-sm hover:shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary">
+            Gabung Sekarang
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <div class="flex lg:hidden">
+          <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2.5 rounded-xl text-forest hover:bg-light-green focus:outline-none focus:ring-2 focus:ring-primary" aria-controls="mobile-menu" aria-expanded="false" aria-label="Buka menu navigasi">
+            <svg id="menu-icon-open" class="w-6 h-6 block" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden border-b border-border-color bg-white px-4 pt-3 pb-6 space-y-3" aria-label="Menu Mobile">
+      <div class="flex flex-col space-y-1">
+        <a href="index.html" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-semibold text-secondary-text hover:text-primary hover:bg-soft-mint transition-colors">Beranda</a>
+        <a href="tentang.html" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-semibold text-secondary-text hover:text-primary hover:bg-soft-mint transition-colors">Tentang</a>
+        <a href="index.html#cara-kerja" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-semibold text-secondary-text hover:text-primary hover:bg-soft-mint transition-colors">Cara Kerja</a>
+        <a href="index.html#fitur" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-semibold text-secondary-text hover:text-primary hover:bg-soft-mint transition-colors">Fitur</a>
+        <a href="index.html#dampak" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-semibold text-secondary-text hover:text-primary hover:bg-soft-mint transition-colors">Dampak</a>
+        <a href="index.html#faq" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-semibold text-secondary-text hover:text-primary hover:bg-soft-mint transition-colors">FAQ</a>
+      </div>
+      <div class="pt-3 border-t border-border-color flex flex-col gap-2">
+        <a href="login.html" class="mobile-nav-link flex w-full items-center justify-center px-4 py-2.5 text-base font-bold text-forest bg-light-green hover:bg-[#d8edd9] rounded-xl transition-all">
+          Masuk ke Portal
+        </a>
+        <a href="login.html" class="mobile-nav-link flex w-full items-center justify-center px-5 py-3 text-base font-bold text-white bg-primary hover:bg-forest rounded-xl transition-all shadow-sm">
+          Gabung Sekarang
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-secondary-text mb-6" aria-label="Breadcrumb">
+        <a href="index.html" class="hover:text-primary transition-colors">Beranda</a>
+        <svg class="w-3.5 h-3.5 text-border-color" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
+        <span class="text-forest font-semibold" aria-current="page">Pendaftaran Kemitraan</span>
+      </nav>
+
+      <!-- Section Title Header -->
+      <div class="text-center mb-8">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide text-forest bg-light-green border border-border-color mb-3">
+          <span class="w-2 h-2 rounded-full bg-primary"></span>
+          Formulir Kemitraan Resmi
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-forest tracking-tight">
+          Pendaftaran Kemitraan Tumbuh Pangan
+        </h1>
+        <p class="text-sm sm:text-base text-secondary-text mt-3 max-w-xl mx-auto leading-relaxed">
+          Bergabung bersama kami mewujudkan redistribusi pangan yang aman, teratur, dan bermartabat.
+        </p>
+      </div>
+
+      <!-- Interactive Role Toggle Tabs -->
+      <div class="flex justify-center mb-8">
+        <div class="inline-flex p-1.5 rounded-2xl bg-white border border-border-color shadow-sm" role="tablist" aria-label="Pilihan Peran Pendaftaran Mitra">
+          <button
+            id="tab-donatur"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="registration-card"
+            onclick="setRole('donatur', true)"
+            class="px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary bg-primary text-white shadow">
+            🌱 Donatur Pangan (Pelaku Usaha)
+          </button>
+          <button
+            id="tab-penyalur"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="registration-card"
+            onclick="setRole('penyalur', true)"
+            class="px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary text-secondary-text hover:text-forest">
+            🤝 Mitra Penyalur (Lembaga Sosial)
+          </button>
+        </div>
+      </div>
+
+      <!-- Registration Card -->
+      <div id="registration-card" class="bg-white rounded-3xl p-6 sm:p-10 border border-border-color shadow-card">
+
+        <!-- Role Context Banner -->
+        <div id="role-banner" class="mb-6 p-4 rounded-2xl bg-light-green border border-border-color flex items-start gap-3">
+          <div class="w-8 h-8 rounded-xl bg-white text-primary flex items-center justify-center shrink-0 mt-0.5 border border-border-color">
+            <svg id="role-banner-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <div class="text-xs text-forest leading-relaxed">
+            <span class="font-bold block text-sm" id="role-banner-title">Pendaftaran Donatur Pangan</span>
+            <span id="role-banner-desc" class="text-secondary-text">Terbuka untuk Restoran, Toko Roti/Kue, Katering, Hotel, Supermarket, dan UMKM Kuliner.</span>
+          </div>
+        </div>
+
+        <!-- Confirmation State (Success) -->
+        <div id="registration-success" class="hidden">
+          <div class="p-6 rounded-2xl bg-light-green border border-primary text-center space-y-4">
+            <div class="w-14 h-14 mx-auto rounded-full bg-white text-primary flex items-center justify-center shadow-sm">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h3 class="text-xl font-extrabold text-forest">Formulir Pendaftaran Berhasil Dikirim!</h3>
+            <p class="text-sm text-forest leading-relaxed max-w-xl mx-auto">
+              Terima kasih, formulir pendaftaran Anda telah diterima. Tim verifikasi Tumbuh Pangan akan menghubungi Anda melalui email dan telepon resmi. Untuk pertanyaan mendesak, hubungi <a href="mailto:defhanpy@gmail.com" class="font-bold underline text-forest hover:text-primary">defhanpy@gmail.com</a>.
+            </p>
+
+            <!-- Summary Box -->
+            <div id="success-summary" class="bg-white/80 rounded-xl p-4 text-left text-xs space-y-2 border border-border-color mt-4 text-secondary-text">
+              <!-- populated by js -->
+            </div>
+
+            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a href="index.html" class="inline-flex items-center justify-center px-6 py-2.5 rounded-xl bg-forest hover:bg-black text-white text-xs font-bold transition-all">
+                Kembali ke Beranda
+              </a>
+              <button type="button" onclick="resetForm()" class="inline-flex items-center justify-center px-6 py-2.5 rounded-xl bg-white border border-border-color hover:bg-soft-mint text-forest text-xs font-bold transition-all">
+                Daftar Mitra Lain
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Registration Form -->
+        <form id="partner-form" onsubmit="handleRegistrationSubmit(event)" class="space-y-5">
+          <input type="hidden" id="form-role" name="role" value="donatur">
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <!-- Nama PIC -->
+            <div>
+              <label for="pic-name" class="block text-xs font-bold text-forest mb-1.5">
+                Nama Lengkap PIC Penanggung Jawab <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="pic-name"
+                name="pic-name"
+                required
+                placeholder="Contoh: Budi Santoso"
+                class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary focus:ring-2 focus:ring-light-green text-sm transition-all outline-none">
+            </div>
+
+            <!-- Nama Usaha / Lembaga -->
+            <div>
+              <label for="org-name" id="label-org-name" class="block text-xs font-bold text-forest mb-1.5">
+                Nama Bisnis / Usaha Kuliner <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="org-name"
+                name="org-name"
+                required
+                placeholder="Contoh: Roti Hangat Bakery"
+                class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary focus:ring-2 focus:ring-light-green text-sm transition-all outline-none">
+            </div>
+
+            <!-- Email Resmi -->
+            <div>
+              <label for="contact-email" class="block text-xs font-bold text-forest mb-1.5">
+                Email Resmi Organisasi <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                id="contact-email"
+                name="contact-email"
+                required
+                placeholder="pic@organisasi.com"
+                class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary focus:ring-2 focus:ring-light-green text-sm transition-all outline-none">
+              <span class="block text-[11px] text-secondary-text mt-1">Notifikasi konfirmasi ditembuskan ke tim verifikasi (defhanpy@gmail.com).</span>
+            </div>
+
+            <!-- Nomor Telepon -->
+            <div>
+              <label for="contact-phone" class="block text-xs font-bold text-forest mb-1.5">
+                Nomor Telepon / Kontak Resmi <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="tel"
+                id="contact-phone"
+                name="contact-phone"
+                required
+                placeholder="Contoh: 081234567890"
+                class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary focus:ring-2 focus:ring-light-green text-sm transition-all outline-none">
+            </div>
+          </div>
+
+          <!-- Alamat & Wilayah Operasional -->
+          <div>
+            <label for="operational-address" class="block text-xs font-bold text-forest mb-1.5">
+              Alamat Lengkap &amp; Wilayah Operasional (Kecamatan &amp; Kota) <span class="text-red-500">*</span>
+            </label>
+            <textarea
+              id="operational-address"
+              name="operational-address"
+              rows="2"
+              required
+              placeholder="Contoh: Jl. Kemang Raya No. 12, Kel. Bangka, Kec. Mampang Prapatan, Jakarta Selatan"
+              class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary focus:ring-2 focus:ring-light-green text-sm transition-all outline-none resize-none"></textarea>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <!-- Estimasi Surplus / Kapasitas Penyaluran -->
+            <div>
+              <label for="capacity-field" id="label-capacity" class="block text-xs font-bold text-forest mb-1.5">
+                Estimasi Surplus Rata-rata <span class="text-red-500">*</span>
+              </label>
+              <textarea
+                id="capacity-field"
+                name="capacity-field"
+                rows="2"
+                required
+                placeholder="Contoh: Roti tawar & kue basah sekitar 15–30 bungkus per hari"
+                class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary focus:ring-2 focus:ring-light-green text-sm transition-all outline-none resize-none"></textarea>
+            </div>
+
+            <!-- Jam Operasional / Jadwal Penjemputan -->
+            <div>
+              <label for="schedule-field" id="label-schedule" class="block text-xs font-bold text-forest mb-1.5">
+                Jam Operasional &amp; Jadwal Penjemputan Ideal <span class="text-red-500">*</span>
+              </label>
+              <textarea
+                id="schedule-field"
+                name="schedule-field"
+                rows="2"
+                required
+                placeholder="Contoh: Setiap hari kerja pukul 19.30 – 21.00 WIB"
+                class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary focus:ring-2 focus:ring-light-green text-sm transition-all outline-none resize-none"></textarea>
+            </div>
+          </div>
+
+          <!-- Compliance Checkbox -->
+          <div class="p-4 rounded-2xl bg-soft-mint border border-border-color">
+            <div class="flex items-start">
+              <div class="flex items-center h-5">
+                <input
+                  id="compliance-check"
+                  name="compliance-check"
+                  type="checkbox"
+                  required
+                  class="h-4 w-4 rounded border-border-color text-primary focus:ring-primary focus:ring-offset-0">
+              </div>
+              <div class="ml-3 text-xs">
+                <label for="compliance-check" class="font-bold text-forest cursor-pointer">
+                  Pernyataan Kepatuhan Keamanan Pangan &amp; Etika Penyaluran <span class="text-red-500">*</span>
+                </label>
+                <p class="text-secondary-text mt-0.5 leading-relaxed">
+                  Kami menyatakan bahwa data yang diisi adalah benar, bersedia mematuhi standar higienis dan Food Safety Gate Tumbuh Pangan, serta berkomitmen menjaga martabat dan privasi seluruh pihak penerima manfaat.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="pt-2">
+            <button
+              type="submit"
+              id="submit-btn"
+              class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-bold text-white bg-primary hover:bg-forest rounded-xl transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary cursor-pointer">
+              <span>Kirim Formulir Pendaftaran Mitra</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>
+
+          <!-- Direct help note -->
+          <p class="text-[11px] text-center text-secondary-text">
+            Perlu konsultasi pendaftaran secara langsung? Hubungi koordinator di
+            <a href="mailto:defhanpy@gmail.com?subject=Tanya%20Pendaftaran%20Mitra" class="font-bold text-forest underline hover:text-primary">defhanpy@gmail.com</a>.
+          </p>
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- K. Footer -->
+  <footer class="bg-forest text-white pt-14 pb-10 border-t border-forest">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-10 border-b border-white/10">
+        <!-- Brand Column -->
+        <div class="md:col-span-5 space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="bg-white rounded-lg p-1.5 inline-block">
+              <img src="logo.svg" alt="Tumbuh Pangan Logo" class="h-8 w-auto" width="160" height="40">
+            </div>
+          </div>
+          <p class="text-sm text-light-green/90 leading-relaxed max-w-sm">
+            Platform redistribusi surplus pangan layak konsumsi untuk mendukung ekosistem konsumsi berkelanjutan dan memperluas manfaat bagi sesama.
+          </p>
+          <div class="text-xs text-warm-yellow font-medium">
+            Bersama Menumbuhkan Manfaat Pangan.
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="md:col-span-3 space-y-3">
+          <div class="text-sm font-bold tracking-wider text-white uppercase">Navigasi</div>
+          <ul class="space-y-2 text-sm text-light-green/80">
+            <li><a href="index.html" class="hover:text-white transition-colors">Beranda</a></li>
+            <li><a href="tentang.html" class="hover:text-white transition-colors">Tentang Kami</a></li>
+            <li><a href="index.html#cara-kerja" class="hover:text-white transition-colors">Cara Kerja</a></li>
+            <li><a href="index.html#fitur" class="hover:text-white transition-colors">Fitur Platform</a></li>
+            <li><a href="index.html#dampak" class="hover:text-white transition-colors">Dampak Nyata</a></li>
+            <li><a href="index.html#faq" class="hover:text-white transition-colors">Pertanyaan Umum (FAQ)</a></li>
+            <li><a href="login.html" class="hover:text-white transition-colors">Masuk ke Portal</a></li>
+            <li><a href="daftar.html" class="hover:text-white transition-colors">Daftar Kemitraan</a></li>
+          </ul>
+        </div>
+
+        <!-- Partnership & Trust Note -->
+        <div class="md:col-span-4 space-y-3">
+          <div class="text-sm font-bold tracking-wider text-white uppercase">Kemitraan &amp; Kontak</div>
+          <p class="text-sm text-light-green/80 leading-relaxed">
+            Terbuka untuk kolaborasi bersama unit bisnis F&amp;B, komunitas sosial, dan kelompok relawan di seluruh wilayah Indonesia.
+          </p>
+          <div class="pt-1">
+            <a href="mailto:defhanpy@gmail.com" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/15 text-xs font-semibold transition-colors">
+              <svg class="w-4 h-4 text-warm-yellow shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span>defhanpy@gmail.com</span>
+            </a>
+          </div>
+          <div class="pt-1">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white border border-white/15">
+              <span class="w-2 h-2 rounded-full bg-secondary"></span>
+              Fase Kurasi Kemitraan MVP
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-light-green/70">
+        <div>
+          © 2026 Tumbuh Pangan. Bersama Menumbuhkan Manfaat Pangan.
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="mailto:defhanpy@gmail.com?subject=Pertanyaan%20Pendaftaran%20Tumbuh%20Pangan" class="hover:text-white transition-colors">Kontak Resmi: defhanpy@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // 1. Mobile Menu Toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+        mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+        mobileMenu.classList.toggle('hidden');
+        menuIconOpen.classList.toggle('hidden');
+        menuIconClose.classList.toggle('hidden');
+      });
+
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileMenuButton.setAttribute('aria-expanded', 'false');
+          menuIconOpen.classList.remove('hidden');
+          menuIconClose.classList.add('hidden');
+        });
+      });
+    }
+
+    // 2. Interactive Role Toggle & Dynamic Form Adaptations
+    function setRole(role, updateUrl = false) {
+      const tabDonatur = document.getElementById('tab-donatur');
+      const tabPenyalur = document.getElementById('tab-penyalur');
+      const formRole = document.getElementById('form-role');
+      const bannerTitle = document.getElementById('role-banner-title');
+      const bannerDesc = document.getElementById('role-banner-desc');
+      const labelOrgName = document.getElementById('label-org-name');
+      const orgNameInput = document.getElementById('org-name');
+      const labelCapacity = document.getElementById('label-capacity');
+      const capacityInput = document.getElementById('capacity-field');
+      const labelSchedule = document.getElementById('label-schedule');
+      const scheduleInput = document.getElementById('schedule-field');
+
+      formRole.value = role;
+
+      if (updateUrl && history.replaceState) {
+        const url = new URL(window.location);
+        url.searchParams.set('role', role);
+        window.history.replaceState({}, '', url);
+      }
+
+      if (role === 'penyalur') {
+        tabPenyalur.setAttribute('aria-selected', 'true');
+        tabPenyalur.className = 'px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary bg-primary text-white shadow';
+
+        tabDonatur.setAttribute('aria-selected', 'false');
+        tabDonatur.className = 'px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary text-secondary-text hover:text-forest';
+
+        bannerTitle.textContent = 'Pendaftaran Mitra Penyalur (Lembaga Sosial)';
+        bannerDesc.textContent = 'Terbuka untuk Panti Asuhan, Yayasan Sosial, Dapur Umum, dan Komunitas Relawan Berkelanjutan.';
+
+        labelOrgName.innerHTML = 'Nama Organisasi / Lembaga / Yayasan <span class="text-red-500">*</span>';
+        orgNameInput.placeholder = 'Contoh: Yayasan Kasih Pangan Bersama';
+
+        labelCapacity.innerHTML = 'Kapasitas Penyaluran &amp; Jumlah Penerima Manfaat <span class="text-red-500">*</span>';
+        capacityInput.placeholder = 'Contoh: Mampu mengelola 40–80 porsi per hari untuk 60 anak asuh & lansia sekitar';
+
+        labelSchedule.innerHTML = 'Jadwal Penjemputan Pangan yang Ideal <span class="text-red-500">*</span>';
+        scheduleInput.placeholder = 'Contoh: Fleksibel penjemputan sore/malam mulai jam 18.00–21.00 WIB';
+      } else {
+        tabDonatur.setAttribute('aria-selected', 'true');
+        tabDonatur.className = 'px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary bg-primary text-white shadow';
+
+        tabPenyalur.setAttribute('aria-selected', 'false');
+        tabPenyalur.className = 'px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary text-secondary-text hover:text-forest';
+
+        bannerTitle.textContent = 'Pendaftaran Donatur Pangan (Pelaku Usaha)';
+        bannerDesc.textContent = 'Terbuka untuk Restoran, Toko Roti/Kue, Katering, Hotel, Supermarket, dan UMKM Kuliner.';
+
+        labelOrgName.innerHTML = 'Nama Bisnis / Usaha Kuliner <span class="text-red-500">*</span>';
+        orgNameInput.placeholder = 'Contoh: Roti Hangat Bakery';
+
+        labelCapacity.innerHTML = 'Estimasi Surplus Rata-rata <span class="text-red-500">*</span>';
+        capacityInput.placeholder = 'Contoh: Roti tawar & kue basah sekitar 15–30 bungkus per hari';
+
+        labelSchedule.innerHTML = 'Jam Operasional &amp; Jadwal Penjemputan Ideal <span class="text-red-500">*</span>';
+        scheduleInput.placeholder = 'Contoh: Setiap hari kerja pukul 19.30 – 21.00 WIB';
+      }
+    }
+
+    // 3. Read Query Parameter on Load (?role=donatur / ?role=penyalur)
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const roleParam = params.get('role');
+      if (roleParam === 'penyalur') {
+        setRole('penyalur', false);
+      } else {
+        setRole('donatur', false);
+      }
+    });
+
+    // 4. Form Submission Handler with Polite Confirmation State
+    function handleRegistrationSubmit(e) {
+      e.preventDefault();
+      const role = document.getElementById('form-role').value;
+      const picName = document.getElementById('pic-name').value.trim();
+      const orgName = document.getElementById('org-name').value.trim();
+      const email = document.getElementById('contact-email').value.trim();
+      const phone = document.getElementById('contact-phone').value.trim();
+      const address = document.getElementById('operational-address').value.trim();
+      const capacity = document.getElementById('capacity-field').value.trim();
+      const schedule = document.getElementById('schedule-field').value.trim();
+
+      const roleTitle = role === 'penyalur' ? 'Mitra Penyalur (Lembaga Sosial)' : 'Donatur Pangan (Pelaku Usaha)';
+
+      const summaryHtml = `
+        <div class="font-bold text-forest border-b border-border-color pb-1.5 mb-2">Ringkasan Formulir Terkirim:</div>
+        <div><strong class="text-forest">Peran:</strong> ${roleTitle}</div>
+        <div><strong class="text-forest">Nama PIC:</strong> ${picName}</div>
+        <div><strong class="text-forest">Organisasi:</strong> ${orgName}</div>
+        <div><strong class="text-forest">Email:</strong> ${email} (Konfirmasi ditembuskan ke defhanpy@gmail.com)</div>
+        <div><strong class="text-forest">Telepon:</strong> ${phone}</div>
+        <div><strong class="text-forest">Wilayah:</strong> ${address}</div>
+        <div><strong class="text-forest">Kapasitas/Surplus:</strong> ${capacity}</div>
+        <div><strong class="text-forest">Jadwal:</strong> ${schedule}</div>
+      `;
+
+      document.getElementById('success-summary').innerHTML = summaryHtml;
+      document.getElementById('partner-form').classList.add('hidden');
+      document.getElementById('role-banner').classList.add('hidden');
+      document.getElementById('registration-success').classList.remove('hidden');
+      document.getElementById('registration-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // 5. Reset Form to Register Another Partner
+    function resetForm() {
+      document.getElementById('partner-form').reset();
+      document.getElementById('partner-form').classList.remove('hidden');
+      document.getElementById('role-banner').classList.remove('hidden');
+      document.getElementById('registration-success').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
