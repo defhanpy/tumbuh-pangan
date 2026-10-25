@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <!-- Sprout in Bowl Icon within Circle -->
+  <g transform="translate(10, 6)">
+    <circle cx="24" cy="24" r="23" stroke="#27864B" stroke-width="2" stroke-dasharray="3 3" opacity="0.4"/>
+    <circle cx="24" cy="24" r="21" fill="#E8F5E9"/>
+    <!-- Bowl -->
+    <path d="M12 26C12 33 17 38 24 38C31 38 36 33 36 26H12Z" fill="#14532D"/>
+    <!-- Sprout stem & leaves -->
+    <path d="M24 26V14" stroke="#27864B" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M24 18C20 18 16 15 16 11C20 11 23 14 24 18Z" fill="#27864B"/>
+    <path d="M24 15C27 15 31 12 31 9C27 9 25 12 24 15Z" fill="#4C9A61"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="68" y="32" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="20" font-weight="800" letter-spacing="-0.5px">
+    <tspan fill="#14532D">Tumbuh </tspan>
+    <tspan fill="#27864B">Pangan</tspan>
+  </text>
+  <!-- Tagline -->
+  <text x="68" y="46" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="8.5" font-weight="600" fill="#52665B" letter-spacing="0.2px">
+    Bersama Menumbuhkan Manfaat Pangan
+  </text>
+</svg>
