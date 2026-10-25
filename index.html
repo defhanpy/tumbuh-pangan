@@ -154,62 +154,22 @@
             </p>
           </div>
 
-          <!-- Right Column: Warm Visual & Floating Illustration Card -->
+          <!-- Right Column: Warm Realistic Visual & Floating Illustration Card -->
           <div class="lg:col-span-5 relative">
             <div class="relative mx-auto max-w-md lg:max-w-none">
-              <!-- Backdrop Graphic Art -->
-              <div class="relative rounded-3xl bg-soft-mint border border-border-color p-6 pb-24 sm:pb-28 overflow-hidden shadow-soft">
-                <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-light-green/60 filter blur-xl"></div>
-                <div class="absolute -bottom-8 -left-8 w-40 h-40 rounded-full bg-warm-yellow/20 filter blur-lg"></div>
-
-                <!-- Dignified Food Sharing Illustration -->
-                <div class="relative z-10 space-y-4">
-                  <div class="flex items-center justify-between pb-3 border-b border-border-color/70">
-                    <div class="flex items-center gap-2.5">
-                      <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                        </svg>
-                      </div>
-                      <div>
-                        <div class="text-xs font-bold text-forest">Dapur &amp; Mitra Penyalur</div>
-                        <div class="text-[11px] text-secondary-text">Serah terima terorganisasi</div>
-                      </div>
-                    </div>
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-white text-secondary border border-border-color">
-                      Standar Higienis
-                    </span>
-                  </div>
-
-                  <div class="bg-white rounded-2xl p-4 border border-border-color space-y-3">
-                    <div class="flex items-center gap-3">
-                      <div class="w-10 h-10 rounded-xl bg-light-green text-forest flex items-center justify-center shrink-0">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                        </svg>
-                      </div>
-                      <div class="min-w-0">
-                        <h2 class="text-sm font-bold text-forest truncate">Pencatatan Surplus Higienis</h2>
-                        <p class="text-xs text-secondary-text">Makanan berlebih dicek kelayakan sebelum disalurkan</p>
-                      </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-2 text-xs pt-1">
-                      <div class="bg-soft-mint rounded-lg p-2 border border-border-color/60">
-                        <div class="text-[10px] text-secondary-text font-medium">Kondisi</div>
-                        <div class="font-bold text-forest text-xs mt-0.5">Segar &amp; Utuh</div>
-                      </div>
-                      <div class="bg-soft-mint rounded-lg p-2 border border-border-color/60">
-                        <div class="text-[10px] text-secondary-text font-medium">Kemasan</div>
-                        <div class="font-bold text-forest text-xs mt-0.5">Tertutup Rapi</div>
-                      </div>
-                    </div>
-                  </div>
+              <!-- Realistic Photo Container -->
+              <div class="relative rounded-3xl overflow-hidden border border-border-color shadow-card aspect-[4/3] bg-soft-mint">
+                <img src="images/hero_penyerahan_donatur.webp" alt="Pemilik usaha bakery menyerahkan paket makanan surplus segar kepada relawan mitra penyalur" class="w-full h-full object-cover" width="752" height="498" loading="eager">
+                <div class="absolute inset-0 bg-gradient-to-t from-forest/50 via-transparent to-transparent pointer-events-none"></div>
+                
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-white/95 text-forest backdrop-blur border border-border-color shadow-sm">
+                  <span class="w-2 h-2 rounded-full bg-primary"></span>
+                  <span>Serah Terima Donatur</span>
                 </div>
               </div>
 
               <!-- Floating Surplus Card (Specified in DESIGN.md) -->
-              <div class="absolute -bottom-6 sm:-bottom-8 left-4 right-4 sm:left-6 sm:right-6 bg-white rounded-2xl p-4 sm:p-5 border border-border-color shadow-card z-20">
+              <div class="absolute -bottom-8 sm:-bottom-10 left-4 right-4 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-5 border border-border-color shadow-card z-20">
                 <div class="flex items-start justify-between gap-3 mb-2">
                   <div>
                     <span class="text-xs font-semibold uppercase tracking-wider text-secondary">Penawaran Tersedia</span>
@@ -255,6 +215,30 @@
     <!-- C. Trust / Value Strip -->
     <section class="border-y border-border-color bg-soft-mint py-10" aria-label="Nilai Utama">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Visual Showcase of Surplus Box -->
+        <div class="mb-12 rounded-3xl overflow-hidden border border-border-color shadow-sm grid grid-cols-1 lg:grid-cols-12 bg-soft-mint items-center">
+          <div class="lg:col-span-6 aspect-[16/10] sm:aspect-[4/3] overflow-hidden">
+            <img src="images/surplus_box_pangan_segar.webp" alt="Kotak donasi pangan berisi aneka sayur segar, roti, dan wadah higienis berlabel Tumbuh Pangan" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" width="752" height="498" loading="lazy">
+          </div>
+          <div class="lg:col-span-6 p-6 sm:p-10 flex flex-col justify-center">
+            <span class="text-xs font-bold uppercase tracking-wider text-secondary mb-2">Penyelamatan Berkualitas</span>
+            <h3 class="text-xl sm:text-2xl font-extrabold text-forest mb-3">Pangan Segar, Terverifikasi, dan Siap Disalurkan</h3>
+            <p class="text-sm text-secondary-text leading-relaxed mb-4">
+              Setiap donasi dikemas dengan rapi dan terdata: mulai dari roti harian toko kue hingga surplus bahan segar dari pasar dan katering. Seluruhnya dipilah dengan standar kelayakan pangan yang jelas.
+            </p>
+            <div class="flex items-center gap-3 text-xs font-semibold text-forest">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-light-green border border-border-color">
+                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Wadah Bersih Tersegel
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-light-green border border-border-color">
+                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Batas Waktu Jelas
+              </span>
+            </div>
+          </div>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <!-- Value 1 -->
           <div class="flex items-start gap-4">
@@ -389,9 +373,12 @@
             <p class="text-base sm:text-lg text-main-text leading-relaxed mb-6 font-medium">
               Tumbuh Pangan hadir untuk membantu membangun ekosistem penyaluran surplus pangan yang lebih kolaboratif. Kami percaya bahwa langkah kecil—mencatat surplus, menemukan mitra yang sesuai, dan memastikan penyaluran—dapat menjadi bagian dari perubahan yang lebih besar.
             </p>
-            <p class="text-sm text-secondary-text leading-relaxed">
+            <p class="text-sm text-secondary-text leading-relaxed mb-6">
               Kami tidak memandang surplus pangan sebagai sisa yang harus dibuang terburu-buru, melainkan sebagai potensi berharga yang memerlukan jembatan komunikasi yang aman, bermartabat, dan teratur.
             </p>
+            <div class="rounded-2xl overflow-hidden border border-border-color shadow-sm aspect-[16/10] sm:aspect-[4/3] bg-white">
+              <img src="images/relawan_penyiapan_paket.webp" alt="Relawan komunitas menyiapkan dan mengemas paket makanan sehat di bawah poster Bersama Menumbuhkan Manfaat Pangan" class="w-full h-full object-cover" width="752" height="497" loading="lazy">
+            </div>
           </div>
 
           <!-- 3 Principles -->
@@ -614,6 +601,24 @@
               </p>
             </div>
             <span class="mt-4 text-[11px] font-semibold text-secondary">Verifikasi Selesai</span>
+          </div>
+        </div>
+
+        <!-- Dignified Community Distribution Banner -->
+        <div class="mt-14 rounded-3xl overflow-hidden border border-border-color shadow-sm bg-soft-mint grid grid-cols-1 lg:grid-cols-12 items-center">
+          <div class="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-center order-2 lg:order-1">
+            <span class="text-xs font-bold uppercase tracking-wider text-secondary mb-2">Dampak Komunitas Nyata</span>
+            <h3 class="text-xl sm:text-2xl font-extrabold text-forest mb-3">Penyaluran Tertib dan Bermartabat</h3>
+            <p class="text-sm text-secondary-text leading-relaxed mb-5">
+              Makanan berlebih diserahkan langsung kepada penerima manfaat lansia, keluarga prasejahtera, dan panti asuhan melalui antrean yang teratur serta proses yang penuh rasa hormat.
+            </p>
+            <div class="inline-flex items-center gap-2 text-xs font-bold text-forest bg-white px-4 py-2.5 rounded-xl border border-border-color self-start shadow-xs">
+              <span class="w-2 h-2 rounded-full bg-primary"></span>
+              <span>Langkah 5 Terkonfirmasi: Serah Terima Selesai</span>
+            </div>
+          </div>
+          <div class="lg:col-span-7 aspect-[16/10] sm:aspect-[16/9] overflow-hidden order-1 lg:order-2">
+            <img src="images/distribusi_penerima_manfaat.webp" alt="Relawan menyerahkan paket makanan secara bermartabat kepada warga lansia dalam antrean luar ruangan yang teratur" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" width="752" height="497" loading="lazy">
           </div>
         </div>
       </div>
