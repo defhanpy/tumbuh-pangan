@@ -155,7 +155,7 @@
             Pilih salah satu peran untuk langsung mencoba alur operasional di browser:
           </p>
           <div class="grid grid-cols-1 gap-2">
-            <a href="app-donatur.html" class="flex items-center justify-between p-2.5 rounded-xl bg-white border border-border-color hover:border-primary hover:bg-light-green transition-all group">
+            <a href="app-donatur.html" onclick="if(window.TPStore) TPStore.switchUserRole('donatur', 'donatur-1')" class="flex items-center justify-between p-2.5 rounded-xl bg-white border border-border-color hover:border-primary hover:bg-light-green transition-all group">
               <div class="flex items-center gap-2">
                 <span class="text-base">🥖</span>
                 <div>
@@ -166,7 +166,7 @@
               <span class="text-primary font-bold text-xs">Buka ↗</span>
             </a>
 
-            <a href="app-mitra.html" class="flex items-center justify-between p-2.5 rounded-xl bg-white border border-border-color hover:border-primary hover:bg-light-green transition-all group">
+            <a href="app-mitra.html" onclick="if(window.TPStore) TPStore.switchUserRole('mitra', 'mitra-1')" class="flex items-center justify-between p-2.5 rounded-xl bg-white border border-border-color hover:border-primary hover:bg-light-green transition-all group">
               <div class="flex items-center gap-2">
                 <span class="text-base">🤲</span>
                 <div>
@@ -177,7 +177,7 @@
               <span class="text-primary font-bold text-xs">Buka ↗</span>
             </a>
 
-            <a href="app-admin.html" class="flex items-center justify-between p-2.5 rounded-xl bg-white border border-border-color hover:border-primary hover:bg-light-green transition-all group">
+            <a href="app-admin.html" onclick="if(window.TPStore) TPStore.switchUserRole('admin', 'admin-1')" class="flex items-center justify-between p-2.5 rounded-xl bg-white border border-border-color hover:border-primary hover:bg-light-green transition-all group">
               <div class="flex items-center gap-2">
                 <span class="text-base">🛡️</span>
                 <div>
@@ -539,9 +539,13 @@
       if (email.includes('donatur') || email.includes('roti') || email.includes('bakery')) {
         targetUrl = 'app-donatur.html';
         roleLabel = 'Portal Donatur (Roti Nusantara Artisan)';
+        if (window.TPStore) TPStore.switchUserRole('donatur', 'donatur-1');
       } else if (email.includes('admin') || email.includes('verifikator')) {
         targetUrl = 'app-admin.html';
         roleLabel = 'Portal Super Admin Verifikator';
+        if (window.TPStore) TPStore.switchUserRole('admin', 'admin-1');
+      } else {
+        if (window.TPStore) TPStore.switchUserRole('mitra', 'mitra-1');
       }
 
       alertText.innerHTML = `<strong>Autentikasi Berhasil!</strong> Menyiapkan sesi untuk <span class="underline">${email}</span>... Mengarahkan ke <strong>${roleLabel}</strong>...`;

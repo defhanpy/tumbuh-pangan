@@ -385,7 +385,7 @@
     try {
       if (typeof localStorage === 'undefined') {
         if (!memoryFallback) memoryFallback = JSON.parse(JSON.stringify(INITIAL_SEED));
-        return memoryFallback;
+        return JSON.parse(JSON.stringify(memoryFallback));
       }
       const data = localStorage.getItem(STORAGE_KEY);
       if (!data) {
