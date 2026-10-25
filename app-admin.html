@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Admin Pusat | Tumbuh Pangan: Verifikasi KYC &amp; Impact Engine</title>
+  <meta name="description" content="Portal Pengawas &amp; Verifikator Pusat Tumbuh Pangan. Monitoring metrik dampak lingkungan, persetujuan KYC mitra baru, dan audit log transaksi real-time.">
+  <meta name="theme-color" content="#14532D">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Script & Config -->
+  <script src="./tailwind.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: '#14532D',
+            primary: '#27864B',
+            secondary: '#4C9A61',
+            'light-green': '#E8F5E9',
+            'soft-mint': '#F5FAF5',
+            'main-text': '#173C2F',
+            'secondary-text': '#52665B',
+            'border-color': '#DCE9DE',
+            'warm-yellow': '#F4D77B',
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          },
+          boxShadow: {
+            'soft': '0 4px 20px -2px rgba(20, 83, 45, 0.06), 0 2px 6px -1px rgba(20, 83, 45, 0.04)',
+            'card': '0 10px 30px -4px rgba(20, 83, 45, 0.08), 0 4px 12px -2px rgba(20, 83, 45, 0.04)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    body {
+      color: #173C2F;
+      background-color: #F8FAF8;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAF8] text-main-text antialiased flex flex-col min-h-screen pb-28 selection:bg-light-green selection:text-forest">
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
+
+  <!-- Header Bar -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-border-color shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Brand & Admin Tag -->
+        <div class="flex items-center gap-3">
+          <a href="index.html" class="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg" aria-label="Beranda Tumbuh Pangan">
+            <img src="logo.svg" alt="Tumbuh Pangan Logo" class="h-10 w-auto" width="180" height="45">
+          </a>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#14532D] text-white shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-warm-yellow animate-pulse"></span>
+            Super Verifikator Pusat
+          </span>
+        </div>
+
+        <!-- Clock & Controls -->
+        <div class="flex items-center gap-4">
+          <div class="hidden md:block text-right">
+            <div id="admin-live-clock" class="text-xs font-mono font-bold text-forest">Minggu, 25 Okt 2026 • 14:30 WIB</div>
+            <div class="text-[11px] text-primary font-semibold flex items-center justify-end gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+              Live Sync Node Active
+            </div>
+          </div>
+          <button
+            type="button"
+            onclick="TPStore.confirmResetDemo()"
+            class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold transition-all border border-red-200 cursor-pointer"
+            title="Reset seluruh database demo ke kondisi awal">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            <span>Reset Data Demo</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow">
+
+    <!-- Top Integrated Impact Dashboard -->
+    <section class="mb-10 bg-white rounded-3xl p-6 sm:p-8 border border-border-color shadow-card relative overflow-hidden" aria-label="Dashboard Metrik Dampak Lingkungan">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-border-color mb-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-primary">MONITORING NASIONAL &amp; DAERAH</span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-forest mt-0.5">Ringkasan Dampak Pangan &amp; Emisi Karbon</h1>
+          <p class="text-xs sm:text-sm text-secondary-text mt-1">
+            Data ini bereaksi secara dinamis saat transaksi serah terima diselesaikan di browser.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold bg-light-green text-forest border border-primary/20">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            Real-time Aggregator
+          </span>
+        </div>
+      </div>
+
+      <!-- 4 Core Impact KPIs -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <!-- 1. Total Kg Pangan -->
+        <div class="p-5 rounded-2xl bg-soft-mint border border-border-color hover:border-primary transition-all">
+          <div class="flex items-center justify-between text-secondary-text mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider">Pangan Diselamatkan</span>
+            <span class="text-xl">⚖️</span>
+          </div>
+          <div id="admin-metric-kg" class="text-3xl sm:text-4xl font-extrabold text-forest font-mono">345.0</div>
+          <div class="text-xs text-secondary-text mt-1">
+            Kilogram bahan pangan layak konsumsi
+          </div>
+        </div>
+
+        <!-- 2. Total Porsi Terdistribusi -->
+        <div class="p-5 rounded-2xl bg-soft-mint border border-border-color hover:border-primary transition-all">
+          <div class="flex items-center justify-between text-secondary-text mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider">Total Porsi Terserap</span>
+            <span class="text-xl">🍲</span>
+          </div>
+          <div id="admin-metric-portions" class="text-3xl sm:text-4xl font-extrabold text-forest font-mono">1,380</div>
+          <div class="text-xs text-secondary-text mt-1">
+            Porsi santap bergizi bagi duafa
+          </div>
+        </div>
+
+        <!-- 3. Rasio Penyerapan Sukses -->
+        <div class="p-5 rounded-2xl bg-soft-mint border border-border-color hover:border-primary transition-all">
+          <div class="flex items-center justify-between text-secondary-text mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider">Tingkat Keberhasilan</span>
+            <span class="text-xl">🎯</span>
+          </div>
+          <div id="admin-metric-rate" class="text-3xl sm:text-4xl font-extrabold text-primary font-mono">98.7%</div>
+          <div class="text-xs text-secondary-text mt-1">
+            Rasio klaim selesai vs no-show
+          </div>
+        </div>
+
+        <!-- 4. Emisi CO2e Dicegah -->
+        <div class="p-5 rounded-2xl bg-soft-mint border border-border-color hover:border-primary transition-all">
+          <div class="flex items-center justify-between text-secondary-text mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider">Emisi CO2e Dicegah</span>
+            <span class="text-xl">🌱</span>
+          </div>
+          <div id="admin-metric-co2e" class="text-3xl sm:text-4xl font-extrabold text-forest font-mono">862.5</div>
+          <div class="text-xs text-secondary-text mt-1">
+            Kg CO2e (Standar FAO 1 kg = 2.5 kg CO2e)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="flex border-b border-border-color mb-8 gap-2 sm:gap-4 overflow-x-auto pb-1" aria-label="Tab Portal Admin">
+      <button
+        type="button"
+        onclick="switchTab('kyc')"
+        id="tab-btn-kyc"
+        class="tab-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all border-b-2 border-primary text-forest bg-light-green/60 cursor-pointer">
+        <span>🛡️</span>
+        <span>Antrean Verifikasi Akun Baru (KYC Gate)</span>
+        <span id="badge-admin-kyc" class="px-2 py-0.5 rounded-full text-xs font-extrabold bg-[#EA580C] text-white">2</span>
+      </button>
+
+      <button
+        type="button"
+        onclick="switchTab('audit')"
+        id="tab-btn-audit"
+        class="tab-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all border-b-2 border-transparent text-secondary-text hover:text-forest hover:bg-white cursor-pointer">
+        <span>📜</span>
+        <span>Audit Log &amp; Transaksi Real-Time</span>
+        <span id="badge-admin-tx" class="px-2 py-0.5 rounded-full text-xs font-extrabold bg-primary text-white">3</span>
+      </button>
+
+      <button
+        type="button"
+        onclick="switchTab('users')"
+        id="tab-btn-users"
+        class="tab-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all border-b-2 border-transparent text-secondary-text hover:text-forest hover:bg-white cursor-pointer">
+        <span>👥</span>
+        <span>Manajemen Pengguna &amp; Mitra Aktif</span>
+        <span id="badge-admin-users" class="px-2 py-0.5 rounded-full text-xs font-extrabold bg-border-color text-forest">6</span>
+      </button>
+    </nav>
+
+    <!-- TAB 1: Antrean Verifikasi KYC Baru -->
+    <section id="tab-content-kyc" class="tab-pane block space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 class="text-xl font-extrabold text-forest">Antrean Pendaftaran Kemitraan Baru</h2>
+          <p class="text-xs sm:text-sm text-secondary-text mt-0.5">
+            Pendaftar dari form pendaftaran publik (daftar.html) memerlukan kurasi keamanan sebelum diaktifkan.
+          </p>
+        </div>
+      </div>
+
+      <div id="container-admin-kyc-list" class="space-y-4">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- TAB 2: Audit Log & Transaksi Real-Time -->
+    <section id="tab-content-audit" class="tab-pane hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 class="text-xl font-extrabold text-forest">Buku Besar Audit Log Transaksi</h2>
+          <p class="text-xs sm:text-sm text-secondary-text mt-0.5">
+            Semua tahapan donasi, penerbitan PIN, hingga konfirmasi serah terima terekam tanpa bisa diubah.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-border-color shadow-card overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-soft-mint border-b border-border-color text-forest font-bold uppercase tracking-wider text-[11px]">
+                <th class="p-4">ID &amp; Waktu</th>
+                <th class="p-4">Donatur (Sumber)</th>
+                <th class="p-4">Mitra (Penyalur)</th>
+                <th class="p-4">Paket Makanan</th>
+                <th class="p-4 text-center">Volume</th>
+                <th class="p-4 text-center">PIN</th>
+                <th class="p-4 text-center">Status</th>
+              </tr>
+            </thead>
+            <tbody id="container-admin-audit-table" class="divide-y divide-border-color">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: Manajemen Pengguna & Mitra Aktif -->
+    <section id="tab-content-users" class="tab-pane hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl font-extrabold text-forest">Direktori Lembaga &amp; Donatur Terverifikasi</h2>
+          <p class="text-xs sm:text-sm text-secondary-text mt-0.5">
+            Daftar seluruh pihak yang memiliki hak operasional redistribusi pangan di platform.
+          </p>
+        </div>
+
+        <!-- Filter Role Buttons -->
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="filterUserDirectory('ALL')" class="user-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-primary text-white" data-filter="ALL">Semua</button>
+          <button type="button" onclick="filterUserDirectory('DONATUR')" class="user-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-soft-mint text-secondary-text" data-filter="DONATUR">Donatur Saja</button>
+          <button type="button" onclick="filterUserDirectory('MITRA')" class="user-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-soft-mint text-secondary-text" data-filter="MITRA">Mitra Saja</button>
+        </div>
+      </div>
+
+      <div id="container-admin-users-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Store Module & Admin Portal Logic -->
+  <script src="./js/store.js"></script>
+  <script>
+    let activeUserFilter = 'ALL';
+
+    // 1. Toast helper
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const bgClass = type === 'success' ? 'bg-forest text-white' : 'bg-red-600 text-white';
+      const icon = type === 'success' ? '✓' : '✕';
+      toast.className = `${bgClass} p-4 rounded-2xl shadow-xl flex items-center gap-3 text-xs sm:text-sm font-semibold pointer-events-auto transform transition-all duration-300`;
+      toast.innerHTML = `
+        <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs shrink-0">${icon}</span>
+        <div class="flex-grow">${message}</div>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(-10px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    // 2. Tab Navigation
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('border-primary', 'text-forest', 'bg-light-green/60');
+        btn.classList.add('border-transparent', 'text-secondary-text');
+      });
+      document.querySelectorAll('.tab-pane').forEach(pane => {
+        pane.classList.add('hidden');
+        pane.classList.remove('block');
+      });
+
+      const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+      const activePane = document.getElementById(`tab-content-${tabName}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('border-transparent', 'text-secondary-text');
+        activeBtn.classList.add('border-primary', 'text-forest', 'bg-light-green/60');
+      }
+      if (activePane) {
+        activePane.classList.remove('hidden');
+        activePane.classList.add('block');
+      }
+    }
+
+    // 3. KYC Actions
+    function handleVerifyKyc(kycId) {
+      try {
+        const kyc = TPStore.verifyUser(kycId, 'VERIFY');
+        showToast(`Akun "${kyc.orgName}" telah diverifikasi dan aktif di platform!`);
+      } catch (err) {
+        alert(err.message || 'Gagal memverifikasi pendaftar.');
+      }
+    }
+
+    function handleRejectKyc(kycId) {
+      if (confirm('Tolak permohonan pendaftaran ini?')) {
+        TPStore.verifyUser(kycId, 'REJECT');
+        showToast('Pendaftaran kemitraan ditolak.', 'error');
+      }
+    }
+
+    // 4. Live Clock Updater
+    function updateClock() {
+      const now = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+      const clockEl = document.getElementById('admin-live-clock');
+      if (clockEl) {
+        clockEl.innerText = now.toLocaleDateString('id-ID', options);
+      }
+    }
+
+    // 5. User Directory Filter
+    function filterUserDirectory(filter) {
+      activeUserFilter = filter;
+      document.querySelectorAll('.user-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === filter) {
+          btn.className = 'user-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-primary text-white';
+        } else {
+          btn.className = 'user-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-soft-mint text-secondary-text';
+        }
+      });
+      renderUsersGrid();
+    }
+
+    // 6. Main Render Loop
+    function renderAdminPortal() {
+      // Impact Metrics
+      const metrics = TPStore.getImpactMetrics();
+      document.getElementById('admin-metric-kg').innerText = metrics.totalKg.toLocaleString('id-ID', { minimumFractionDigits: 1 });
+      document.getElementById('admin-metric-portions').innerText = metrics.totalPortions.toLocaleString('id-ID');
+      document.getElementById('admin-metric-rate').innerText = `${metrics.successRate || 98.7}%`;
+      document.getElementById('admin-metric-co2e').innerText = metrics.co2eSaved.toLocaleString('id-ID', { minimumFractionDigits: 1 });
+
+      // Pending KYC
+      const pendingKYC = TPStore.getPendingUsers();
+      document.getElementById('badge-admin-kyc').innerText = pendingKYC.length;
+
+      const kycContainer = document.getElementById('container-admin-kyc-list');
+      if (pendingKYC.length === 0) {
+        kycContainer.innerHTML = `
+          <div class="bg-white rounded-3xl p-10 border border-border-color text-center">
+            <span class="text-4xl block mb-2">🎉</span>
+            <h4 class="text-base font-extrabold text-forest">Semua Antrean KYC Telah Terverifikasi</h4>
+            <p class="text-xs text-secondary-text mt-1">Pendaftaran baru yang masuk melalui daftar.html akan otomatis muncul di sini secara real-time.</p>
+          </div>
+        `;
+      } else {
+        kycContainer.innerHTML = pendingKYC.map(k => `
+          <div class="bg-white rounded-3xl p-6 sm:p-7 border-2 border-border-color hover:border-primary transition-all shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="space-y-2">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-extrabold ${k.type === 'DONATUR' ? 'bg-primary text-white' : 'bg-[#EA580C] text-white'}">
+                  ${k.type === 'DONATUR' ? 'DONATUR PANGAN' : 'MITRA PENYALUR'}
+                </span>
+                <span class="text-xs text-secondary-text">Diajukan: ${k.submittedAt}</span>
+              </div>
+
+              <h4 class="text-xl font-extrabold text-forest">${k.orgName}</h4>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 text-xs text-secondary-text">
+                <div><strong>PIC:</strong> ${k.picName} (${k.phone})</div>
+                <div><strong>Email:</strong> ${k.email}</div>
+                <div><strong>Wilayah:</strong> ${k.address}</div>
+                <div><strong>Kapasitas/Surplus:</strong> ${k.capacity}</div>
+              </div>
+              <div class="text-xs text-secondary-text"><strong>Jadwal Operasional:</strong> ${k.schedule}</div>
+            </div>
+
+            <div class="flex items-center gap-3 shrink-0">
+              <button
+                type="button"
+                onclick="handleRejectKyc('${k.id}')"
+                class="px-4 py-2.5 rounded-xl border border-red-200 text-red-600 hover:bg-red-50 text-xs font-bold transition-all cursor-pointer">
+                Tolak
+              </button>
+              <button
+                type="button"
+                onclick="handleVerifyKyc('${k.id}')"
+                class="px-5 py-2.5 rounded-xl bg-primary hover:bg-forest text-white text-xs font-bold shadow-sm transition-all cursor-pointer">
+                ✓ Verifikasi &amp; Terbitkan Akun
+              </button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Audit Log Transactions
+      const allTransactions = TPStore.getTransactions();
+      document.getElementById('badge-admin-tx').innerText = allTransactions.length;
+
+      const auditTable = document.getElementById('container-admin-audit-table');
+      if (allTransactions.length === 0) {
+        auditTable.innerHTML = `
+          <tr>
+            <td colspan="7" class="p-8 text-center text-secondary-text italic">Belum ada riwayat transaksi tercatat.</td>
+          </tr>
+        `;
+      } else {
+        auditTable.innerHTML = allTransactions.map(tx => `
+          <tr class="hover:bg-soft-mint transition-colors">
+            <td class="p-4 font-mono">
+              <div class="font-bold text-forest">${tx.id}</div>
+              <div class="text-[10px] text-secondary-text">${new Date(tx.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} WIB</div>
+            </td>
+            <td class="p-4">
+              <div class="font-bold text-forest">${tx.donaturName}</div>
+              <div class="text-[10px] text-secondary-text">${tx.donaturAddress || 'Kaliwates'}</div>
+            </td>
+            <td class="p-4">
+              <div class="font-bold text-forest">${tx.mitraName}</div>
+              <div class="text-[10px] text-secondary-text">PIC: ${tx.mitraPic}</div>
+            </td>
+            <td class="p-4 font-semibold text-forest">
+              ${tx.listingTitle}
+            </td>
+            <td class="p-4 text-center font-mono">
+              <span class="font-bold text-forest">${tx.portions} porsi</span>
+              <span class="block text-[10px] text-secondary-text">${tx.kg} kg</span>
+            </td>
+            <td class="p-4 text-center">
+              <span class="font-mono font-bold bg-light-green text-forest px-2 py-1 rounded-md text-[11px] border border-border-color">
+                ${tx.pin}
+              </span>
+            </td>
+            <td class="p-4 text-center">
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold ${tx.status === 'COMPLETED' ? 'bg-green-100 text-forest' : 'bg-orange-100 text-[#EA580C]'}">
+                ${tx.status === 'COMPLETED' ? 'SELESAI ✓' : 'DIJADWALKAN'}
+              </span>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      renderUsersGrid();
+    }
+
+    // Render Users Directory
+    function renderUsersGrid() {
+      let users = TPStore.getAllUsers();
+      if (activeUserFilter !== 'ALL') {
+        users = users.filter(u => u.type === activeUserFilter);
+      }
+      document.getElementById('badge-admin-users').innerText = users.length;
+
+      const container = document.getElementById('container-admin-users-grid');
+      container.innerHTML = users.map(u => `
+        <div class="bg-white rounded-3xl p-6 border border-border-color shadow-soft hover:shadow-card transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${u.type === 'DONATUR' ? 'bg-primary text-white' : (u.type === 'MITRA' ? 'bg-[#EA580C] text-white' : 'bg-forest text-white')}">
+                ${u.type}
+              </span>
+              <span class="text-xs text-primary font-bold">★ ${u.rating || 5.0}</span>
+            </div>
+            <h4 class="text-base font-extrabold text-forest">${u.name}</h4>
+            <p class="text-xs text-secondary-text mt-0.5">${u.category || 'Organisasi Terdaftar'}</p>
+            <div class="text-xs text-secondary-text mt-3 space-y-1">
+              <div>📍 ${u.address || 'Jember'}</div>
+              <div>📞 ${u.phone || '-'}</div>
+              <div>✉️ ${u.email || '-'}</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-border-color flex items-center justify-between text-xs font-semibold text-secondary-text">
+            <span>${u.badge || 'Mitra Terverifikasi'}</span>
+            <span class="text-forest font-bold font-mono">
+              ${u.type === 'DONATUR' ? `${u.totalPortions || 0} Porsi Donasi` : `${u.totalReceivedPortions || 0} Porsi Diterima`}
+            </span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      TPStore.switchUserRole('admin', 'admin-1');
+      updateClock();
+      setInterval(updateClock, 1000);
+      renderAdminPortal();
+
+      TPStore.subscribe(() => {
+        renderAdminPortal();
+      });
+
+      // Inject Demo Switcher Floating Bar
+      const switcherMount = document.createElement('div');
+      switcherMount.innerHTML = TPStore.renderDemoSwitcher('admin');
+      document.body.appendChild(switcherMount);
+    });
+  </script>
+</body>
+</html>

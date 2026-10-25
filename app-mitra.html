@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Mitra Penyalur | Tumbuh Pangan: Katalog Surplus &amp; Penjemputan</title>
+  <meta name="description" content="Portal Mitra Penyalur Tumbuh Pangan untuk melihat katalog surplus pangan terdekat, mengajukan klaim logistik, dan verifikasi serah terima.">
+  <meta name="theme-color" content="#14532D">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Script & Config -->
+  <script src="./tailwind.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: '#14532D',
+            primary: '#27864B',
+            secondary: '#4C9A61',
+            'light-green': '#E8F5E9',
+            'soft-mint': '#F5FAF5',
+            'main-text': '#173C2F',
+            'secondary-text': '#52665B',
+            'border-color': '#DCE9DE',
+            'warm-yellow': '#F4D77B',
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          },
+          boxShadow: {
+            'soft': '0 4px 20px -2px rgba(20, 83, 45, 0.06), 0 2px 6px -1px rgba(20, 83, 45, 0.04)',
+            'card': '0 10px 30px -4px rgba(20, 83, 45, 0.08), 0 4px 12px -2px rgba(20, 83, 45, 0.04)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    body {
+      color: #173C2F;
+      background-color: #F8FAF8;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAF8] text-main-text antialiased flex flex-col min-h-screen pb-28 selection:bg-light-green selection:text-forest">
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
+
+  <!-- Header Bar -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-border-color shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Brand & Portal Tag -->
+        <div class="flex items-center gap-3">
+          <a href="index.html" class="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg" aria-label="Beranda Tumbuh Pangan">
+            <img src="logo.svg" alt="Tumbuh Pangan Logo" class="h-10 w-auto" width="180" height="45">
+          </a>
+          <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#EBF5EE] text-primary border border-primary/20">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            Portal Mitra Penyalur
+          </span>
+        </div>
+
+        <!-- Mitra Profile Info -->
+        <div class="flex items-center gap-3 sm:gap-4">
+          <div class="text-right">
+            <div id="mitra-display-name" class="text-sm font-extrabold text-forest leading-tight">Panti Asuhan Al-Ikhlas</div>
+            <div class="text-[11px] text-secondary-text flex items-center justify-end gap-1.5 mt-0.5">
+              <span>👶 Kapasitas: <strong>35 Anak</strong></span>
+              <span class="inline-block w-1 h-1 rounded-full bg-border-color"></span>
+              <span class="text-primary font-bold">Terverifikasi ✓</span>
+            </div>
+          </div>
+          <div class="w-10 h-10 rounded-2xl bg-light-green border border-primary/30 flex items-center justify-center text-forest font-bold text-base shadow-sm">
+            🤲
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow">
+
+    <!-- KPI Summary Row -->
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8" aria-label="Ringkasan Performa Penyaluran">
+      <!-- KPI 1: Porsi Diterima -->
+      <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
+        <div class="flex items-center justify-between text-secondary-text mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider">Porsi Diterima</span>
+          <span class="text-xl">🍲</span>
+        </div>
+        <div id="kpi-mitra-portions" class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">290</div>
+        <div class="text-xs text-secondary-text mt-1">
+          Tersalurkan ke 35 anak panti
+        </div>
+      </div>
+
+      <!-- KPI 2: Penjemputan Aktif -->
+      <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
+        <div class="flex items-center justify-between text-secondary-text mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider">Jadwal Jemput Aktif</span>
+          <span class="text-xl">🛵</span>
+        </div>
+        <div id="kpi-mitra-active" class="text-2xl sm:text-3xl font-extrabold text-primary font-mono">1</div>
+        <div class="text-xs text-secondary-text mt-1">
+          1 batch siap dijemput di outlet
+        </div>
+      </div>
+
+      <!-- KPI 3: Estimasi Efisiensi Biaya -->
+      <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
+        <div class="flex items-center justify-between text-secondary-text mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider">Efisiensi Pangan</span>
+          <span class="text-xl">💰</span>
+        </div>
+        <div id="kpi-mitra-savings" class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">Rp 4.3 <span class="text-base font-sans font-semibold text-secondary-text">Jt</span></div>
+        <div class="text-xs text-secondary-text mt-1">
+          Penghematan anggaran operasional
+        </div>
+      </div>
+
+      <!-- KPI 4: Ketepatan Waktu -->
+      <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
+        <div class="flex items-center justify-between text-secondary-text mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider">Ketepatan Waktu</span>
+          <span class="text-xl">⚡</span>
+        </div>
+        <div class="flex items-baseline gap-2">
+          <span class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">99.2%</span>
+          <span class="text-xs text-primary font-bold">Prima</span>
+        </div>
+        <div class="text-xs text-secondary-text mt-1">
+          Bebas mangkir / No-show
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="flex border-b border-border-color mb-8 gap-2 sm:gap-4 overflow-x-auto pb-1" aria-label="Tab Portal Mitra">
+      <button
+        type="button"
+        onclick="switchTab('catalog')"
+        id="tab-btn-catalog"
+        class="tab-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all border-b-2 border-primary text-forest bg-light-green/60 cursor-pointer">
+        <span>🍲</span>
+        <span>Katalog Surplus Terdekat</span>
+        <span id="badge-catalog-count" class="px-2 py-0.5 rounded-full text-xs font-extrabold bg-primary text-white">4</span>
+      </button>
+
+      <button
+        type="button"
+        onclick="switchTab('pickup')"
+        id="tab-btn-pickup"
+        class="tab-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all border-b-2 border-transparent text-secondary-text hover:text-forest hover:bg-white cursor-pointer">
+        <span>🚚</span>
+        <span>Penjemputan &amp; Klaim Saya</span>
+        <span id="badge-my-pickups" class="px-2 py-0.5 rounded-full text-xs font-extrabold bg-[#EA580C] text-white">2</span>
+      </button>
+    </nav>
+
+    <!-- TAB 1: Katalog Surplus Terdekat -->
+    <section id="tab-content-catalog" class="tab-pane block space-y-6">
+
+      <!-- Filter & Search Bar -->
+      <div class="bg-white rounded-2xl p-4 sm:p-5 border border-border-color shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <!-- Category Filter Pills -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0" id="category-pills">
+          <button type="button" onclick="setCategoryFilter('Semua')" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold transition-all bg-primary text-white shadow-sm cursor-pointer" data-category="Semua">
+            Semua Surplus
+          </button>
+          <button type="button" onclick="setCategoryFilter('Roti & Pastry')" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold transition-all bg-soft-mint text-secondary-text hover:text-forest cursor-pointer" data-category="Roti & Pastry">
+            🥐 Roti &amp; Pastry
+          </button>
+          <button type="button" onclick="setCategoryFilter('Siap Santap')" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold transition-all bg-soft-mint text-secondary-text hover:text-forest cursor-pointer" data-category="Siap Santap">
+            🍱 Siap Santap
+          </button>
+          <button type="button" onclick="setCategoryFilter('Sayur & Buah')" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold transition-all bg-soft-mint text-secondary-text hover:text-forest cursor-pointer" data-category="Sayur & Buah">
+            🥗 Sayur &amp; Buah
+          </button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="relative w-full md:w-72 shrink-0">
+          <input
+            type="text"
+            id="search-input"
+            oninput="handleSearch(this.value)"
+            placeholder="Cari makanan atau donatur..."
+            class="w-full pl-9 pr-4 py-2 rounded-xl border border-border-color focus:border-primary focus:ring-2 focus:ring-light-green text-xs transition-all outline-none">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-secondary-text">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Catalog Grid -->
+      <div id="container-surplus-catalog" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Dynamically rendered -->
+      </div>
+    </section>
+
+    <!-- TAB 2: Penjemputan Saya -->
+    <section id="tab-content-pickup" class="tab-pane hidden space-y-8">
+      <div>
+        <h2 class="text-2xl font-extrabold text-forest">Penjemputan &amp; Klaim Aktif</h2>
+        <p class="text-sm text-secondary-text mt-1">
+          Pantau status persetujuan donatur, kode serah terima QR/PIN, serta selesaikan verifikasi di lokasi.
+        </p>
+      </div>
+
+      <!-- Active Handover Tasks (Approved) -->
+      <div>
+        <h3 class="text-base font-extrabold text-forest mb-3 flex items-center gap-2">
+          <span>🛵 Siap Dijemput Sekarang (Disetujui)</span>
+        </h3>
+        <div id="container-mitra-approved-tx" class="space-y-4">
+          <!-- Dynamically rendered -->
+        </div>
+      </div>
+
+      <!-- Pending Claims (Waiting for donor approval) -->
+      <div class="pt-4 border-t border-border-color">
+        <h3 class="text-base font-extrabold text-forest mb-3 flex items-center gap-2">
+          <span>⏳ Menunggu Persetujuan Donatur</span>
+        </h3>
+        <div id="container-mitra-pending-claims" class="space-y-3">
+          <!-- Dynamically rendered -->
+        </div>
+      </div>
+
+      <!-- Completed History & Review -->
+      <div class="pt-6 border-t border-border-color">
+        <h3 class="text-base font-extrabold text-forest mb-3 flex items-center gap-2">
+          <span>✅ Riwayat Penjemputan Selesai</span>
+        </h3>
+        <div id="container-mitra-completed-history" class="space-y-3">
+          <!-- Dynamically rendered -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal: Ajukan Klaim Makanan -->
+  <div id="claim-modal" class="fixed inset-0 z-50 hidden overflow-y-auto" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity" onclick="closeClaimModal()"></div>
+    <div class="flex min-h-screen items-center justify-center p-4">
+      <div class="relative w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-border-color z-10">
+        <div class="flex items-start justify-between pb-4 border-b border-border-color mb-5">
+          <div>
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-light-green text-forest mb-1.5">
+              Formulir Pengajuan Klaim
+            </span>
+            <h3 id="claim-modal-title" class="text-xl font-extrabold text-forest">Aneka Roti Manis</h3>
+            <p id="claim-modal-donatur" class="text-xs text-secondary-text mt-0.5">Donatur: Roti Nusantara Artisan (1.2 km)</p>
+          </div>
+          <button type="button" onclick="closeClaimModal()" class="p-2 rounded-xl text-secondary-text hover:bg-light-green transition-colors" aria-label="Tutup Modal">
+            ✕
+          </button>
+        </div>
+
+        <form id="form-submit-claim" onsubmit="handleClaimFormSubmit(event)" class="space-y-4">
+          <input type="hidden" id="claim-listing-id">
+
+          <!-- Jumlah Porsi yang Sanggup Diserap -->
+          <div>
+            <label for="claim-portions-input" class="block text-xs font-bold text-forest mb-1">
+              Jumlah Porsi yang Sanggup Diserap <span class="text-red-500">*</span>
+            </label>
+            <div class="flex items-center gap-3">
+              <input
+                type="number"
+                id="claim-portions-input"
+                min="1"
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary font-mono text-base font-bold outline-none">
+              <span id="claim-max-portions-label" class="text-xs text-secondary-text whitespace-nowrap">Maks 24 Porsi</span>
+            </div>
+          </div>
+
+          <!-- Rencana Armada Penjemput -->
+          <div>
+            <label for="claim-vehicle-input" class="block text-xs font-bold text-forest mb-1">
+              Armada &amp; Wadah Higienis yang Dibawa <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="claim-vehicle-input"
+              required
+              value="Mobil operasional panti + box makanan bersih"
+              placeholder="Contoh: Motor roda tiga boks relawan + wadah tertutup"
+              class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary text-xs outline-none">
+          </div>
+
+          <!-- Estimasi Menit Tiba -->
+          <div>
+            <label for="claim-eta-select" class="block text-xs font-bold text-forest mb-1">
+              Estimasi Menit Tiba di Lokasi Donatur <span class="text-red-500">*</span>
+            </label>
+            <select
+              id="claim-eta-select"
+              class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary text-xs outline-none bg-white">
+              <option value="15">Sekitar 15 Menit</option>
+              <option value="25" selected>Sekitar 25 - 30 Menit</option>
+              <option value="45">Sekitar 45 Menit</option>
+              <option value="60">Sekitar 1 Jam</option>
+            </select>
+          </div>
+
+          <!-- Catatan Tambahan -->
+          <div>
+            <label for="claim-notes-input" class="block text-xs font-bold text-forest mb-1">
+              Catatan Penyaluran (Penerima Manfaat)
+            </label>
+            <textarea
+              id="claim-notes-input"
+              rows="2"
+              placeholder="Contoh: Untuk makan sore 35 adik panti asuhan."
+              class="w-full px-4 py-2 rounded-xl border border-border-color focus:border-primary text-xs outline-none resize-none"></textarea>
+          </div>
+
+          <div class="p-3 rounded-xl bg-soft-mint text-[11px] text-secondary-text">
+            ⚠️ <strong>Komitmen Penyaluran:</strong> Makanan hasil klaim wajib disalurkan secara cuma-cuma dan dilarang diperjualbelikan.
+          </div>
+
+          <div class="flex items-center justify-end gap-3 pt-3 border-t border-border-color">
+            <button
+              type="button"
+              onclick="closeClaimModal()"
+              class="px-4 py-2 rounded-xl border border-border-color text-xs font-semibold text-secondary-text hover:bg-soft-mint transition-colors cursor-pointer">
+              Batal
+            </button>
+            <button
+              type="submit"
+              class="px-6 py-2.5 rounded-xl bg-primary hover:bg-forest text-white text-xs font-bold shadow transition-all cursor-pointer">
+              Kirim Permohonan Klaim
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Ulasan Dua Arah (Rating & Review) -->
+  <div id="rating-modal" class="fixed inset-0 z-50 hidden overflow-y-auto" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity" onclick="closeRatingModal()"></div>
+    <div class="flex min-h-screen items-center justify-center p-4">
+      <div class="relative w-full max-w-md bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-border-color z-10 text-center">
+        <span class="text-4xl block mb-2">🎉</span>
+        <h3 class="text-xl font-extrabold text-forest">Serah Terima Selesai!</h3>
+        <p class="text-xs text-secondary-text mt-1 mb-5">
+          Bantu jaga kualitas ekosistem dengan memberikan ulasan kepada donatur makanan.
+        </p>
+
+        <form id="form-submit-rating" onsubmit="handleRatingSubmit(event)" class="space-y-4 text-left">
+          <input type="hidden" id="rating-tx-id">
+
+          <!-- Star Rating -->
+          <div class="text-center py-2 bg-soft-mint rounded-2xl border border-border-color">
+            <span class="text-xs font-bold text-forest block mb-1">Kepuasan Kualitas Makanan</span>
+            <div class="flex items-center justify-center gap-2 text-2xl text-amber-400 cursor-pointer" id="star-selector">
+              <button type="button" onclick="selectStars(1)" class="star-btn">★</button>
+              <button type="button" onclick="selectStars(2)" class="star-btn">★</button>
+              <button type="button" onclick="selectStars(3)" class="star-btn">★</button>
+              <button type="button" onclick="selectStars(4)" class="star-btn">★</button>
+              <button type="button" onclick="selectStars(5)" class="star-btn text-amber-500">★</button>
+            </div>
+            <input type="hidden" id="rating-stars" value="5">
+          </div>
+
+          <!-- Aspek Higienitas & Ketepatan -->
+          <div class="grid grid-cols-2 gap-3 text-xs">
+            <div class="p-3 rounded-xl bg-white border border-border-color">
+              <span class="font-bold text-forest block mb-1">Higienitas Wadah</span>
+              <select id="rating-hygiene" class="w-full text-xs border border-border-color rounded-lg p-1.5 outline-none bg-white">
+                <option value="5">Sangat Higienis (5/5)</option>
+                <option value="4">Bersih Baik (4/5)</option>
+                <option value="3">Cukup (3/5)</option>
+              </select>
+            </div>
+
+            <div class="p-3 rounded-xl bg-white border border-border-color">
+              <span class="font-bold text-forest block mb-1">Kemudahan Jemput</span>
+              <select id="rating-punctuality" class="w-full text-xs border border-border-color rounded-lg p-1.5 outline-none bg-white">
+                <option value="5">Sangat Cepat (5/5)</option>
+                <option value="4">Sesuai Waktu (4/5)</option>
+                <option value="3">Ada Tunggu (3/5)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Komentar Singkat -->
+          <div>
+            <label for="rating-comment" class="block text-xs font-bold text-forest mb-1">
+              Komentar Singkat untuk Donatur
+            </label>
+            <textarea
+              id="rating-comment"
+              rows="2"
+              placeholder="Contoh: Makanan sangat segar dan adik-adik sangat senang menikmatinya!"
+              class="w-full p-2.5 text-xs rounded-xl border border-border-color focus:border-primary outline-none resize-none"></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-3 rounded-xl bg-primary hover:bg-forest text-white text-xs font-bold shadow-md transition-all cursor-pointer">
+            Kirim Ulasan &amp; Simpan
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Store Module & Portal Logic -->
+  <script src="./js/store.js"></script>
+  <script>
+    let activeCategory = 'Semua';
+    let searchQuery = '';
+
+    // 1. Toast helper
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const bgClass = type === 'success' ? 'bg-forest text-white' : 'bg-red-600 text-white';
+      const icon = type === 'success' ? '✓' : '✕';
+      toast.className = `${bgClass} p-4 rounded-2xl shadow-xl flex items-center gap-3 text-xs sm:text-sm font-semibold pointer-events-auto transform transition-all duration-300`;
+      toast.innerHTML = `
+        <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs shrink-0">${icon}</span>
+        <div class="flex-grow">${message}</div>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(-10px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    // 2. Tab Navigation
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('border-primary', 'text-forest', 'bg-light-green/60');
+        btn.classList.add('border-transparent', 'text-secondary-text');
+      });
+      document.querySelectorAll('.tab-pane').forEach(pane => {
+        pane.classList.add('hidden');
+        pane.classList.remove('block');
+      });
+
+      const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+      const activePane = document.getElementById(`tab-content-${tabName}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('border-transparent', 'text-secondary-text');
+        activeBtn.classList.add('border-primary', 'text-forest', 'bg-light-green/60');
+      }
+      if (activePane) {
+        activePane.classList.remove('hidden');
+        activePane.classList.add('block');
+      }
+    }
+
+    // 3. Filter and Search
+    function setCategoryFilter(cat) {
+      activeCategory = cat;
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        if (btn.dataset.category === cat) {
+          btn.className = 'cat-pill px-4 py-2 rounded-xl text-xs font-bold transition-all bg-primary text-white shadow-sm cursor-pointer';
+        } else {
+          btn.className = 'cat-pill px-4 py-2 rounded-xl text-xs font-bold transition-all bg-soft-mint text-secondary-text hover:text-forest cursor-pointer';
+        }
+      });
+      renderCatalog();
+    }
+
+    function handleSearch(val) {
+      searchQuery = val.trim();
+      renderCatalog();
+    }
+
+    // 4. Claim Modal Actions
+    function openClaimModal(listingId) {
+      const listing = TPStore.getSurplusListings().find(l => l.id === listingId);
+      if (!listing) return;
+
+      document.getElementById('claim-listing-id').value = listing.id;
+      document.getElementById('claim-modal-title').innerText = listing.title;
+      document.getElementById('claim-modal-donatur').innerText = `Donatur: ${listing.donaturName} (${listing.distanceKm} km) • ${listing.storageCondition}`;
+      document.getElementById('claim-portions-input').value = listing.portions;
+      document.getElementById('claim-portions-input').max = listing.portions;
+      document.getElementById('claim-max-portions-label').innerText = `Maks ${listing.portions} Porsi (${listing.kg} kg)`;
+
+      document.getElementById('claim-modal').classList.remove('hidden');
+    }
+
+    function closeClaimModal() {
+      document.getElementById('claim-modal').classList.add('hidden');
+    }
+
+    function handleClaimFormSubmit(e) {
+      e.preventDefault();
+      const listingId = document.getElementById('claim-listing-id').value;
+      const requestedPortions = parseInt(document.getElementById('claim-portions-input').value, 10);
+      const vehicleNotes = document.getElementById('claim-vehicle-input').value.trim();
+      const etaMinutes = parseInt(document.getElementById('claim-eta-select').value, 10);
+      const notes = document.getElementById('claim-notes-input').value.trim();
+
+      try {
+        TPStore.createClaim({
+          listingId,
+          requestedPortions,
+          vehicleNotes,
+          etaMinutes,
+          notes
+        });
+
+        closeClaimModal();
+        showToast('Permohonan klaim berhasil dikirim! Menunggu persetujuan Donatur.');
+        switchTab('pickup');
+      } catch (err) {
+        alert(err.message || 'Gagal mengajukan klaim');
+      }
+    }
+
+    // 5. Verification PIN Handover from Mitra
+    function handleMitraVerifyPin(txId) {
+      const input = document.getElementById(`mitra-pin-input-${txId}`);
+      if (!input) return;
+      const pin = input.value.trim();
+      if (!pin || pin.length < 4) {
+        alert('Masukkan 4 digit PIN transaksi');
+        return;
+      }
+
+      const res = TPStore.verifyHandover(txId, pin);
+      if (res.success) {
+        showToast('Serah terima BERHASIL! Pangan berhasil diselamatkan.');
+        // Trigger Rating Modal
+        openRatingModal(txId);
+      } else {
+        alert(res.error || 'PIN tidak valid!');
+      }
+    }
+
+    // 6. Rating Modal Actions
+    function openRatingModal(txId) {
+      document.getElementById('rating-tx-id').value = txId;
+      document.getElementById('rating-modal').classList.remove('hidden');
+    }
+
+    function closeRatingModal() {
+      document.getElementById('rating-modal').classList.add('hidden');
+    }
+
+    function selectStars(count) {
+      document.getElementById('rating-stars').value = count;
+      const buttons = document.querySelectorAll('#star-selector .star-btn');
+      buttons.forEach((btn, idx) => {
+        if (idx < count) {
+          btn.classList.add('text-amber-500');
+          btn.classList.remove('text-gray-300');
+        } else {
+          btn.classList.remove('text-amber-500');
+          btn.classList.add('text-gray-300');
+        }
+      });
+    }
+
+    function handleRatingSubmit(e) {
+      e.preventDefault();
+      const txId = document.getElementById('rating-tx-id').value;
+      const stars = document.getElementById('rating-stars').value;
+      const hygieneScore = document.getElementById('rating-hygiene').value;
+      const punctualityScore = document.getElementById('rating-punctuality').value;
+      const notes = document.getElementById('rating-comment').value.trim() || 'Pelayanan prima dan makanan sangat layak santap.';
+
+      TPStore.submitRating(txId, {
+        stars,
+        hygieneScore,
+        punctualityScore,
+        notes,
+        reviewer: 'Panti Asuhan Al-Ikhlas'
+      });
+
+      closeRatingModal();
+      showToast('Terima kasih! Ulasan Anda telah disimpan untuk profil donatur.');
+    }
+
+    // 7. Render Catalog
+    function renderCatalog() {
+      const listings = TPStore.getSurplusListings({
+        status: 'OPEN',
+        category: activeCategory,
+        search: searchQuery
+      });
+
+      document.getElementById('badge-catalog-count').innerText = listings.length;
+
+      const container = document.getElementById('container-surplus-catalog');
+      if (listings.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full bg-white rounded-3xl p-10 border border-border-color text-center">
+            <span class="text-4xl block mb-2">🔍</span>
+            <h4 class="text-base font-extrabold text-forest">Tidak Ada Surplus Sesuai Kriteria</h4>
+            <p class="text-xs text-secondary-text mt-1">Coba pilih kategori "Semua" atau hapus kata kunci pencarian.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = listings.map(item => `
+        <div class="bg-white rounded-3xl p-6 border border-border-color shadow-soft hover:shadow-card transition-all flex flex-col justify-between">
+          <div>
+            <!-- Top Badges -->
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-light-green text-forest">
+                ${item.imageEmoji || '🥐'} ${item.category}
+              </span>
+              <span class="inline-flex items-center gap-1 text-[11px] font-bold text-[#EA580C] bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-200">
+                ⏳ ${item.expiresLabel || '2 Jam lagi'}
+              </span>
+            </div>
+
+            <h4 class="text-lg font-extrabold text-forest">${item.title}</h4>
+
+            <!-- Donatur info -->
+            <div class="text-xs text-secondary-text mt-2 flex items-center gap-2">
+              <strong class="text-forest font-bold">${item.donaturName}</strong>
+              <span>•</span>
+              <span class="text-primary font-bold">📍 ${item.distanceKm} km</span>
+            </div>
+
+            <p class="text-xs text-secondary-text mt-2 leading-relaxed line-clamp-2">
+              ${item.notes}
+            </p>
+
+            <!-- Condition and Portions -->
+            <div class="grid grid-cols-2 gap-2 mt-4 p-3 rounded-2xl bg-soft-mint border border-border-color text-xs">
+              <div>
+                <span class="text-[10px] text-secondary-text uppercase font-bold block">Porsi Tersedia</span>
+                <span class="text-sm font-extrabold text-forest font-mono">${item.portions} Porsi <span class="text-[11px] text-secondary-text font-normal font-sans">(${item.kg} kg)</span></span>
+              </div>
+              <div>
+                <span class="text-[10px] text-secondary-text uppercase font-bold block">Kondisi Simpan</span>
+                <span class="text-xs font-bold text-forest">${item.storageCondition}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Action CTA -->
+          <div class="mt-5 pt-4 border-t border-border-color flex items-center justify-between">
+            <span class="text-[11px] text-secondary-text">
+              Masak: ${item.cookedAt}
+            </span>
+            <button
+              type="button"
+              onclick="openClaimModal('${item.id}')"
+              class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-primary hover:bg-forest text-white text-xs font-bold shadow-sm transition-all cursor-pointer">
+              <span>Ajukan Klaim</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 8. Render Penjemputan Saya (Approved, Pending, History)
+    function renderPickups() {
+      const user = TPStore.getCurrentUser();
+
+      // Approved scheduled transactions
+      const transactions = TPStore.getTransactions({ mitraId: user.id });
+      const activeApproved = transactions.filter(t => t.status === 'SCHEDULED');
+      const completedHistory = transactions.filter(t => t.status === 'COMPLETED');
+
+      // Pending claims
+      const claims = TPStore.getClaims({ mitraId: user.id });
+      const pendingClaims = claims.filter(c => c.status === 'PENDING');
+
+      // Update badge count
+      document.getElementById('badge-my-pickups').innerText = activeApproved.length + pendingClaims.length;
+
+      // Render Active Approved Transactions (Ready to pick up)
+      const approvedContainer = document.getElementById('container-mitra-approved-tx');
+      if (activeApproved.length === 0) {
+        approvedContainer.innerHTML = `
+          <div class="bg-white rounded-2xl p-6 border border-border-color text-center text-xs text-secondary-text">
+            Belum ada klaim yang disetujui untuk dijemput saat ini.
+          </div>
+        `;
+      } else {
+        approvedContainer.innerHTML = activeApproved.map(tx => `
+          <div class="bg-white rounded-3xl p-6 sm:p-8 border-2 border-primary shadow-card">
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-border-color mb-5">
+              <div>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-primary text-white shadow-sm">
+                  <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                  DISETUJUI: SIAP DIJEMPUT!
+                </span>
+                <h4 class="text-xl font-extrabold text-forest mt-2">${tx.listingTitle}</h4>
+                <p class="text-xs text-secondary-text">Donatur: <strong>${tx.donaturName}</strong> (${tx.donaturAddress})</p>
+              </div>
+
+              <div class="text-right">
+                <span class="text-xs font-bold text-secondary-text block">Batas Waktu Penjemputan</span>
+                <span class="text-sm font-extrabold text-[#EA580C]">${tx.pickupDeadline}</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+              <!-- Left info -->
+              <div class="md:col-span-5 space-y-3">
+                <div class="p-3.5 rounded-2xl bg-soft-mint border border-border-color text-xs space-y-1">
+                  <div><strong>Alokasi:</strong> ${tx.portions} Porsi (${tx.kg} Kg)</div>
+                  <div><strong>Wadah/Armada:</strong> ${tx.vehicleNotes}</div>
+                  <div><strong>Lokasi Ambil:</strong> ${tx.donaturAddress}</div>
+                </div>
+                <div class="p-3 rounded-xl bg-green-50 border border-green-200 text-[11px] text-green-900 leading-relaxed">
+                  ✅ <strong>Instruksi:</strong> Tunjukkan PIN atau minta pihak donatur memindai QR code ini di kasir / loading dock.
+                </div>
+              </div>
+
+              <!-- Center QR -->
+              <div class="md:col-span-4 text-center flex flex-col items-center justify-center p-3 rounded-2xl bg-[#F4FAF4] border border-border-color">
+                <span class="text-[11px] font-bold text-forest mb-1">QR Code Verifikasi Donatur</span>
+                <div class="w-40 h-40 flex items-center justify-center">
+                  ${TPStore.generateQrSvg(tx.qrData, 150)}
+                </div>
+              </div>
+
+              <!-- Right PIN & Verification Button -->
+              <div class="md:col-span-3 flex flex-col items-center justify-center text-center p-4 rounded-2xl bg-light-green/60 border border-primary/30">
+                <span class="text-xs font-bold text-forest uppercase tracking-wider mb-1">PIN 4 DIGIT</span>
+                <div class="text-3xl font-extrabold font-mono text-forest tracking-widest my-1.5 bg-white px-4 py-2 rounded-xl shadow-inner border border-primary/30">
+                  ${tx.pin}
+                </div>
+                <span class="text-[10px] text-secondary-text mb-3">Tunjukkan PIN ini ke Donatur</span>
+
+                <!-- Input to complete from mitra side -->
+                <div class="w-full space-y-2">
+                  <input
+                    type="text"
+                    id="mitra-pin-input-${tx.id}"
+                    maxlength="4"
+                    value="${tx.pin}"
+                    placeholder="Input PIN jika mandiri"
+                    class="w-full text-center py-2 px-3 rounded-xl border border-border-color font-mono font-bold text-xs bg-white outline-none">
+                  <button
+                    type="button"
+                    onclick="handleMitraVerifyPin('${tx.id}')"
+                    class="w-full py-2 px-3 rounded-xl bg-primary hover:bg-forest text-white text-xs font-bold shadow transition-all cursor-pointer">
+                    Selesaikan Serah Terima
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Render Pending Claims
+      const pendingContainer = document.getElementById('container-mitra-pending-claims');
+      if (pendingClaims.length === 0) {
+        pendingContainer.innerHTML = `
+          <div class="bg-white rounded-2xl p-5 border border-border-color text-center text-xs text-secondary-text">
+            Tidak ada permohonan klaim yang sedang menunggu respon donatur.
+          </div>
+        `;
+      } else {
+        pendingContainer.innerHTML = pendingClaims.map(c => `
+          <div class="bg-white rounded-2xl p-5 border border-border-color flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="px-2 py-0.5 rounded-full font-bold text-[10px] bg-orange-100 text-[#EA580C]">MENUNGGU RESPON DONATUR</span>
+                <strong class="text-sm font-bold text-forest">${c.listingTitle}</strong>
+              </div>
+              <div class="text-secondary-text">
+                Donatur: <strong>${c.donaturName}</strong> • Permintaan: ${c.requestedPortions} Porsi (${c.kg} kg) • Estimasi tiba: ${c.etaMinutes} menit
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-xs text-secondary-text block">Diajukan: ${new Date(c.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} WIB</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Render Completed History
+      const historyContainer = document.getElementById('container-mitra-completed-history');
+      if (completedHistory.length === 0) {
+        historyContainer.innerHTML = `
+          <div class="text-xs text-secondary-text italic py-2">Belum ada riwayat penjemputan selesai.</div>
+        `;
+      } else {
+        historyContainer.innerHTML = completedHistory.map(h => `
+          <div class="bg-white rounded-2xl p-4 border border-border-color flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded-md font-bold text-[10px] bg-green-100 text-forest">SUKSES DITERIMA ✓</span>
+                <strong class="text-sm font-bold text-forest">${h.listingTitle}</strong>
+              </div>
+              <div class="text-secondary-text mt-1">
+                Dari: <strong>${h.donaturName}</strong> (${h.portions} Porsi • ${h.kg} kg)
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              ${h.rating ? `
+                <span class="text-primary font-bold">⭐ ${h.rating.stars}.0 / 5.0 (Sudah Diulas)</span>
+              ` : `
+                <button
+                  type="button"
+                  onclick="openRatingModal('${h.id}')"
+                  class="px-3 py-1.5 rounded-lg bg-warm-yellow/30 text-forest hover:bg-warm-yellow font-bold text-[11px] transition-colors cursor-pointer">
+                  ⭐ Beri Ulasan Donatur
+                </button>
+              `}
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      TPStore.switchUserRole('mitra', 'mitra-1');
+      renderCatalog();
+      renderPickups();
+
+      TPStore.subscribe(() => {
+        renderCatalog();
+        renderPickups();
+      });
+
+      // Inject Demo Switcher Floating Bar
+      const switcherMount = document.createElement('div');
+      switcherMount.innerHTML = TPStore.renderDemoSwitcher('mitra');
+      document.body.appendChild(switcherMount);
+    });
+  </script>
+</body>
+</html>

@@ -145,24 +145,48 @@
           </p>
         </div>
 
-        <!-- MVP Demo Notice & Quick Fills -->
-        <div class="mb-6 p-3.5 rounded-2xl bg-soft-mint border border-border-color text-xs text-secondary-text">
+        <!-- MVP Demo Notice & Quick Login Buttons -->
+        <div class="mb-6 p-4 rounded-2xl bg-soft-mint border border-border-color text-xs text-secondary-text">
           <div class="flex items-center gap-2 font-bold text-forest mb-2">
             <span class="w-2 h-2 rounded-full bg-secondary"></span>
-            <span>Versi MVP Preview — Akun Demo Siap Pakai:</span>
+            <span>Akses Cepat Mode Demo (FunDev 2026):</span>
           </div>
-          <p class="text-[11px] leading-relaxed mb-2.5">
-            Gunakan akun contoh berikut untuk simulasi login portal:
+          <p class="text-[11px] leading-relaxed mb-3">
+            Pilih salah satu peran untuk langsung mencoba alur operasional di browser:
           </p>
-          <div class="flex flex-wrap gap-2">
-            <button type="button" onclick="fillDemo('donatur@tumbuhpangan.id', 'demo12345')" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white border border-border-color text-[11px] font-semibold text-forest hover:bg-light-green hover:border-primary transition-all">
-              <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-              Donatur: donatur@tumbuhpangan.id
-            </button>
-            <button type="button" onclick="fillDemo('penyalur@tumbuhpangan.id', 'demo12345')" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white border border-border-color text-[11px] font-semibold text-forest hover:bg-light-green hover:border-primary transition-all">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#EA580C]"></span>
-              Penyalur: penyalur@tumbuhpangan.id
-            </button>
+          <div class="grid grid-cols-1 gap-2">
+            <a href="app-donatur.html" class="flex items-center justify-between p-2.5 rounded-xl bg-white border border-border-color hover:border-primary hover:bg-light-green transition-all group">
+              <div class="flex items-center gap-2">
+                <span class="text-base">🥖</span>
+                <div>
+                  <div class="font-bold text-forest group-hover:text-primary">Donatur: Roti Nusantara Artisan</div>
+                  <div class="text-[10px] text-secondary-text">Catat surplus, setujui klaim, terbitkan PIN</div>
+                </div>
+              </div>
+              <span class="text-primary font-bold text-xs">Buka ↗</span>
+            </a>
+
+            <a href="app-mitra.html" class="flex items-center justify-between p-2.5 rounded-xl bg-white border border-border-color hover:border-primary hover:bg-light-green transition-all group">
+              <div class="flex items-center gap-2">
+                <span class="text-base">🤲</span>
+                <div>
+                  <div class="font-bold text-forest group-hover:text-primary">Mitra: Panti Asuhan Al-Ikhlas</div>
+                  <div class="text-[10px] text-secondary-text">Katalog makanan, ajukan klaim, serah terima QR</div>
+                </div>
+              </div>
+              <span class="text-primary font-bold text-xs">Buka ↗</span>
+            </a>
+
+            <a href="app-admin.html" class="flex items-center justify-between p-2.5 rounded-xl bg-white border border-border-color hover:border-primary hover:bg-light-green transition-all group">
+              <div class="flex items-center gap-2">
+                <span class="text-base">🛡️</span>
+                <div>
+                  <div class="font-bold text-forest group-hover:text-primary">Admin: Verifikator Pusat</div>
+                  <div class="text-[10px] text-secondary-text">Verifikasi KYC baru &amp; pantau metrik emisi</div>
+                </div>
+              </div>
+              <span class="text-primary font-bold text-xs">Buka ↗</span>
+            </a>
           </div>
         </div>
 
@@ -456,6 +480,9 @@
     </div>
   </div>
 
+  <!-- Store Script -->
+  <script src="./js/store.js"></script>
+
   <!-- Scripts -->
   <script>
     // 1. Mobile Menu Toggle
@@ -499,14 +526,25 @@
       }
     }
 
-    // 4. Form Submission Handler
+    // 4. Form Submission Handler with Smart Role Routing
     function handleLoginSubmit(e) {
       e.preventDefault();
-      const email = document.getElementById('login-email').value;
+      const email = document.getElementById('login-email').value.toLowerCase().trim();
       const alertBox = document.getElementById('login-alert');
       const alertText = document.getElementById('login-alert-text');
 
-      alertText.innerHTML = `<strong>Autentikasi Berhasil!</strong> Selamat datang kembali, <span class="underline">${email}</span>. Mengarahkan Anda ke Dashboard Mitra...`;
+      let targetUrl = 'app-mitra.html';
+      let roleLabel = 'Portal Mitra Penyalur (Panti Asuhan Al-Ikhlas)';
+
+      if (email.includes('donatur') || email.includes('roti') || email.includes('bakery')) {
+        targetUrl = 'app-donatur.html';
+        roleLabel = 'Portal Donatur (Roti Nusantara Artisan)';
+      } else if (email.includes('admin') || email.includes('verifikator')) {
+        targetUrl = 'app-admin.html';
+        roleLabel = 'Portal Super Admin Verifikator';
+      }
+
+      alertText.innerHTML = `<strong>Autentikasi Berhasil!</strong> Menyiapkan sesi untuk <span class="underline">${email}</span>... Mengarahkan ke <strong>${roleLabel}</strong>...`;
       alertBox.classList.remove('hidden');
       alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
@@ -518,17 +556,12 @@
           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
           <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
         </svg>
-        <span>Memuat Sesi Mitra...</span>
+        <span>Membuka Sesi...</span>
       `;
 
       setTimeout(() => {
-        alertText.innerHTML = `<strong>Mode Pratinjau MVP:</strong> Akun <strong>${email}</strong> terverifikasi aktif. Modul operasional lengkap akan dibuka pada jadwal rilis resmi. Hubungi <a href="mailto:defhanpy@gmail.com" class="underline font-bold">defhanpy@gmail.com</a> untuk pendampingan langsung.`;
-        btn.disabled = false;
-        btn.innerHTML = `
-          <span>Masuk ke Portal</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        `;
-      }, 1200);
+        window.location.href = targetUrl;
+      }, 700);
     }
 
     // 5. Legal Modals Controller

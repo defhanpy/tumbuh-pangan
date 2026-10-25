@@ -191,25 +191,29 @@
 
         <!-- Confirmation State (Success) -->
         <div id="registration-success" class="hidden">
-          <div class="p-6 rounded-2xl bg-light-green border border-primary text-center space-y-4">
-            <div class="w-14 h-14 mx-auto rounded-full bg-white text-primary flex items-center justify-center shadow-sm">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          <div class="p-6 sm:p-8 rounded-3xl bg-light-green border border-primary text-center space-y-4">
+            <div class="w-16 h-16 mx-auto rounded-full bg-white text-primary flex items-center justify-center shadow-sm">
+              <svg class="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             </div>
-            <h3 class="text-xl font-extrabold text-forest">Formulir Pendaftaran Berhasil Dikirim!</h3>
-            <p class="text-sm text-forest leading-relaxed max-w-xl mx-auto">
-              Terima kasih, formulir pendaftaran Anda telah diterima. Tim verifikasi Tumbuh Pangan akan menghubungi Anda melalui email dan telepon resmi. Untuk pertanyaan mendesak, hubungi <a href="mailto:defhanpy@gmail.com" class="font-bold underline text-forest hover:text-primary">defhanpy@gmail.com</a>.
+            <h3 class="text-2xl font-extrabold text-forest">Pendaftaran Berhasil Dikirim!</h3>
+            <p class="text-sm font-semibold text-forest leading-relaxed max-w-xl mx-auto">
+              Data Anda telah masuk ke antrean verifikasi sistem. Silakan buka <strong>Portal Admin</strong> untuk melihat proses verifikasinya secara langsung.
             </p>
 
             <!-- Summary Box -->
-            <div id="success-summary" class="bg-white/80 rounded-xl p-4 text-left text-xs space-y-2 border border-border-color mt-4 text-secondary-text">
+            <div id="success-summary" class="bg-white/90 rounded-2xl p-5 text-left text-xs space-y-2 border border-border-color mt-4 text-secondary-text shadow-sm">
               <!-- populated by js -->
             </div>
 
-            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <a href="index.html" class="inline-flex items-center justify-center px-6 py-2.5 rounded-xl bg-forest hover:bg-black text-white text-xs font-bold transition-all">
+            <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
+              <a href="app-admin.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-forest text-white text-xs font-bold transition-all shadow-md">
+                <span>🛡️ Buka Antrean di Portal Admin</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </a>
+              <a href="index.html" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-forest hover:bg-black text-white text-xs font-bold transition-all">
                 Kembali ke Beranda
               </a>
-              <button type="button" onclick="resetForm()" class="inline-flex items-center justify-center px-6 py-2.5 rounded-xl bg-white border border-border-color hover:bg-soft-mint text-forest text-xs font-bold transition-all">
+              <button type="button" onclick="resetForm()" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-white border border-border-color hover:bg-soft-mint text-forest text-xs font-bold transition-all">
                 Daftar Mitra Lain
               </button>
             </div>
@@ -546,6 +550,9 @@
     </div>
   </div>
 
+  <!-- Store Script -->
+  <script src="./js/store.js"></script>
+
   <!-- Scripts -->
   <script>
     // 1. Mobile Menu Toggle
@@ -645,7 +652,7 @@
       }
     });
 
-    // 4. Form Submission Handler with Polite Confirmation State
+    // 4. Form Submission Handler with Real-Time Store Queue Integration
     function handleRegistrationSubmit(e) {
       e.preventDefault();
       const role = document.getElementById('form-role').value;
@@ -657,10 +664,30 @@
       const capacity = document.getElementById('capacity-field').value.trim();
       const schedule = document.getElementById('schedule-field').value.trim();
 
+      // Push to TPStore KYC Gate
+      try {
+        if (typeof TPStore !== 'undefined') {
+          TPStore.registerPendingUser({
+            orgName,
+            role,
+            type: role === 'penyalur' ? 'MITRA' : 'DONATUR',
+            category: role === 'penyalur' ? 'Lembaga Penyalur Sosial' : 'Kuliner & F&B',
+            picName,
+            email,
+            phone,
+            address,
+            capacity,
+            schedule
+          });
+        }
+      } catch (err) {
+        console.warn('Gagal menyimpan ke TPStore:', err);
+      }
+
       const roleTitle = role === 'penyalur' ? 'Mitra Penyalur (Lembaga Sosial)' : 'Donatur Pangan (Pelaku Usaha)';
 
       const summaryHtml = `
-        <div class="font-bold text-forest border-b border-border-color pb-1.5 mb-2">Ringkasan Formulir Terkirim:</div>
+        <div class="font-bold text-forest border-b border-border-color pb-1.5 mb-2">Ringkasan Formulir Terkirim ke Antrean Admin:</div>
         <div><strong class="text-forest">Peran:</strong> ${roleTitle}</div>
         <div><strong class="text-forest">Nama PIC:</strong> ${picName}</div>
         <div><strong class="text-forest">Organisasi:</strong> ${orgName}</div>
