@@ -908,7 +908,8 @@
       const isAdmin = activePortal === 'admin';
 
       return `
-        <aside id="demo-switcher-bar" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl bg-forest/95 backdrop-blur-md text-white px-4 py-3 rounded-2xl shadow-2xl border border-white/20 transition-all duration-300" aria-label="Demo Role Switcher">
+        <!-- Floating Demo Switcher: Desktop Only (Hidden on mobile <1024px to prevent blocking content) -->
+        <aside id="demo-switcher-bar" class="hidden lg:block fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl bg-forest/95 backdrop-blur-md text-white px-4 py-3 rounded-2xl shadow-2xl border border-white/20 transition-all duration-300" aria-label="Demo Role Switcher">
           <div class="flex flex-wrap items-center justify-between gap-3 text-xs">
             <!-- Left: Badge & Live Status -->
             <div class="flex items-center gap-2">
@@ -916,7 +917,7 @@
                 <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0 0-5-2H2z"/></svg>
                 <span>MODE DEMO</span>
               </span>
-              <span class="hidden sm:inline-block text-light-green/80 text-[11px]">
+              <span class="text-light-green/80 text-[11px]">
                 FunDev 2026 USU Interactive Prototype
               </span>
             </div>
@@ -943,7 +944,7 @@
                 <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
                 <span>Reset Demo</span>
               </button>
-              <a href="index.html" class="hidden md:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-light-green/70 hover:text-white transition-colors text-[11px]">
+              <a href="index.html" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-light-green/70 hover:text-white transition-colors text-[11px]">
                 <span>Beranda</span>
                 <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
               </a>
