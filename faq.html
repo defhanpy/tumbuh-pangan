@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tanya Jawab - Tumbuh Pangan | FAQ Lengkap &amp; Panduan Higienitas</title>
+  <meta name="description" content="Temukan jawaban lengkap seputar donasi surplus makanan, protokol Food Safety Gate, penjemputan mandiri, dan verifikasi mitra di Tumbuh Pangan.">
+  <meta name="theme-color" content="#14532D">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Script & Configuration -->
+  <script src="./tailwind.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: '#14532D',
+            primary: '#27864B',
+            secondary: '#4C9A61',
+            'light-green': '#E8F5E9',
+            'soft-mint': '#F5FAF5',
+            'main-text': '#173C2F',
+            'secondary-text': '#52665B',
+            'border-color': '#DCE9DE',
+            'warm-yellow': '#F4D77B',
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          boxShadow: {
+            'soft': '0 4px 20px -2px rgba(20, 83, 45, 0.06), 0 2px 6px -1px rgba(20, 83, 45, 0.04)',
+            'card': '0 10px 30px -4px rgba(20, 83, 45, 0.08), 0 4px 12px -2px rgba(20, 83, 45, 0.04)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    body {
+      color: #173C2F;
+      background-color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-white text-main-text antialiased selection:bg-light-green selection:text-forest">
+
+  <!-- A. Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-border-color transition-shadow duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg p-1" aria-label="Tumbuh Pangan Beranda">
+          <img src="logo.svg" alt="Tumbuh Pangan Logo" class="h-11 w-auto" width="220" height="55">
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-7" aria-label="Navigasi Utama">
+          <a href="index.html" class="text-sm font-semibold text-secondary-text hover:text-primary transition-colors focus:outline-none focus-visible:text-primary">Beranda</a>
+          <a href="tentang.html" class="text-sm font-semibold text-secondary-text hover:text-primary transition-colors focus:outline-none focus-visible:text-primary">Tentang</a>
+          <a href="cara-kerja.html" class="text-sm font-semibold text-secondary-text hover:text-primary transition-colors focus:outline-none focus-visible:text-primary">Cara Kerja</a>
+          <a href="fitur.html" class="text-sm font-semibold text-secondary-text hover:text-primary transition-colors focus:outline-none focus-visible:text-primary">Fitur</a>
+          <a href="dampak.html" class="text-sm font-semibold text-secondary-text hover:text-primary transition-colors focus:outline-none focus-visible:text-primary">Dampak</a>
+          <a href="faq.html" class="text-sm font-bold text-primary transition-colors focus:outline-none focus-visible:text-primary">FAQ</a>
+        </nav>
+
+        <!-- Desktop Right CTA -->
+        <div class="hidden md:flex items-center gap-4">
+          <a href="login.html" class="text-sm font-bold text-forest hover:text-primary transition-colors px-3 py-2 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            Masuk
+          </a>
+          <a href="daftar.html" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-white bg-primary hover:bg-forest rounded-full transition-all shadow-sm hover:shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary">
+            Gabung Sekarang
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <div class="flex lg:hidden">
+          <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2.5 rounded-xl text-forest hover:bg-light-green focus:outline-none focus:ring-2 focus:ring-primary" aria-controls="mobile-menu" aria-expanded="false" aria-label="Buka menu navigasi">
+            <svg id="menu-icon-open" class="w-6 h-6 block" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden border-b border-border-color bg-white px-4 pt-3 pb-6 space-y-3" aria-label="Menu Mobile">
+      <div class="flex flex-col space-y-1">
+        <a href="index.html" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-semibold text-secondary-text hover:text-primary hover:bg-soft-mint transition-colors">Beranda</a>
+        <a href="tentang.html" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-semibold text-secondary-text hover:text-primary hover:bg-soft-mint transition-colors">Tentang</a>
+        <a href="cara-kerja.html" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-semibold text-secondary-text hover:text-primary hover:bg-soft-mint transition-colors">Cara Kerja</a>
+        <a href="fitur.html" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-semibold text-secondary-text hover:text-primary hover:bg-soft-mint transition-colors">Fitur</a>
+        <a href="dampak.html" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-semibold text-secondary-text hover:text-primary hover:bg-soft-mint transition-colors">Dampak</a>
+        <a href="faq.html" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-bold text-primary bg-soft-mint transition-colors">FAQ</a>
+      </div>
+      <div class="pt-3 border-t border-border-color flex flex-col gap-2">
+        <a href="login.html" class="mobile-nav-link flex w-full items-center justify-center px-4 py-2.5 text-base font-bold text-forest bg-light-green hover:bg-[#d8edd9] rounded-xl transition-all">
+          Masuk ke Portal
+        </a>
+        <a href="daftar.html" class="mobile-nav-link flex w-full items-center justify-center px-5 py-3 text-base font-bold text-white bg-primary hover:bg-forest rounded-xl transition-all shadow-sm">
+          Gabung Sekarang
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Header -->
+    <section class="bg-gradient-to-b from-soft-mint to-white pt-12 pb-16 sm:pb-20 border-b border-border-color/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-xs text-secondary-text mb-6" aria-label="Breadcrumb">
+          <a href="index.html" class="hover:text-primary transition-colors">Beranda</a>
+          <svg class="w-3.5 h-3.5 text-border-color" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
+          <span class="text-forest font-semibold" aria-current="page">Tanya Jawab</span>
+        </nav>
+
+        <div class="max-w-3xl">
+          <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide text-forest bg-light-green border border-border-color mb-4">
+            <span class="w-2 h-2 rounded-full bg-primary"></span>
+            Pusat Informasi &amp; Jawaban Santai
+          </span>
+          <h1 class="text-3xl sm:text-5xl font-extrabold text-forest tracking-tight leading-[1.2] mb-6">
+            Ada yang Mau Ditanyakan? Kami Bantu Jawab!
+          </h1>
+          <p class="text-base sm:text-lg text-secondary-text leading-relaxed">
+            Semua yang perlu Anda ketahui tentang donasi makanan, keamanan higienitas, etika serah terima, sampai cara bergabung jadi mitra Tumbuh Pangan.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section with Search & Filter -->
+    <section class="py-16 sm:py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Search Box -->
+        <div class="mb-8">
+          <div class="relative">
+            <input id="faq-search" type="text" placeholder="Cari pertanyaan (misal: basi, porsi, jemput, biaya)..." class="w-full px-5 py-4 pl-12 rounded-2xl border border-border-color bg-soft-mint text-sm text-forest placeholder:text-secondary-text/70 focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white shadow-xs transition-all">
+            <svg class="w-5 h-5 text-secondary absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+        </div>
+
+        <!-- Filter Tags -->
+        <div class="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-border-color">
+          <span class="text-xs font-bold text-forest mr-1">Kategori:</span>
+          <button type="button" class="faq-filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-primary text-white transition-all" data-category="all">Semua Topik</button>
+          <button type="button" class="faq-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-soft-mint text-secondary-text hover:text-forest transition-all" data-category="donatur">Donasi Pangan</button>
+          <button type="button" class="faq-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-soft-mint text-secondary-text hover:text-forest transition-all" data-category="safety">Keamanan &amp; Higienitas</button>
+          <button type="button" class="faq-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-soft-mint text-secondary-text hover:text-forest transition-all" data-category="logistik">Penjemputan Mandiri</button>
+          <button type="button" class="faq-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-soft-mint text-secondary-text hover:text-forest transition-all" data-category="mitra">Mitra Penyalur</button>
+        </div>
+
+        <!-- Accordion Container -->
+        <div class="space-y-4" id="faq-accordion-list">
+
+          <!-- FAQ 1 -->
+          <div class="faq-item bg-soft-mint rounded-2xl border border-border-color overflow-hidden" data-category="donatur">
+            <h3>
+              <button type="button" class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-expanded="false">
+                <span class="text-base font-bold text-forest">Apa itu Tumbuh Pangan dan siapa yang bisa bergabung?</span>
+                <span class="faq-icon text-secondary shrink-0 transition-transform duration-200">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div class="faq-panel hidden px-6 pb-6 pt-1 text-sm text-secondary-text leading-relaxed border-t border-border-color/60">
+              Tumbuh Pangan adalah platform penghubung antara unit bisnis pangan (restoran, bakery, kafe, katering, hotel, supermarket) yang memiliki surplus makanan layak santap dengan lembaga sosial terverifikasi (yayasan panti asuhan, dapur umum mandiri, kelompok relawan). Siapa pun yang memiliki usaha kuliner atau organisasi sosial dapat mendaftar.
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item bg-soft-mint rounded-2xl border border-border-color overflow-hidden" data-category="safety">
+            <h3>
+              <button type="button" class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-expanded="false">
+                <span class="text-base font-bold text-forest">Apakah sisa piring pelanggan (plate waste) boleh didonasikan?</span>
+                <span class="faq-icon text-secondary shrink-0 transition-transform duration-200">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div class="faq-panel hidden px-6 pb-6 pt-1 text-sm text-secondary-text leading-relaxed border-t border-border-color/60">
+              <strong>Sama sekali tidak boleh.</strong> Kami memberlakukan <em>Zero Plate-Waste Policy</em> yang sangat tegas. Surplus pangan yang boleh dialirkan hanyalah makanan yang belum pernah disajikan ke meja pelanggan, batch katering berlebih yang tersimpan higienis, roti display belum lewat tanggal kedaluwarsa, atau bahan pangan mentah/segar yang belum diolah.
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item bg-soft-mint rounded-2xl border border-border-color overflow-hidden" data-category="donatur">
+            <h3>
+              <button type="button" class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-expanded="false">
+                <span class="text-base font-bold text-forest">Apakah ada biaya penggunaan platform bagi donatur dan mitra?</span>
+                <span class="faq-icon text-secondary shrink-0 transition-transform duration-200">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div class="faq-panel hidden px-6 pb-6 pt-1 text-sm text-secondary-text leading-relaxed border-t border-border-color/60">
+              Penggunaan platform Tumbuh Pangan <strong>100% gratis tanpa potongan atau komisi apa pun</strong>. Inisiatif ini dikembangkan bersama Tim Mandala untuk FunDev International Competition 2026 sebagai kontribusi nyata bagi penanganan susut pangan dan kelaparan perkotaan di Indonesia.
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item bg-soft-mint rounded-2xl border border-border-color overflow-hidden" data-category="safety">
+            <h3>
+              <button type="button" class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-expanded="false">
+                <span class="text-base font-bold text-forest">Bagaimana Food Safety Gate menjaga makanan tetap aman?</span>
+                <span class="faq-icon text-secondary shrink-0 transition-transform duration-200">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div class="faq-panel hidden px-6 pb-6 pt-1 text-sm text-secondary-text leading-relaxed border-t border-border-color/60">
+              Sebelum tawaran aktif di platform, donatur wajib mengisi formulir keselamatan yang mencakup: uji organoleptik fisik (aroma wajar, tidak berlendir, warna normal), pencatatan suhu penyimpanan saat ini, deklarasi potensi alergen, serta waktu batas maksimal konsumsi aman. Jika ada indikasi penurunan kualitas, sistem otomatis menolak penawaran tersebut.
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item bg-soft-mint rounded-2xl border border-border-color overflow-hidden" data-category="logistik">
+            <h3>
+              <button type="button" class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-expanded="false">
+                <span class="text-base font-bold text-forest">Siapa yang menjemput makanan dan bagaimana mekanismenya?</span>
+                <span class="faq-icon text-secondary shrink-0 transition-transform duration-200">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div class="faq-panel hidden px-6 pb-6 pt-1 text-sm text-secondary-text leading-relaxed border-t border-border-color/60">
+              Penjemputan dilakukan secara mandiri (self-pickup) oleh relawan atau staf resmi dari mitra penyalur yang telah disetujui donatur. Kami sengaja mencocokkan donatur dengan mitra terdekat (radius &lt; 5-10 km) agar penjemputan bisa dilakukan lekas menggunakan armada mandiri, sepeda motor, atau mobil operasional panti tanpa membebani ongkir ojek daring.
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-item bg-soft-mint rounded-2xl border border-border-color overflow-hidden" data-category="logistik">
+            <h3>
+              <button type="button" class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-expanded="false">
+                <span class="text-base font-bold text-forest">Apa sanksi jika mitra penyalur mangkir (no-show) dari jadwal?</span>
+                <span class="faq-icon text-secondary shrink-0 transition-transform duration-200">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div class="faq-panel hidden px-6 pb-6 pt-1 text-sm text-secondary-text leading-relaxed border-t border-border-color/60">
+              Makanan surplus memiliki batas waktu aman yang ketat. Mitra yang terbukti tidak hadir pada jadwal penjemputan tanpa pemberitahuan darurat akan mendapatkan peringatan sistem. Pelanggaran berulang akan mengakibatkan pembekuan akun (suspension) demi menjaga kepercayaan ekosistem donatur.
+            </div>
+          </div>
+
+          <!-- FAQ 7 -->
+          <div class="faq-item bg-soft-mint rounded-2xl border border-border-color overflow-hidden" data-category="mitra">
+            <h3>
+              <button type="button" class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-expanded="false">
+                <span class="text-base font-bold text-forest">Bolehkah makanan donasi dijual kembali oleh mitra penyalur?</span>
+                <span class="faq-icon text-secondary shrink-0 transition-transform duration-200">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div class="faq-panel hidden px-6 pb-6 pt-1 text-sm text-secondary-text leading-relaxed border-t border-border-color/60">
+              <strong>Dilarang keras.</strong> Seluruh makanan yang diterima melalui Tumbuh Pangan wajib disalurkan secara cuma-cuma dan bermartabat kepada penerima manfaat yang membutuhkan (anak panti, lansia, dhuafa, warga prasejahtera). Komersialisasi makanan donasi adalah pelanggaran hukum dan Ketentuan Layanan yang akan ditindaklanjuti secara hukum.
+            </div>
+          </div>
+
+          <!-- FAQ 8 -->
+          <div class="faq-item bg-soft-mint rounded-2xl border border-border-color overflow-hidden" data-category="mitra">
+            <h3>
+              <button type="button" class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-expanded="false">
+                <span class="text-base font-bold text-forest">Bagaimana proses verifikasi bagi mitra penyalur baru?</span>
+                <span class="faq-icon text-secondary shrink-0 transition-transform duration-200">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div class="faq-panel hidden px-6 pb-6 pt-1 text-sm text-secondary-text leading-relaxed border-t border-border-color/60">
+              Mitra yang mendaftar diwajibkan mencantumkan nama lembaga/komunitas, kontak PIC yang dapat dihubungi via WhatsApp, alamat operasional, dan perkiraan jumlah penerima manfaat yang dibina. Tim kurasi kami melakukan verifikasi cepat sebelum akun dapat melakukan klaim surplus pangan.
+            </div>
+          </div>
+        </div>
+
+        <!-- Help Callout Box -->
+        <div class="mt-14 p-8 rounded-3xl bg-soft-mint border border-border-color flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div class="space-y-1 text-center sm:text-left">
+            <h3 class="text-lg font-bold text-forest">Belum menemukan jawaban yang dicari?</h3>
+            <p class="text-xs text-secondary-text">Jangan ragu, tim koordinator kami selalu siap ngobrol dan bantu jawab pertanyaan Anda.</p>
+          </div>
+          <a href="mailto:defhanpy@gmail.com?subject=Pertanyaan%20Seputar%20Tumbuh%20Pangan" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-forest text-white text-xs font-bold transition-all shadow-xs shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span>defhanpy@gmail.com</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="py-16 bg-forest text-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
+          Sudah Mantap? Yuk Jadi Bagian dari Gerakan Ini!
+        </h2>
+        <p class="text-sm sm:text-base text-light-green/90 max-w-xl mx-auto">
+          Daftarkan resto atau yayasan Anda dalam hitungan menit dan mulai alirkan surplus pangan secara teratur.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+          <a href="daftar.html" class="px-6 py-3 rounded-full bg-primary hover:bg-white hover:text-forest text-white text-sm font-bold transition-all shadow-sm">
+            Daftar Mitra Sekarang
+          </a>
+          <a href="cara-kerja.html" class="px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-bold border border-white/20 transition-all">
+            Pelajari Cara Kerja
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- K. Footer Defhanpy Agency -->
+  <footer class="bg-forest text-white pt-16 pb-12 border-t border-forest">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+        <!-- Brand Column -->
+        <div class="md:col-span-5 space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="bg-white rounded-lg p-1.5 inline-block">
+              <img src="logo.svg" alt="Tumbuh Pangan Logo" class="h-8 w-auto" width="160" height="40">
+            </div>
+          </div>
+          <p class="text-sm text-light-green/90 leading-relaxed max-w-sm">
+            Platform redistribusi surplus pangan layak konsumsi untuk mendukung ekosistem konsumsi berkelanjutan dan memperluas manfaat bagi sesama.
+          </p>
+          <div class="text-xs text-warm-yellow font-medium">
+            Bersama Menumbuhkan Manfaat Pangan.
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="md:col-span-3 space-y-3">
+          <div class="text-sm font-bold tracking-wider text-white uppercase">Navigasi</div>
+          <ul class="space-y-2 text-sm text-light-green/80">
+            <li><a href="index.html" class="hover:text-white transition-colors">Beranda</a></li>
+            <li><a href="tentang.html" class="hover:text-white transition-colors">Tentang Kami</a></li>
+            <li><a href="cara-kerja.html" class="hover:text-white transition-colors">Cara Kerja</a></li>
+            <li><a href="fitur.html" class="hover:text-white transition-colors">Fitur Platform</a></li>
+            <li><a href="dampak.html" class="hover:text-white transition-colors">Dampak Nyata</a></li>
+            <li><a href="faq.html" class="text-white font-bold transition-colors">Pertanyaan Umum (FAQ)</a></li>
+            <li><a href="login.html" class="hover:text-white transition-colors">Masuk ke Portal</a></li>
+            <li><a href="daftar.html" class="hover:text-white transition-colors">Daftar Kemitraan</a></li>
+          </ul>
+        </div>
+
+        <!-- Partnership & Trust Note -->
+        <div class="md:col-span-4 space-y-3">
+          <div class="text-sm font-bold tracking-wider text-white uppercase">Kemitraan &amp; Kontak</div>
+          <p class="text-sm text-light-green/80 leading-relaxed">
+            Terbuka untuk kolaborasi bersama unit bisnis F&amp;B, komunitas sosial, dan kelompok relawan di seluruh wilayah Indonesia.
+          </p>
+          <div class="pt-1">
+            <a href="mailto:defhanpy@gmail.com" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/15 text-xs font-semibold transition-colors">
+              <svg class="w-4 h-4 text-warm-yellow shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span>defhanpy@gmail.com</span>
+            </a>
+          </div>
+          <div class="pt-1">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white border border-white/15">
+              <span class="w-2 h-2 rounded-full bg-secondary"></span>
+              Fase Kurasi Kemitraan MVP
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar with Defhanpy Attribution and Legal Modals -->
+      <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-light-green/75 border-t border-white/10">
+        <div class="text-center md:text-left">
+          <p>© 2026 Tumbuh Pangan. Inisiatif digital oleh <a href="https://agency.defhanpy.dev" target="_blank" rel="noopener noreferrer" class="text-white hover:text-warm-yellow font-bold underline underline-offset-2">Defhanpy Agency</a> (Web &amp; Digital Solutions) bersama Tim Mandala untuk FunDev International Competition 2026.</p>
+          <p class="text-[11px] text-light-green/60 mt-1">Basis: Jember, Jawa Timur, Indonesia.</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+          <button type="button" data-modal-open="tos-modal" class="hover:text-white underline underline-offset-2 transition-colors cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-white rounded">
+            Ketentuan Layanan
+          </button>
+          <span class="text-white/30">•</span>
+          <button type="button" data-modal-open="privacy-modal" class="hover:text-white underline underline-offset-2 transition-colors cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-white rounded">
+            Kebijakan Privasi
+          </button>
+          <span class="text-white/30">•</span>
+          <a href="mailto:defhanpy@gmail.com" class="hover:text-white transition-colors">defhanpy@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal: Ketentuan Layanan (ToS) -->
+  <div id="tos-modal" class="legal-modal fixed inset-0 z-50 hidden overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="tos-title">
+    <div class="modal-backdrop fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity" data-modal-close="tos-modal"></div>
+    <div class="flex min-h-screen items-center justify-center p-4">
+      <div class="relative w-full max-w-2xl bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-border-color text-main-text z-10 my-8">
+        <div class="flex items-start justify-between pb-4 border-b border-border-color">
+          <div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-light-green text-forest mb-2">
+              Dokumen Resmi Platform
+            </span>
+            <h3 id="tos-title" class="text-xl sm:text-2xl font-extrabold text-forest">Ketentuan Layanan (Terms of Service)</h3>
+            <p class="text-xs text-secondary-text mt-1">Berlaku untuk seluruh donatur pangan dan mitra penyalur Tumbuh Pangan.</p>
+          </div>
+          <button type="button" class="modal-close-btn p-2 rounded-xl text-secondary-text hover:text-forest hover:bg-light-green transition-colors" data-modal-close="tos-modal" aria-label="Tutup Ketentuan Layanan">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="py-5 space-y-5 text-sm text-secondary-text leading-relaxed max-h-[60vh] overflow-y-auto pr-2">
+          <div>
+            <h4 class="text-base font-bold text-forest mb-1.5">1. Batasan Tanggung Jawab Platform</h4>
+            <p>Tumbuh Pangan berfungsi murni sebagai jembatan informasi dan koordinasi logistik mandiri (self-pickup) antara donatur pangan dan mitra penyalur sosial terdaftar. Platform bukan merupakan produsen, penyimpan, maupun kurir pengantar makanan.</p>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-forest mb-1.5">2. Kewajiban &amp; Integritas Donatur</h4>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Menjamin seluruh surplus pangan yang didaftarkan dalam kondisi layak konsumsi, belum melewati batas kedaluwarsa, dan disimpan sesuai kaidah higienitas pangan.</li>
+              <li>Mengisi informasi makanan, alergen potensial, batas waktu konsumsi aman, serta estimasi porsi secara jujur dan transparan.</li>
+              <li>Tidak mendonasikan sisa makanan piring konsumen (plate waste) atau makanan yang telah mengalami kerusakan organoleptik (bau asam, berlendir, tekstur rusak).</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-forest mb-1.5">3. Kewajiban Mitra Penyalur</h4>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Melakukan penjemputan mandiri (self-pickup) secara tepat waktu sesuai jadwal yang telah disepakati bersama donatur.</li>
+              <li>Membawa wadah higienis, bersih, dan sesuai (misalnya cooler box / tas termal jika makanan membutuhkan suhu dingin atau hangat).</li>
+              <li>Dilarang keras memperjualbelikan makanan hasil donasi dalam bentuk apa pun atau mengambil keuntungan komersial.</li>
+              <li>Menyalurkan makanan kepada penerima manfaat secara bermartabat tanpa diskriminasi dan tanpa publikasi visual yang mengeksploitasi privasi penerima.</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-forest mb-1.5">4. Sanksi Penangguhan (Suspension)</h4>
+            <p>Tumbuh Pangan berhak mencabut akses atau menangguhkan akun pengguna (donatur maupun mitra) yang terbukti melakukan pembatalan sepihak berulang kali, mangkir dari jadwal penjemputan (no-show), memanipulasi data keselamatan pangan, atau melanggar etika penyaluran sosial.</p>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-border-color flex justify-end">
+          <button type="button" class="px-6 py-2.5 rounded-xl bg-primary hover:bg-forest text-white text-sm font-bold transition-all" data-modal-close="tos-modal">
+            Saya Mengerti &amp; Tutup
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Kebijakan Privasi (Privacy Policy) -->
+  <div id="privacy-modal" class="legal-modal fixed inset-0 z-50 hidden overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+    <div class="modal-backdrop fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity" data-modal-close="privacy-modal"></div>
+    <div class="flex min-h-screen items-center justify-center p-4">
+      <div class="relative w-full max-w-2xl bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-border-color text-main-text z-10 my-8">
+        <div class="flex items-start justify-between pb-4 border-b border-border-color">
+          <div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-light-green text-forest mb-2">
+              Perlindungan Privasi
+            </span>
+            <h3 id="privacy-title" class="text-xl sm:text-2xl font-extrabold text-forest">Kebijakan Privasi (Privacy Policy)</h3>
+            <p class="text-xs text-secondary-text mt-1">Prinsip keterbukaan dan perlindungan data pengguna Tumbuh Pangan.</p>
+          </div>
+          <button type="button" class="modal-close-btn p-2 rounded-xl text-secondary-text hover:text-forest hover:bg-light-green transition-colors" data-modal-close="privacy-modal" aria-label="Tutup Kebijakan Privasi">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="py-5 space-y-5 text-sm text-secondary-text leading-relaxed max-h-[60vh] overflow-y-auto pr-2">
+          <div>
+            <h4 class="text-base font-bold text-forest mb-1.5">1. Prinsip Minimisasi Data</h4>
+            <p>Kami hanya mengumpulkan data yang benar-benar esensial untuk verifikasi identitas lembaga dan kelancaran koordinasi serah terima makanan. Kami tidak mengumpulkan data pribadi sensitif di luar kebutuhan operasional redistribusi pangan.</p>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-forest mb-1.5">2. Jenis Data yang Dikelola</h4>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Identitas Penanggung Jawab: Nama kontak PIC, nama usaha atau organisasi sosial, email resmi, dan nomor telepon aktif/WhatsApp.</li>
+              <li>Radius Lokasi &amp; Geografis: Koordinat perkiraan radius wilayah donatur ditampilkan kepada mitra terdaftar untuk perhitungan jarak tempuh. Alamat jalan dan titik penjemputan spesifik baru dibuka kepada mitra setelah penawaran surplus disetujui, guna menjaga privasi serta mencegah kedatangan tanpa konfirmasi.</li>
+              <li>Data Logistik &amp; Pangan: Riwayat jenis makanan, volume, waktu serah terima, dan bukti konfirmasi penyerahan untuk keperluan audit dampak agregat.</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-forest mb-1.5">3. Komitmen Anti-Penjualan Data</h4>
+            <p>Tumbuh Pangan berkomitmen teguh tidak akan pernah menjual, menyewakan, meminjamkan, atau memperdagangkan data pribadi maupun kontak pengguna kepada pihak ketiga atau pengiklan komersial mana pun.</p>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-forest mb-1.5">4. Penyimpanan &amp; Keamanan Data</h4>
+            <p>Seluruh rekaman data disimpan pada basis data terenkripsi dengan akses terbatas untuk tim teknis dan kurasi. Pengguna berhak meminta pembaruan data atau penonaktifan akun sewaktu-waktu melalui email resmi pengembang di defhanpy@gmail.com.</p>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-border-color flex justify-end">
+          <button type="button" class="px-6 py-2.5 rounded-xl bg-primary hover:bg-forest text-white text-sm font-bold transition-all" data-modal-close="privacy-modal">
+            Saya Mengerti &amp; Tutup
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive JavaScript: Mobile Menu, FAQ Accordion, Search & Filter, and Legal Modals -->
+  <script>
+    // 1. Mobile Menu Toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+        mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+        mobileMenu.classList.toggle('hidden');
+        menuIconOpen.classList.toggle('hidden');
+        menuIconClose.classList.toggle('hidden');
+      });
+
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileMenuButton.setAttribute('aria-expanded', 'false');
+          menuIconOpen.classList.remove('hidden');
+          menuIconClose.classList.add('hidden');
+        });
+      });
+    }
+
+    // 2. FAQ Accordion Toggle
+    const faqButtons = document.querySelectorAll('.faq-btn');
+    faqButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const panel = button.closest('.faq-item').querySelector('.faq-panel');
+        const icon = button.querySelector('.faq-icon');
+
+        // Close other panels
+        faqButtons.forEach(otherBtn => {
+          if (otherBtn !== button) {
+            otherBtn.setAttribute('aria-expanded', 'false');
+            const otherPanel = otherBtn.closest('.faq-item').querySelector('.faq-panel');
+            const otherIcon = otherBtn.querySelector('.faq-icon');
+            if (otherPanel) otherPanel.classList.add('hidden');
+            if (otherIcon) otherIcon.classList.remove('rotate-180');
+          }
+        });
+
+        // Toggle current
+        button.setAttribute('aria-expanded', !isExpanded);
+        if (panel) panel.classList.toggle('hidden');
+        if (icon) icon.classList.toggle('rotate-180');
+      });
+    });
+
+    // 3. Search & Filter FAQ
+    const searchInput = document.getElementById('faq-search');
+    const filterButtons = document.querySelectorAll('.faq-filter-btn');
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    let currentCategory = 'all';
+
+    function applyFilters() {
+      const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+
+      faqItems.forEach(item => {
+        const itemCat = item.getAttribute('data-category');
+        const itemText = item.textContent.toLowerCase();
+
+        const matchCat = (currentCategory === 'all' || itemCat === currentCategory);
+        const matchQuery = query === '' || itemText.includes(query);
+
+        if (matchCat && matchQuery) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', applyFilters);
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-primary', 'text-white', 'active');
+          b.classList.add('bg-soft-mint', 'text-secondary-text');
+        });
+        btn.classList.remove('bg-soft-mint', 'text-secondary-text');
+        btn.classList.add('bg-primary', 'text-white', 'active');
+
+        currentCategory = btn.getAttribute('data-category');
+        applyFilters();
+      });
+    });
+
+    // 4. Legal Modals Controller
+    const openButtons = document.querySelectorAll('[data-modal-open]');
+    const closeButtons = document.querySelectorAll('[data-modal-close]');
+
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+      const firstClose = modal.querySelector('.modal-close-btn');
+      if (firstClose) firstClose.focus();
+    }
+
+    function closeModal(modal) {
+      if (!modal) return;
+      modal.classList.add('hidden');
+      if (!document.querySelector('.legal-modal:not(.hidden)')) {
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    openButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = btn.getAttribute('data-modal-open');
+        openModal(targetId);
+      });
+    });
+
+    closeButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = btn.getAttribute('data-modal-close');
+        const modal = targetId ? document.getElementById(targetId) : btn.closest('.legal-modal');
+        closeModal(modal);
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const activeModal = document.querySelector('.legal-modal:not(.hidden)');
+        if (activeModal) closeModal(activeModal);
+      }
+    });
+  </script>
+</body>
+</html>

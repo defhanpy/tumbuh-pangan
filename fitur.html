@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitur Platform - Tumbuh Pangan | Teknologi Redistribusi Surplus Pangan</title>
+  <meta name="description" content="Jelajahi fitur andalan Tumbuh Pangan: Smart Food Matching, Food Safety Gate, Surplus Insights, Impact Dashboard, dan Verifikasi QR Handover.">
+  <meta name="theme-color" content="#14532D">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Script & Configuration -->
+  <script src="./tailwind.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: '#14532D',
+            primary: '#27864B',
+            secondary: '#4C9A61',
+            'light-green': '#E8F5E9',
+            'soft-mint': '#F5FAF5',
+            'main-text': '#173C2F',
+            'secondary-text': '#52665B',
+            'border-color': '#DCE9DE',
+            'warm-yellow': '#F4D77B',
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          boxShadow: {
+            'soft': '0 4px 20px -2px rgba(20, 83, 45, 0.06), 0 2px 6px -1px rgba(20, 83, 45, 0.04)',
+            'card': '0 10px 30px -4px rgba(20, 83, 45, 0.08), 0 4px 12px -2px rgba(20, 83, 45, 0.04)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    body {
+      color: #173C2F;
+      background-color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-white text-main-text antialiased selection:bg-light-green selection:text-forest">
+
+  <!-- A. Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-border-color transition-shadow duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg p-1" aria-label="Tumbuh Pangan Beranda">
+          <img src="logo.svg" alt="Tumbuh Pangan Logo" class="h-11 w-auto" width="220" height="55">
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-7" aria-label="Navigasi Utama">
+          <a href="index.html" class="text-sm font-semibold text-secondary-text hover:text-primary transition-colors focus:outline-none focus-visible:text-primary">Beranda</a>
+          <a href="tentang.html" class="text-sm font-semibold text-secondary-text hover:text-primary transition-colors focus:outline-none focus-visible:text-primary">Tentang</a>
+          <a href="cara-kerja.html" class="text-sm font-semibold text-secondary-text hover:text-primary transition-colors focus:outline-none focus-visible:text-primary">Cara Kerja</a>
+          <a href="fitur.html" class="text-sm font-bold text-primary transition-colors focus:outline-none focus-visible:text-primary">Fitur</a>
+          <a href="dampak.html" class="text-sm font-semibold text-secondary-text hover:text-primary transition-colors focus:outline-none focus-visible:text-primary">Dampak</a>
+          <a href="faq.html" class="text-sm font-semibold text-secondary-text hover:text-primary transition-colors focus:outline-none focus-visible:text-primary">FAQ</a>
+        </nav>
+
+        <!-- Desktop Right CTA -->
+        <div class="hidden md:flex items-center gap-4">
+          <a href="login.html" class="text-sm font-bold text-forest hover:text-primary transition-colors px-3 py-2 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            Masuk
+          </a>
+          <a href="daftar.html" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-white bg-primary hover:bg-forest rounded-full transition-all shadow-sm hover:shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary">
+            Gabung Sekarang
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <div class="flex lg:hidden">
+          <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2.5 rounded-xl text-forest hover:bg-light-green focus:outline-none focus:ring-2 focus:ring-primary" aria-controls="mobile-menu" aria-expanded="false" aria-label="Buka menu navigasi">
+            <svg id="menu-icon-open" class="w-6 h-6 block" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden border-b border-border-color bg-white px-4 pt-3 pb-6 space-y-3" aria-label="Menu Mobile">
+      <div class="flex flex-col space-y-1">
+        <a href="index.html" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-semibold text-secondary-text hover:text-primary hover:bg-soft-mint transition-colors">Beranda</a>
+        <a href="tentang.html" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-semibold text-secondary-text hover:text-primary hover:bg-soft-mint transition-colors">Tentang</a>
+        <a href="cara-kerja.html" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-semibold text-secondary-text hover:text-primary hover:bg-soft-mint transition-colors">Cara Kerja</a>
+        <a href="fitur.html" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-bold text-primary bg-soft-mint transition-colors">Fitur</a>
+        <a href="dampak.html" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-semibold text-secondary-text hover:text-primary hover:bg-soft-mint transition-colors">Dampak</a>
+        <a href="faq.html" class="mobile-nav-link px-3 py-2.5 rounded-lg text-base font-semibold text-secondary-text hover:text-primary hover:bg-soft-mint transition-colors">FAQ</a>
+      </div>
+      <div class="pt-3 border-t border-border-color flex flex-col gap-2">
+        <a href="login.html" class="mobile-nav-link flex w-full items-center justify-center px-4 py-2.5 text-base font-bold text-forest bg-light-green hover:bg-[#d8edd9] rounded-xl transition-all">
+          Masuk ke Portal
+        </a>
+        <a href="daftar.html" class="mobile-nav-link flex w-full items-center justify-center px-5 py-3 text-base font-bold text-white bg-primary hover:bg-forest rounded-xl transition-all shadow-sm">
+          Gabung Sekarang
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Header -->
+    <section class="bg-gradient-to-b from-soft-mint to-white pt-12 pb-16 sm:pb-20 border-b border-border-color/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-xs text-secondary-text mb-6" aria-label="Breadcrumb">
+          <a href="index.html" class="hover:text-primary transition-colors">Beranda</a>
+          <svg class="w-3.5 h-3.5 text-border-color" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
+          <span class="text-forest font-semibold" aria-current="page">Fitur Platform</span>
+        </nav>
+
+        <div class="max-w-3xl">
+          <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide text-forest bg-light-green border border-border-color mb-4">
+            <span class="w-2 h-2 rounded-full bg-primary"></span>
+            Teknologi Ramah &amp; Presisi
+          </span>
+          <h1 class="text-3xl sm:text-5xl font-extrabold text-forest tracking-tight leading-[1.2] mb-6">
+            Fitur Cerdas, Penyaluran Makin Gesit.
+          </h1>
+          <p class="text-base sm:text-lg text-secondary-text leading-relaxed">
+            Teknologi di balik Tumbuh Pangan dibangun bukan buat bikin rumit, tapi justru bikin serah terima makanan surplus jadi cepat, aman secara higienitas, dan punya data dampak yang jujur.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 Fitur Inti (Detailed Cards) -->
+    <section class="py-16 sm:py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-xs font-bold uppercase tracking-wider text-secondary">5 Pilar Solusi</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-forest mt-2 mb-3">
+            Inovasi Tanpa Beban Operasional Tambahan
+          </h2>
+          <p class="text-sm sm:text-base text-secondary-text">
+            Mulai dari pencocokan radius, keamanan pangan ketat, sampai bukti digital serah terima mandiri.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <!-- 1. Smart Food Matching (Col 7) -->
+          <div class="lg:col-span-7 bg-soft-mint rounded-3xl p-8 border border-border-color flex flex-col justify-between hover:border-primary transition-all">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-white text-primary flex items-center justify-center mb-6 shadow-xs border border-border-color">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <span class="text-xs font-bold text-secondary uppercase tracking-wider">Algoritma Penyesuaian</span>
+              <h3 class="text-2xl font-extrabold text-forest mt-1 mb-3">Smart Food Matching</h3>
+              <p class="text-sm text-secondary-text leading-relaxed mb-6">
+                Menghilangkan kekacauan koordinasi manual di grup chat. Begitu donatur input makanan, algoritma langsung menyaring mitra terdekat berdasarkan jarak radius nyata (5-10 km), kapasitas pendingin dan jumlah personil relawan mitra, serta tingkat urgensi batas konsumsi aman (time-to-spoil).
+              </p>
+            </div>
+
+            <!-- Mini interactive-looking preview badge -->
+            <div class="bg-white rounded-2xl p-5 border border-border-color space-y-3">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-bold text-forest">Radius Rekomendasi Pintar:</span>
+                <span class="px-2.5 py-1 rounded-full bg-light-green text-forest font-semibold text-[11px]">Radius &le; 6.2 km</span>
+              </div>
+              <div class="w-full bg-soft-mint h-2.5 rounded-full overflow-hidden">
+                <div class="bg-primary h-full w-[85%] rounded-full"></div>
+              </div>
+              <div class="flex justify-between text-[11px] text-secondary-text">
+                <span>Waktu Respons Rata-rata: <strong>&lt; 15 menit</strong></span>
+                <span>Efisiensi Rute: <strong>Optimal</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Food Safety Gate (Col 5) -->
+          <div class="lg:col-span-5 bg-soft-mint rounded-3xl p-8 border border-border-color flex flex-col justify-between hover:border-primary transition-all">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-white text-primary flex items-center justify-center mb-6 shadow-xs border border-border-color">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </div>
+              <span class="text-xs font-bold text-secondary uppercase tracking-wider">Higienitas &amp; Integritas</span>
+              <h3 class="text-2xl font-extrabold text-forest mt-1 mb-3">Food Safety Gate</h3>
+              <p class="text-sm text-secondary-text leading-relaxed mb-6">
+                Protokol verifikasi wajib 3 lapis sebelum makanan di-publish: uji sensori organoleptik (aroma, warna, tekstur utuh), pencatatan suhu simpan (panas &gt;60°C atau dingin &lt;4°C), serta deklarasi batas jam konsumsi aman yang tidak bisa ditawar.
+              </p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-4 border border-border-color space-y-2 text-xs">
+              <div class="flex items-center gap-2 text-forest font-semibold">
+                <svg class="w-4 h-4 text-primary shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Zero Plate-Waste Policy (Bukan sisa piring)</span>
+              </div>
+              <div class="flex items-center gap-2 text-forest font-semibold">
+                <svg class="w-4 h-4 text-primary shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Pencatatan Alergen (Kacang, Susu, Gluten)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Surplus Insights (Col 4) -->
+          <div class="lg:col-span-4 bg-soft-mint rounded-3xl p-8 border border-border-color flex flex-col justify-between hover:border-primary transition-all">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-white text-primary flex items-center justify-center mb-6 shadow-xs border border-border-color">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+              </div>
+              <span class="text-xs font-bold text-secondary uppercase tracking-wider">Efisiensi Usaha</span>
+              <h3 class="text-xl font-extrabold text-forest mt-1 mb-3">Surplus Insights</h3>
+              <p class="text-xs text-secondary-text leading-relaxed mb-6">
+                Bantu manajemen restoran dan bakery membaca pola overproduksi. Ketahui hari dan menu mana yang paling sering bersisa, sehingga porsi persiapan bahan baku dapat ditekan di masa mendatang.
+              </p>
+            </div>
+            <div class="bg-white rounded-xl p-3.5 border border-border-color text-xs flex items-center justify-between">
+              <span class="text-secondary-text">Pola Hari Terbanyak:</span>
+              <span class="font-bold text-forest">Jumat &amp; Akhir Pekan</span>
+            </div>
+          </div>
+
+          <!-- 4. Impact Dashboard (Col 4) -->
+          <div class="lg:col-span-4 bg-soft-mint rounded-3xl p-8 border border-border-color flex flex-col justify-between hover:border-primary transition-all">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-white text-primary flex items-center justify-center mb-6 shadow-xs border border-border-color">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              </div>
+              <span class="text-xs font-bold text-secondary uppercase tracking-wider">Transparansi Nyata</span>
+              <h3 class="text-xl font-extrabold text-forest mt-1 mb-3">Impact Dashboard</h3>
+              <p class="text-xs text-secondary-text leading-relaxed mb-6">
+                Taksiran metrik dampak yang jujur: total kilogram pangan diselamatkan, porsi terbagikan, dan estimasi reduksi jejak karbon (CO2e) yang dihitung hanya dari transaksi yang telah diverifikasi dua pihak.
+              </p>
+            </div>
+            <div class="bg-white rounded-xl p-3.5 border border-border-color text-xs flex items-center justify-between">
+              <span class="text-secondary-text">Standar Hitung:</span>
+              <span class="font-bold text-primary">Bappenas &amp; UNEP FLW</span>
+            </div>
+          </div>
+
+          <!-- 5. QR & PIN Handover (Col 4) -->
+          <div class="lg:col-span-4 bg-soft-mint rounded-3xl p-8 border border-border-color flex flex-col justify-between hover:border-primary transition-all">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-white text-primary flex items-center justify-center mb-6 shadow-xs border border-border-color">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
+              </div>
+              <span class="text-xs font-bold text-secondary uppercase tracking-wider">Verifikasi Lapangan</span>
+              <h3 class="text-xl font-extrabold text-forest mt-1 mb-3">QR &amp; PIN Handover</h3>
+              <p class="text-xs text-secondary-text leading-relaxed mb-6">
+                Serah terima fisik diproteksi kode QR dinamis dan PIN darurat. Mencegah salah serah paket, memastikan orang yang mengambil adalah relawan resmi mitra, dan otomatis mengakhiri status penawaran.
+              </p>
+            </div>
+            <div class="bg-white rounded-xl p-3.5 border border-border-color text-xs flex items-center justify-between">
+              <span class="text-secondary-text">Metode Validasi:</span>
+              <span class="font-bold text-forest">Dua Arah Seketika</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Simulation Widget: Quick Match Checker -->
+    <section class="py-16 bg-soft-mint border-y border-border-color">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <span class="text-xs font-bold uppercase tracking-wider text-secondary">Simulasi Interaktif</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-forest mt-2 mb-2">
+            Coba Cek Estimasi Waktu Penyaluran
+          </h2>
+          <p class="text-sm text-secondary-text">
+            Pilih jenis makanan dan perkiraan porsi surplus untuk melihat seberapa cepat sistem mencocokkannya.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6 sm:p-10 border border-border-color shadow-card">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+            <div>
+              <label for="sim-category" class="block text-xs font-bold text-forest uppercase tracking-wider mb-2">Kategori Pangan Surplus</label>
+              <select id="sim-category" class="w-full px-4 py-3 rounded-xl border border-border-color bg-soft-mint text-forest text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-primary">
+                <option value="bakery">Roti &amp; Pastry Toko Kue</option>
+                <option value="cooked" selected>Makanan Siap Saji / Katering</option>
+                <option value="fresh">Sayur &amp; Buah Segar</option>
+                <option value="grocery">Bahan Pangan Kering Segel</option>
+              </select>
+            </div>
+            <div>
+              <label for="sim-portion" class="block text-xs font-bold text-forest uppercase tracking-wider mb-2">Perkiraan Jumlah Porsi</label>
+              <select id="sim-portion" class="w-full px-4 py-3 rounded-xl border border-border-color bg-soft-mint text-forest text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-primary">
+                <option value="15">10 - 25 Porsi (Skala Kafe/Toko Roti)</option>
+                <option value="50" selected>26 - 75 Porsi (Skala Resto/Katering)</option>
+                <option value="120">76 - 150 Porsi (Skala Hotel/Event)</option>
+                <option value="250">150+ Porsi (Skala Supermarket/Pusat)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dynamic Result Box -->
+          <div id="sim-result" class="p-6 rounded-2xl bg-light-green/70 border border-border-color flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <div class="text-xs font-bold text-forest uppercase tracking-wider">Hasil Simulasi Smart Matching:</div>
+              <div id="sim-headline" class="text-base sm:text-lg font-extrabold text-forest mt-1">
+                Cocok untuk 2 mitra panti/komunitas dalam radius 4.5 km
+              </div>
+              <p id="sim-desc" class="text-xs text-secondary-text mt-1">
+                Estimasi waktu respons klaim: &sim;15-25 menit. Penjemputan mandiri via tas termal.
+              </p>
+            </div>
+            <a href="daftar.html?role=donatur" class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-primary hover:bg-forest text-white text-xs font-bold transition-all shadow-xs shrink-0">
+              <span>Mulai Salurkan</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Komparasi: Cara Lama vs Tumbuh Pangan -->
+    <section class="py-16 sm:py-20 bg-white">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <span class="text-xs font-bold uppercase tracking-wider text-secondary">Perbandingan Nyata</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-forest mt-2 mb-3">
+            Kenapa Nggak Pakai Chat Grup Biasa Aja?
+          </h2>
+          <p class="text-sm text-secondary-text">
+            Chat grup sering bikin serah terima berantakan, makanan basi sebelum diambil, atau alamat tersebar liar.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Cara Konvensional -->
+          <div class="p-8 rounded-3xl bg-[#FEF2F2] border border-[#FECACA] space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-[#FEE2E2] text-[#991B1B]">
+              <span>Cara Konvensional / Chat Grup</span>
+            </div>
+            <ul class="space-y-3 text-xs sm:text-sm text-secondary-text">
+              <li class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-[#DC2626] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                <span>Pesan sering tenggelam di antara obrolan lain; klaim makanan tumpang tindih.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-[#DC2626] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                <span>Sering terjadi kasus no-show (janji jemput tapi batal tanpa kabar).</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-[#DC2626] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                <span>Tidak ada catatan kelayakan higienitas dan suhu penyimpanan makanan.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-[#DC2626] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                <span>Nol laporan data dampak; tidak bisa dipakai untuk pertanggungjawaban CSR.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Bersama Tumbuh Pangan -->
+          <div class="p-8 rounded-3xl bg-soft-mint border border-primary/30 space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-light-green text-forest">
+              <span>Bersama Platform Tumbuh Pangan</span>
+            </div>
+            <ul class="space-y-3 text-xs sm:text-sm text-secondary-text">
+              <li class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Notifikasi langsung terarah ke mitra radius terdekat yang siap jemput.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Komitmen slot waktu terkunci dengan sanksi penangguhan bagi yang mangkir.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Food Safety Gate mewajibkan checklist organoleptik &amp; batas aman santap.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Laporan dampak otomatis terbit per bulan berbasis standar UNEP &amp; Bappenas.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="py-16 bg-forest text-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
+          Coba Fiturnya Secara Nyata di Portal Kami
+        </h2>
+        <p class="text-sm sm:text-base text-light-green/90 max-w-xl mx-auto">
+          Mulai dari pendaftaran mudah, pilih peran usaha atau lembaga Anda, dan rasakan kemudahan redistribusi pangan.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+          <a href="daftar.html" class="px-6 py-3 rounded-full bg-primary hover:bg-white hover:text-forest text-white text-sm font-bold transition-all shadow-sm">
+            Daftar Mitra Sekarang
+          </a>
+          <a href="cara-kerja.html" class="px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-bold border border-white/20 transition-all">
+            Lihat Alur Kerja
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- K. Footer Defhanpy Agency -->
+  <footer class="bg-forest text-white pt-16 pb-12 border-t border-forest">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+        <!-- Brand Column -->
+        <div class="md:col-span-5 space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="bg-white rounded-lg p-1.5 inline-block">
+              <img src="logo.svg" alt="Tumbuh Pangan Logo" class="h-8 w-auto" width="160" height="40">
+            </div>
+          </div>
+          <p class="text-sm text-light-green/90 leading-relaxed max-w-sm">
+            Platform redistribusi surplus pangan layak konsumsi untuk mendukung ekosistem konsumsi berkelanjutan dan memperluas manfaat bagi sesama.
+          </p>
+          <div class="text-xs text-warm-yellow font-medium">
+            Bersama Menumbuhkan Manfaat Pangan.
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="md:col-span-3 space-y-3">
+          <div class="text-sm font-bold tracking-wider text-white uppercase">Navigasi</div>
+          <ul class="space-y-2 text-sm text-light-green/80">
+            <li><a href="index.html" class="hover:text-white transition-colors">Beranda</a></li>
+            <li><a href="tentang.html" class="hover:text-white transition-colors">Tentang Kami</a></li>
+            <li><a href="cara-kerja.html" class="hover:text-white transition-colors">Cara Kerja</a></li>
+            <li><a href="fitur.html" class="text-white font-bold transition-colors">Fitur Platform</a></li>
+            <li><a href="dampak.html" class="hover:text-white transition-colors">Dampak Nyata</a></li>
+            <li><a href="faq.html" class="hover:text-white transition-colors">Pertanyaan Umum (FAQ)</a></li>
+            <li><a href="login.html" class="hover:text-white transition-colors">Masuk ke Portal</a></li>
+            <li><a href="daftar.html" class="hover:text-white transition-colors">Daftar Kemitraan</a></li>
+          </ul>
+        </div>
+
+        <!-- Partnership & Trust Note -->
+        <div class="md:col-span-4 space-y-3">
+          <div class="text-sm font-bold tracking-wider text-white uppercase">Kemitraan &amp; Kontak</div>
+          <p class="text-sm text-light-green/80 leading-relaxed">
+            Terbuka untuk kolaborasi bersama unit bisnis F&amp;B, komunitas sosial, dan kelompok relawan di seluruh wilayah Indonesia.
+          </p>
+          <div class="pt-1">
+            <a href="mailto:defhanpy@gmail.com" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/15 text-xs font-semibold transition-colors">
+              <svg class="w-4 h-4 text-warm-yellow shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span>defhanpy@gmail.com</span>
+            </a>
+          </div>
+          <div class="pt-1">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white border border-white/15">
+              <span class="w-2 h-2 rounded-full bg-secondary"></span>
+              Fase Kurasi Kemitraan MVP
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar with Defhanpy Attribution and Legal Modals -->
+      <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-light-green/75 border-t border-white/10">
+        <div class="text-center md:text-left">
+          <p>© 2026 Tumbuh Pangan. Inisiatif digital oleh <a href="https://agency.defhanpy.dev" target="_blank" rel="noopener noreferrer" class="text-white hover:text-warm-yellow font-bold underline underline-offset-2">Defhanpy Agency</a> (Web &amp; Digital Solutions) bersama Tim Mandala untuk FunDev International Competition 2026.</p>
+          <p class="text-[11px] text-light-green/60 mt-1">Basis: Jember, Jawa Timur, Indonesia.</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+          <button type="button" data-modal-open="tos-modal" class="hover:text-white underline underline-offset-2 transition-colors cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-white rounded">
+            Ketentuan Layanan
+          </button>
+          <span class="text-white/30">•</span>
+          <button type="button" data-modal-open="privacy-modal" class="hover:text-white underline underline-offset-2 transition-colors cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-white rounded">
+            Kebijakan Privasi
+          </button>
+          <span class="text-white/30">•</span>
+          <a href="mailto:defhanpy@gmail.com" class="hover:text-white transition-colors">defhanpy@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal: Ketentuan Layanan (ToS) -->
+  <div id="tos-modal" class="legal-modal fixed inset-0 z-50 hidden overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="tos-title">
+    <div class="modal-backdrop fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity" data-modal-close="tos-modal"></div>
+    <div class="flex min-h-screen items-center justify-center p-4">
+      <div class="relative w-full max-w-2xl bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-border-color text-main-text z-10 my-8">
+        <div class="flex items-start justify-between pb-4 border-b border-border-color">
+          <div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-light-green text-forest mb-2">
+              Dokumen Resmi Platform
+            </span>
+            <h3 id="tos-title" class="text-xl sm:text-2xl font-extrabold text-forest">Ketentuan Layanan (Terms of Service)</h3>
+            <p class="text-xs text-secondary-text mt-1">Berlaku untuk seluruh donatur pangan dan mitra penyalur Tumbuh Pangan.</p>
+          </div>
+          <button type="button" class="modal-close-btn p-2 rounded-xl text-secondary-text hover:text-forest hover:bg-light-green transition-colors" data-modal-close="tos-modal" aria-label="Tutup Ketentuan Layanan">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="py-5 space-y-5 text-sm text-secondary-text leading-relaxed max-h-[60vh] overflow-y-auto pr-2">
+          <div>
+            <h4 class="text-base font-bold text-forest mb-1.5">1. Batasan Tanggung Jawab Platform</h4>
+            <p>Tumbuh Pangan berfungsi murni sebagai jembatan informasi dan koordinasi logistik mandiri (self-pickup) antara donatur pangan dan mitra penyalur sosial terdaftar. Platform bukan merupakan produsen, penyimpan, maupun kurir pengantar makanan.</p>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-forest mb-1.5">2. Kewajiban &amp; Integritas Donatur</h4>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Menjamin seluruh surplus pangan yang didaftarkan dalam kondisi layak konsumsi, belum melewati batas kedaluwarsa, dan disimpan sesuai kaidah higienitas pangan.</li>
+              <li>Mengisi informasi makanan, alergen potensial, batas waktu konsumsi aman, serta estimasi porsi secara jujur dan transparan.</li>
+              <li>Tidak mendonasikan sisa makanan piring konsumen (plate waste) atau makanan yang telah mengalami kerusakan organoleptik (bau asam, berlendir, tekstur rusak).</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-forest mb-1.5">3. Kewajiban Mitra Penyalur</h4>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Melakukan penjemputan mandiri (self-pickup) secara tepat waktu sesuai jadwal yang telah disepakati bersama donatur.</li>
+              <li>Membawa wadah higienis, bersih, dan sesuai (misalnya cooler box / tas termal jika makanan membutuhkan suhu dingin atau hangat).</li>
+              <li>Dilarang keras memperjualbelikan makanan hasil donasi dalam bentuk apa pun atau mengambil keuntungan komersial.</li>
+              <li>Menyalurkan makanan kepada penerima manfaat secara bermartabat tanpa diskriminasi dan tanpa publikasi visual yang mengeksploitasi privasi penerima.</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-forest mb-1.5">4. Sanksi Penangguhan (Suspension)</h4>
+            <p>Tumbuh Pangan berhak mencabut akses atau menangguhkan akun pengguna (donatur maupun mitra) yang terbukti melakukan pembatalan sepihak berulang kali, mangkir dari jadwal penjemputan (no-show), memanipulasi data keselamatan pangan, atau melanggar etika penyaluran sosial.</p>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-border-color flex justify-end">
+          <button type="button" class="px-6 py-2.5 rounded-xl bg-primary hover:bg-forest text-white text-sm font-bold transition-all" data-modal-close="tos-modal">
+            Saya Mengerti &amp; Tutup
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Kebijakan Privasi (Privacy Policy) -->
+  <div id="privacy-modal" class="legal-modal fixed inset-0 z-50 hidden overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+    <div class="modal-backdrop fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity" data-modal-close="privacy-modal"></div>
+    <div class="flex min-h-screen items-center justify-center p-4">
+      <div class="relative w-full max-w-2xl bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-border-color text-main-text z-10 my-8">
+        <div class="flex items-start justify-between pb-4 border-b border-border-color">
+          <div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-light-green text-forest mb-2">
+              Perlindungan Privasi
+            </span>
+            <h3 id="privacy-title" class="text-xl sm:text-2xl font-extrabold text-forest">Kebijakan Privasi (Privacy Policy)</h3>
+            <p class="text-xs text-secondary-text mt-1">Prinsip keterbukaan dan perlindungan data pengguna Tumbuh Pangan.</p>
+          </div>
+          <button type="button" class="modal-close-btn p-2 rounded-xl text-secondary-text hover:text-forest hover:bg-light-green transition-colors" data-modal-close="privacy-modal" aria-label="Tutup Kebijakan Privasi">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="py-5 space-y-5 text-sm text-secondary-text leading-relaxed max-h-[60vh] overflow-y-auto pr-2">
+          <div>
+            <h4 class="text-base font-bold text-forest mb-1.5">1. Prinsip Minimisasi Data</h4>
+            <p>Kami hanya mengumpulkan data yang benar-benar esensial untuk verifikasi identitas lembaga dan kelancaran koordinasi serah terima makanan. Kami tidak mengumpulkan data pribadi sensitif di luar kebutuhan operasional redistribusi pangan.</p>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-forest mb-1.5">2. Jenis Data yang Dikelola</h4>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Identitas Penanggung Jawab: Nama kontak PIC, nama usaha atau organisasi sosial, email resmi, dan nomor telepon aktif/WhatsApp.</li>
+              <li>Radius Lokasi &amp; Geografis: Koordinat perkiraan radius wilayah donatur ditampilkan kepada mitra terdaftar untuk perhitungan jarak tempuh. Alamat jalan dan titik penjemputan spesifik baru dibuka kepada mitra setelah penawaran surplus disetujui, guna menjaga privasi serta mencegah kedatangan tanpa konfirmasi.</li>
+              <li>Data Logistik &amp; Pangan: Riwayat jenis makanan, volume, waktu serah terima, dan bukti konfirmasi penyerahan untuk keperluan audit dampak agregat.</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-forest mb-1.5">3. Komitmen Anti-Penjualan Data</h4>
+            <p>Tumbuh Pangan berkomitmen teguh tidak akan pernah menjual, menyewakan, meminjamkan, atau memperdagangkan data pribadi maupun kontak pengguna kepada pihak ketiga atau pengiklan komersial mana pun.</p>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-forest mb-1.5">4. Penyimpanan &amp; Keamanan Data</h4>
+            <p>Seluruh rekaman data disimpan pada basis data terenkripsi dengan akses terbatas untuk tim teknis dan kurasi. Pengguna berhak meminta pembaruan data atau penonaktifan akun sewaktu-waktu melalui email resmi pengembang di defhanpy@gmail.com.</p>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-border-color flex justify-end">
+          <button type="button" class="px-6 py-2.5 rounded-xl bg-primary hover:bg-forest text-white text-sm font-bold transition-all" data-modal-close="privacy-modal">
+            Saya Mengerti &amp; Tutup
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive JavaScript: Mobile Menu, Simulator, and Legal Modals -->
+  <script>
+    // 1. Mobile Menu Toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+        mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+        mobileMenu.classList.toggle('hidden');
+        menuIconOpen.classList.toggle('hidden');
+        menuIconClose.classList.toggle('hidden');
+      });
+
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileMenuButton.setAttribute('aria-expanded', 'false');
+          menuIconOpen.classList.remove('hidden');
+          menuIconClose.classList.add('hidden');
+        });
+      });
+    }
+
+    // 2. Quick Match Simulator
+    const simCategory = document.getElementById('sim-category');
+    const simPortion = document.getElementById('sim-portion');
+    const simHeadline = document.getElementById('sim-headline');
+    const simDesc = document.getElementById('sim-desc');
+
+    function updateSimulation() {
+      if (!simCategory || !simPortion) return;
+      const cat = simCategory.value;
+      const portion = simPortion.value;
+
+      let radius = '3.5 km';
+      let mitraCount = '2 - 3';
+      let note = 'Penjemputan mandiri menggunakan wadah bersih food-grade.';
+
+      if (cat === 'bakery') {
+        radius = '4.0 km';
+        mitraCount = portion >= 100 ? '4 - 5 panti' : '2 panti & relawan';
+        note = 'Sangat tahan lama dalam perjalanan; ideal untuk paket sarapan anak panti.';
+      } else if (cat === 'cooked') {
+        radius = '3.0 km';
+        mitraCount = portion >= 100 ? '3 dapur umum' : '1 - 2 komunitas terdekat';
+        note = 'Penyaluran prioritas tinggi! Direkomendasikan tas termal / cooler bag.';
+      } else if (cat === 'fresh') {
+        radius = '5.5 km';
+        mitraCount = '2 dapur komunitas';
+        note = 'Bahan segar langsung diolah untuk menu makan bersama hari ini.';
+      } else if (cat === 'grocery') {
+        radius = '8.0 km';
+        mitraCount = '3 - 4 kelompok';
+        note = 'Masa simpan fleksibel; dapat dijadwalkan penjemputan berkala.';
+      }
+
+      simHeadline.textContent = `Cocok untuk ${mitraCount} mitra dalam radius ${radius}`;
+      simDesc.textContent = `Estimasi respon klaim: ~10-20 menit. ${note}`;
+    }
+
+    if (simCategory && simPortion) {
+      simCategory.addEventListener('change', updateSimulation);
+      simPortion.addEventListener('change', updateSimulation);
+    }
+
+    // 3. Legal Modals Controller
+    const openButtons = document.querySelectorAll('[data-modal-open]');
+    const closeButtons = document.querySelectorAll('[data-modal-close]');
+
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+      const firstClose = modal.querySelector('.modal-close-btn');
+      if (firstClose) firstClose.focus();
+    }
+
+    function closeModal(modal) {
+      if (!modal) return;
+      modal.classList.add('hidden');
+      if (!document.querySelector('.legal-modal:not(.hidden)')) {
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    openButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = btn.getAttribute('data-modal-open');
+        openModal(targetId);
+      });
+    });
+
+    closeButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = btn.getAttribute('data-modal-close');
+        const modal = targetId ? document.getElementById(targetId) : btn.closest('.legal-modal');
+        closeModal(modal);
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const activeModal = document.querySelector('.legal-modal:not(.hidden)');
+        if (activeModal) closeModal(activeModal);
+      }
+    });
+  </script>
+</body>
+</html>
