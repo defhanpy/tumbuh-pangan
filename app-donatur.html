@@ -59,7 +59,7 @@
     }
   </style>
 </head>
-<body class="bg-[#F8FAF8] text-main-text antialiased min-h-screen pb-28 selection:bg-light-green selection:text-forest">
+<body class="bg-[#F8FAF8] text-main-text antialiased min-h-screen pb-6 lg:pb-28 selection:bg-light-green selection:text-forest">
 
   <!-- Toast Container -->
   <div id="toast-container" class="fixed top-5 right-5 z-[60] flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
@@ -1031,8 +1031,9 @@
         renderPortal();
       });
 
-      // Inject Demo Switcher Floating Bar
+      // Inject Demo Switcher Floating Bar (Desktop Only)
       const switcherMount = document.createElement('div');
+      switcherMount.className = 'hidden lg:block';
       switcherMount.innerHTML = TPStore.renderDemoSwitcher('donatur');
       document.body.appendChild(switcherMount);
     });
