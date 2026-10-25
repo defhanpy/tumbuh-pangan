@@ -159,8 +159,9 @@
             aria-selected="true"
             aria-controls="registration-card"
             onclick="setRole('donatur', true)"
-            class="px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary bg-primary text-white shadow">
-            🌱 Donatur Pangan (Pelaku Usaha)
+            class="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary bg-primary text-white shadow">
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+            <span>Donatur Pangan (Pelaku Usaha)</span>
           </button>
           <button
             id="tab-penyalur"
@@ -169,8 +170,9 @@
             aria-selected="false"
             aria-controls="registration-card"
             onclick="setRole('penyalur', true)"
-            class="px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary text-secondary-text hover:text-forest">
-            🤝 Mitra Penyalur (Lembaga Sosial)
+            class="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary text-secondary-text hover:text-forest">
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            <span>Mitra Penyalur (Lembaga Sosial)</span>
           </button>
         </div>
       </div>
@@ -207,7 +209,8 @@
 
             <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
               <a href="app-admin.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-forest text-white text-xs font-bold transition-all shadow-md">
-                <span>🛡️ Buka Antrean di Portal Admin</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Buka Antrean di Portal Admin</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
               <a href="index.html" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-forest hover:bg-black text-white text-xs font-bold transition-all">
@@ -604,10 +607,10 @@
 
       if (role === 'penyalur') {
         tabPenyalur.setAttribute('aria-selected', 'true');
-        tabPenyalur.className = 'px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary bg-primary text-white shadow';
+        tabPenyalur.className = 'inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary bg-primary text-white shadow';
 
         tabDonatur.setAttribute('aria-selected', 'false');
-        tabDonatur.className = 'px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary text-secondary-text hover:text-forest';
+        tabDonatur.className = 'inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary text-secondary-text hover:text-forest';
 
         bannerTitle.textContent = 'Pendaftaran Mitra Penyalur (Lembaga Sosial)';
         bannerDesc.textContent = 'Terbuka untuk Panti Asuhan, Yayasan Sosial, Dapur Umum, dan Komunitas Relawan Berkelanjutan.';
@@ -622,10 +625,10 @@
         scheduleInput.placeholder = 'Contoh: Fleksibel penjemputan sore/malam mulai jam 18.00–21.00 WIB';
       } else {
         tabDonatur.setAttribute('aria-selected', 'true');
-        tabDonatur.className = 'px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary bg-primary text-white shadow';
+        tabDonatur.className = 'inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary bg-primary text-white shadow';
 
         tabPenyalur.setAttribute('aria-selected', 'false');
-        tabPenyalur.className = 'px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary text-secondary-text hover:text-forest';
+        tabPenyalur.className = 'inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary text-secondary-text hover:text-forest';
 
         bannerTitle.textContent = 'Pendaftaran Donatur Pangan (Pelaku Usaha)';
         bannerDesc.textContent = 'Terbuka untuk Restoran, Toko Roti/Kue, Katering, Hotel, Supermarket, dan UMKM Kuliner.';

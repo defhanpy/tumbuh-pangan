@@ -84,13 +84,19 @@
           <div class="text-right">
             <div id="user-display-name" class="text-sm font-extrabold text-forest leading-tight">Roti Nusantara Artisan</div>
             <div class="text-[11px] text-secondary-text flex items-center justify-end gap-1.5 mt-0.5">
-              <span class="text-xs">📍</span> Kaliwates, Jember
+              <span class="inline-flex items-center gap-1">
+                <svg class="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Kaliwates, Jember</span>
+              </span>
               <span class="inline-block w-1 h-1 rounded-full bg-border-color"></span>
-              <span class="text-primary font-bold">Terverifikasi ✓</span>
+              <span class="inline-flex items-center gap-1 text-primary font-bold">
+                <span>Terverifikasi</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
             </div>
           </div>
           <div class="w-10 h-10 rounded-2xl bg-light-green border border-primary/30 flex items-center justify-center text-forest font-bold text-base shadow-sm">
-            🥖
+            <svg class="w-5 h-5 text-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4 8 4v14"/><path d="M9 10a3 3 0 0 0 6 0"/></svg>
           </div>
         </div>
       </div>
@@ -106,11 +112,11 @@
       <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
         <div class="flex items-center justify-between text-secondary-text mb-2">
           <span class="text-xs font-bold uppercase tracking-wider">Porsi Diselamatkan</span>
-          <span class="text-xl">🍲</span>
+          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M7 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/><path d="M12 12v4"/></svg>
         </div>
         <div id="kpi-portions" class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">340</div>
         <div class="text-xs text-secondary-text mt-1 flex items-center gap-1">
-          <span class="text-primary font-bold">↑ +24</span> dari minggu ini
+          <span class="inline-flex items-center text-primary font-bold"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 10 7-7 7 7"/><path d="M12 3v18"/></svg>+24</span> dari minggu ini
         </div>
       </div>
 
@@ -118,7 +124,7 @@
       <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
         <div class="flex items-center justify-between text-secondary-text mb-2">
           <span class="text-xs font-bold uppercase tracking-wider">Volume Diselamatkan</span>
-          <span class="text-xl">⚖️</span>
+          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
         </div>
         <div id="kpi-kg" class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">85 <span class="text-base font-sans font-semibold text-secondary-text">kg</span></div>
         <div class="text-xs text-secondary-text mt-1">
@@ -130,7 +136,7 @@
       <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
         <div class="flex items-center justify-between text-secondary-text mb-2">
           <span class="text-xs font-bold uppercase tracking-wider">Batch Aktif</span>
-          <span class="text-xl">📦</span>
+          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
         </div>
         <div id="kpi-active-batches" class="text-2xl sm:text-3xl font-extrabold text-primary font-mono">2</div>
         <div class="text-xs text-secondary-text mt-1">
@@ -142,14 +148,15 @@
       <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
         <div class="flex items-center justify-between text-secondary-text mb-2">
           <span class="text-xs font-bold uppercase tracking-wider">Rating Higienitas</span>
-          <span class="text-xl">⭐</span>
+          <svg class="w-5 h-5 text-amber-500" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
         </div>
         <div class="flex items-baseline gap-2">
           <span id="kpi-rating" class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">4.9</span>
           <span class="text-xs text-secondary-text font-medium">/ 5.0 (38 ulasan)</span>
         </div>
-        <div class="text-xs text-primary font-bold mt-1">
-          ★ Mitra Utama Emas
+        <div class="inline-flex items-center gap-1 text-xs text-primary font-bold mt-1">
+          <svg class="w-3.5 h-3.5 fill-current text-primary" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span>Mitra Utama Emas</span>
         </div>
       </div>
     </section>
@@ -161,7 +168,7 @@
         onclick="switchTab('create')"
         id="tab-btn-create"
         class="tab-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all border-b-2 border-primary text-forest bg-light-green/60 cursor-pointer">
-        <span>➕</span>
+        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7v14"/></svg>
         <span>Buat Listing Surplus</span>
       </button>
 
@@ -170,7 +177,7 @@
         onclick="switchTab('manage')"
         id="tab-btn-manage"
         class="tab-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all border-b-2 border-transparent text-secondary-text hover:text-forest hover:bg-white cursor-pointer">
-        <span>📋</span>
+        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6m-6 4h6"/></svg>
         <span>Kelola Listing &amp; Klaim Masuk</span>
         <span id="badge-incoming-claims" class="px-2 py-0.5 rounded-full text-xs font-extrabold bg-[#EA580C] text-white">1</span>
       </button>
@@ -180,7 +187,7 @@
         onclick="switchTab('terminal')"
         id="tab-btn-terminal"
         class="tab-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all border-b-2 border-transparent text-secondary-text hover:text-forest hover:bg-white cursor-pointer">
-        <span>📲</span>
+        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3m0-7v.01m5 0v.01m-2-2v.01"/></svg>
         <span>Terminal Serah Terima (PIN &amp; QR)</span>
         <span id="badge-terminal-active" class="px-2 py-0.5 rounded-full text-xs font-extrabold bg-primary text-white">1</span>
       </button>
@@ -196,7 +203,9 @@
               Data yang Anda publikasikan akan langsung muncul di Katalog Mitra Penyalur secara real-time.
             </p>
           </div>
-          <span class="text-3xl">🧺</span>
+          <div class="w-12 h-12 rounded-2xl bg-light-green text-primary flex items-center justify-center shrink-0 border border-border-color">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7Z"/><path d="M9 10v4"/><path d="M15 10v4"/></svg>
+          </div>
         </div>
 
         <form id="form-create-listing" onsubmit="handleCreateListing(event)" class="space-y-6">
@@ -366,7 +375,8 @@
         <div class="flex items-center justify-between mb-4">
           <div>
             <h3 class="text-xl font-extrabold text-forest flex items-center gap-2">
-              <span>📬 Klaim Masuk dari Mitra</span>
+              <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+              <span>Klaim Masuk dari Mitra</span>
               <span id="count-pending-claims" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#EA580C] text-white">1 Permohonan</span>
             </h3>
             <p class="text-xs sm:text-sm text-secondary-text mt-0.5">
@@ -420,7 +430,8 @@
       <!-- Riwayat Transaksi Selesai -->
       <div class="pt-6 border-t border-border-color">
         <h3 class="text-lg font-extrabold text-forest mb-4 flex items-center gap-2">
-          <span>📜 Riwayat Serah Terima Selesai</span>
+          <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          <span>Riwayat Serah Terima Selesai</span>
         </h3>
         <div id="container-completed-handovers" class="space-y-3">
           <!-- Rendered dynamically -->
@@ -438,10 +449,12 @@
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
       const bgClass = type === 'success' ? 'bg-forest text-white' : 'bg-red-600 text-white';
-      const icon = type === 'success' ? '✓' : '✕';
+      const iconSvg = type === 'success'
+        ? `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>`
+        : `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>`;
       toast.className = `${bgClass} p-4 rounded-2xl shadow-xl flex items-center gap-3 text-xs sm:text-sm font-semibold pointer-events-auto transform transition-all duration-300`;
       toast.innerHTML = `
-        <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs shrink-0">${icon}</span>
+        <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center shrink-0">${iconSvg}</span>
         <div class="flex-grow">${message}</div>
       `;
       container.appendChild(toast);
@@ -578,7 +591,9 @@
       if (openListings.length === 0) {
         listingsContainer.innerHTML = `
           <div class="col-span-2 bg-white rounded-2xl p-8 border border-border-color text-center">
-            <span class="text-3xl block mb-2">🍞</span>
+            <div class="w-12 h-12 mx-auto rounded-2xl bg-light-green text-primary flex items-center justify-center mb-3">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7Z"/><path d="M9 10v4"/><path d="M15 10v4"/></svg>
+            </div>
             <p class="text-sm font-bold text-forest">Belum ada batch surplus yang aktif saat ini.</p>
             <p class="text-xs text-secondary-text mt-1 mb-4">Buat listing baru untuk mulai menyelamatkan makanan berlebih dari dapur Anda.</p>
             <button type="button" onclick="switchTab('create')" class="px-5 py-2.5 rounded-xl bg-primary text-white text-xs font-bold hover:bg-forest transition-colors">
@@ -591,11 +606,13 @@
           <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-all flex flex-col justify-between">
             <div>
               <div class="flex items-start justify-between gap-3 mb-2">
-                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-light-green text-forest">
-                  ${item.imageEmoji || '🥐'} ${item.category}
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-light-green text-forest">
+                  ${TPStore.getCategorySvg(item.category, 'w-3.5 h-3.5')}
+                  <span>${item.category}</span>
                 </span>
                 <span class="inline-flex items-center gap-1 text-[11px] font-bold text-[#EA580C] bg-orange-50 px-2 py-0.5 rounded-md border border-orange-200">
-                  ⏳ ${item.expiresLabel || 'Aktif'}
+                  <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span>${item.expiresLabel || 'Aktif'}</span>
                 </span>
               </div>
               <h4 class="text-base font-extrabold text-forest">${item.title}</h4>
@@ -606,8 +623,9 @@
               <div class="font-mono font-bold text-forest">
                 ${item.portions} Porsi <span class="text-secondary-text font-sans font-normal">(${item.kg} kg)</span>
               </div>
-              <div class="text-[11px] text-secondary-text">
-                📍 ${item.storageCondition}
+              <div class="inline-flex items-center gap-1 text-[11px] text-secondary-text">
+                <svg class="w-3 h-3 text-secondary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>${item.storageCondition}</span>
               </div>
             </div>
           </div>
@@ -624,7 +642,9 @@
       if (pendingClaims.length === 0) {
         claimsContainer.innerHTML = `
           <div class="bg-white rounded-2xl p-8 border border-border-color text-center">
-            <span class="text-3xl block mb-2">✨</span>
+            <div class="w-12 h-12 mx-auto rounded-2xl bg-light-green text-primary flex items-center justify-center mb-3">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
             <p class="text-sm font-bold text-forest">Semua klaim masuk telah diproses.</p>
             <p class="text-xs text-secondary-text mt-0.5">Klaim baru dari mitra penyalur akan otomatis muncul di sini tanpa perlu muat ulang halaman.</p>
           </div>
@@ -672,7 +692,8 @@
                     type="button"
                     onclick="handleApproveClaim('${c.id}')"
                     class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-primary hover:bg-forest text-white text-xs font-bold shadow-sm transition-all cursor-pointer">
-                    <span>✓ Setujui Mitra Ini</span>
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                    <span>Setujui Mitra Ini</span>
                   </button>
                 </div>
               </div>
@@ -692,7 +713,9 @@
       if (activeTx.length === 0) {
         activeTerminalContainer.innerHTML = `
           <div class="bg-white rounded-3xl p-10 border border-border-color text-center">
-            <span class="text-4xl block mb-3">📲</span>
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-light-green text-primary flex items-center justify-center mb-3">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3m0-7v.01m5 0v.01m-2-2v.01"/></svg>
+            </div>
             <h3 class="text-lg font-extrabold text-forest">Tidak Ada Penjemputan Berjalan</h3>
             <p class="text-xs sm:text-sm text-secondary-text mt-1 max-w-md mx-auto">
               Saat Anda menyetujui klaim mitra di tab Kelola Listing, kartu serah terima lengkap beserta QR Code dan PIN 4-digit akan aktif di sini.
@@ -738,8 +761,9 @@
                   </div>
                 </div>
 
-                <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-[11px] text-amber-900 leading-relaxed">
-                  💡 <strong>Prosedur:</strong> Tunjukkan QR code di samping ke relawan mitra saat tiba di outlet, atau mintakan 4-digit PIN verifikasi.
+                <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-[11px] text-amber-900 leading-relaxed flex items-start gap-2">
+                  <svg class="w-4 h-4 text-amber-700 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                  <div><strong>Prosedur:</strong> Tunjukkan QR code di samping ke relawan mitra saat tiba di outlet, atau mintakan 4-digit PIN verifikasi.</div>
                 </div>
               </div>
 
@@ -794,7 +818,10 @@
           <div class="bg-white rounded-2xl p-4 sm:p-5 border border-border-color flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
             <div class="space-y-1">
               <div class="flex items-center gap-2">
-                <span class="px-2 py-0.5 rounded-md font-bold text-[10px] bg-green-100 text-forest">SELESAI ✓</span>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-bold text-[10px] bg-green-100 text-forest">
+                  <span>SELESAI</span>
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
                 <strong class="text-sm font-bold text-forest">${t.listingTitle}</strong>
               </div>
               <div class="text-secondary-text">
@@ -805,7 +832,10 @@
             <div class="flex sm:flex-col sm:items-end justify-between text-right gap-1">
               <span class="font-mono text-secondary-text">PIN: ${t.pin}</span>
               ${t.rating ? `
-                <span class="text-primary font-bold">★ ${t.rating.stars}.0 ("${t.rating.notes.substring(0, 30)}...")</span>
+                <span class="inline-flex items-center gap-1 text-primary font-bold">
+                  <svg class="w-3.5 h-3.5 fill-current text-primary" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <span>${t.rating.stars}.0 ("${t.rating.notes.substring(0, 30)}...")</span>
+                </span>
               ` : `
                 <span class="text-secondary-text">Dampak tercatat di Admin</span>
               `}

@@ -15,7 +15,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
 
-  const STORAGE_KEY = 'tp_store_s04_v1';
+  const STORAGE_KEY = 'tp_store_s05_v1';
   const EVENT_CHANNEL = 'tp_store_change';
 
   // --- Seed Data Definition ---
@@ -153,7 +153,6 @@
         status: 'OPEN',
         distanceKm: 1.2,
         badge: 'Segar Baru Matang',
-        imageEmoji: '🥐',
         createdAt: Date.now() - (45 * 60 * 1000)
       },
       {
@@ -174,7 +173,6 @@
         status: 'OPEN',
         distanceKm: 3.5,
         badge: 'Porsi Besar (40 porsi)',
-        imageEmoji: '🍱',
         createdAt: Date.now() - (30 * 60 * 1000)
       },
       {
@@ -195,7 +193,6 @@
         status: 'OPEN',
         distanceKm: 4.1,
         badge: 'Dingin & Higienis',
-        imageEmoji: '🥗',
         createdAt: Date.now() - (60 * 60 * 1000)
       },
       {
@@ -216,7 +213,6 @@
         status: 'OPEN',
         distanceKm: 1.2,
         badge: 'Batas Cepat 50 Mnt',
-        imageEmoji: '🥖',
         createdAt: Date.now() - (90 * 60 * 1000)
       }
     ],
@@ -594,7 +590,6 @@
         status: 'OPEN',
         distanceKm: parseFloat(data.distanceKm) || 1.4,
         badge: data.badge || 'Baru Diterbitkan',
-        imageEmoji: data.category === 'Siap Santap' ? '🍱' : (data.category === 'Sayur & Buah' ? '🥗' : '🥐'),
         createdAt: Date.now()
       };
 
@@ -893,6 +888,19 @@
     generateQrSvg,
     subscribe,
 
+    // Canonical Category Vector SVG Icon Helper
+    getCategorySvg(category, className = 'w-4 h-4') {
+      const cat = (category || '').toLowerCase();
+      if (cat.includes('siap') || cat.includes('santap') || cat.includes('box') || cat.includes('lauk') || cat.includes('sup')) {
+        return `<svg class="${className}" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M7 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/><path d="M12 12v4"/></svg>`;
+      }
+      if (cat.includes('sayur') || cat.includes('buah') || cat.includes('salad')) {
+        return `<svg class="${className}" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`;
+      }
+      // Default: Roti & Pastry / Bakery
+      return `<svg class="${className}" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7Z"/><path d="M9 10v4"/><path d="M15 10v4"/></svg>`;
+    },
+
     // Floating Demo Switcher Component (Injected to all app portals)
     renderDemoSwitcher(activePortal = 'donatur') {
       const isDonatur = activePortal === 'donatur';
@@ -905,7 +913,8 @@
             <!-- Left: Badge & Live Status -->
             <div class="flex items-center gap-2">
               <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-warm-yellow text-forest font-extrabold text-[11px] shadow-sm tracking-wide">
-                <span>🎭</span> MODE DEMO
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0 0-5-2H2z"/></svg>
+                <span>MODE DEMO</span>
               </span>
               <span class="hidden sm:inline-block text-light-green/80 text-[11px]">
                 FunDev 2026 USU Interactive Prototype
@@ -915,15 +924,15 @@
             <!-- Center: Role Quick Switches -->
             <div class="flex items-center gap-1.5 bg-black/30 p-1 rounded-xl">
               <a href="app-donatur.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold text-xs transition-all ${isDonatur ? 'bg-primary text-white shadow-sm ring-1 ring-white/30' : 'text-light-green/80 hover:text-white hover:bg-white/10'}">
-                <span>🥖</span>
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4 8 4v14"/><path d="M9 10a3 3 0 0 0 6 0"/></svg>
                 <span>Donatur</span>
               </a>
               <a href="app-mitra.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold text-xs transition-all ${isMitra ? 'bg-primary text-white shadow-sm ring-1 ring-white/30' : 'text-light-green/80 hover:text-white hover:bg-white/10'}">
-                <span>🤲</span>
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                 <span>Mitra</span>
               </a>
               <a href="app-admin.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold text-xs transition-all ${isAdmin ? 'bg-primary text-white shadow-sm ring-1 ring-white/30' : 'text-light-green/80 hover:text-white hover:bg-white/10'}">
-                <span>🛡️</span>
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 <span>Admin</span>
               </a>
             </div>
@@ -931,11 +940,12 @@
             <!-- Right: Reset Data & Landing Link -->
             <div class="flex items-center gap-2">
               <button type="button" onclick="TPStore.confirmResetDemo()" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-red-500/80 text-white font-semibold text-[11px] transition-all cursor-pointer" title="Kembalikan data contoh ke awal">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
                 <span>Reset Demo</span>
               </button>
               <a href="index.html" class="hidden md:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-light-green/70 hover:text-white transition-colors text-[11px]">
-                <span>Beranda ↗</span>
+                <span>Beranda</span>
+                <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
               </a>
             </div>
           </div>
