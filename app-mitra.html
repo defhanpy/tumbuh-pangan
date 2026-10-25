@@ -43,7 +43,53 @@
     };
   </script>
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.4.1/dist/css/tom-select.default.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.1/dist/js/tom-select.complete.min.js"></script>
+
   <style>
+    /* Custom Tom Select Styling matching Tumbuh Pangan */
+    .ts-wrapper.ts-tumbuh .ts-control {
+      border: 1px solid #DCE9DE;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      color: #173C2F;
+      background-color: #FFFFFF;
+      box-shadow: none;
+      transition: all 0.2s ease;
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+    }
+    .ts-wrapper.ts-tumbuh.focus .ts-control {
+      border-color: #27864B;
+      box-shadow: 0 0 0 3px rgba(39, 134, 75, 0.15);
+    }
+    .ts-wrapper.ts-tumbuh .ts-dropdown {
+      border: 1px solid #DCE9DE;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 25px -5px rgba(20, 83, 45, 0.1);
+      overflow: hidden;
+      margin-top: 4px;
+      z-index: 100;
+    }
+    .ts-wrapper.ts-tumbuh .ts-dropdown .option {
+      padding: 0.625rem 1rem;
+      font-size: 0.875rem;
+      color: #173C2F;
+      transition: background-color 0.15s ease;
+    }
+    .ts-wrapper.ts-tumbuh .ts-dropdown .option.active,
+    .ts-wrapper.ts-tumbuh .ts-dropdown .option:hover {
+      background-color: #E8F5E9;
+      color: #14532D;
+      font-weight: 600;
+    }
+    .ts-wrapper.ts-tumbuh .ts-dropdown .option.selected {
+      background-color: #F5FAF5;
+      color: #27864B;
+      font-weight: 700;
+    }
     @media (prefers-reduced-motion: reduce) {
       *, ::before, ::after {
         animation-duration: 0.01ms !important;
@@ -1057,6 +1103,20 @@
       TPStore.switchUserRole('mitra', 'mitra-1');
       renderCatalog();
       renderPickups();
+
+      // Initialize Tom Select
+      const tomConfig = {
+        controlInput: null,
+        wrapperClass: 'ts-wrapper ts-tumbuh',
+        render: {
+          dropdown: function() {
+            return '<div class="ts-dropdown"></div>';
+          }
+        }
+      };
+      if (document.getElementById('claim-eta-select')) new TomSelect('#claim-eta-select', tomConfig);
+      if (document.getElementById('rating-hygiene')) new TomSelect('#rating-hygiene', tomConfig);
+      if (document.getElementById('rating-punctuality')) new TomSelect('#rating-punctuality', tomConfig);
 
       TPStore.subscribe(() => {
         renderCatalog();
