@@ -59,132 +59,227 @@
     }
   </style>
 </head>
-<body class="bg-[#F8FAF8] text-main-text antialiased flex flex-col min-h-screen pb-28 selection:bg-light-green selection:text-forest">
+<body class="bg-[#F8FAF8] text-main-text antialiased min-h-screen pb-28 selection:bg-light-green selection:text-forest">
 
   <!-- Toast Container -->
-  <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
+  <div id="toast-container" class="fixed top-5 right-5 z-[60] flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
 
-  <!-- Header Bar -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-border-color shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
-        <!-- Brand & Portal Tag -->
-        <div class="flex items-center gap-3">
-          <a href="index.html" class="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg" aria-label="Beranda Tumbuh Pangan">
-            <img src="logo.svg" alt="Tumbuh Pangan Logo" class="h-10 w-auto" width="180" height="45">
-          </a>
-          <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#EBF5EE] text-primary border border-primary/20">
+  <!-- Mobile Sidebar Backdrop Overlay -->
+  <div id="sidebar-backdrop" onclick="toggleMobileSidebar(false)" class="fixed inset-0 bg-forest/50 backdrop-blur-xs z-40 transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden" aria-hidden="true"></div>
+
+  <!-- Left Sidebar (Desktop Fixed w-64 + Mobile Off-Canvas Drawer) -->
+  <aside id="app-sidebar" class="fixed inset-y-0 left-0 w-64 bg-white border-r border-border-color z-50 lg:z-30 flex flex-col justify-between transition-transform duration-300 -translate-x-full lg:translate-x-0" aria-label="Sidebar Dashboard Mitra">
+    <!-- Top & Navigation Section -->
+    <div class="flex flex-col flex-1 overflow-y-auto">
+      <!-- Top Brand Section -->
+      <div class="p-4 sm:p-5 border-b border-border-color flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg" aria-label="Beranda Tumbuh Pangan">
+          <img src="logo.svg" alt="Tumbuh Pangan Logo" class="h-8 w-auto">
+          <div class="flex flex-col">
+            <span class="font-extrabold text-forest text-sm tracking-tight leading-none">Tumbuh Pangan</span>
+            <span class="text-[10px] text-secondary-text font-semibold mt-0.5">Mitra Penyalur Hub</span>
+          </div>
+        </a>
+        <!-- Close button for mobile drawer -->
+        <button type="button" onclick="toggleMobileSidebar(false)" class="lg:hidden p-1.5 rounded-xl text-secondary-text hover:text-forest hover:bg-soft-mint transition-colors" aria-label="Tutup Menu Sidebar">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- User Mini-Card Section -->
+      <div class="p-4 border-b border-border-color bg-soft-mint/40">
+        <div class="mb-2.5">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#EBF5EE] text-primary border border-primary/20">
             <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-            Portal Mitra Penyalur
+            PORTAL MITRA PENYALUR
           </span>
         </div>
-
-        <!-- Mitra Profile Info -->
-        <div class="flex items-center gap-3 sm:gap-4">
-          <div class="text-right">
-            <div id="mitra-display-name" class="text-sm font-extrabold text-forest leading-tight">Panti Asuhan Al-Ikhlas</div>
-            <div class="text-[11px] text-secondary-text flex items-center justify-end gap-1.5 mt-0.5">
-              <span class="inline-flex items-center gap-1">
-                <svg class="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                <span>Kapasitas: <strong>35 Anak</strong></span>
-              </span>
-              <span class="inline-block w-1 h-1 rounded-full bg-border-color"></span>
-              <span class="inline-flex items-center gap-1 text-primary font-bold">
-                <span>Terverifikasi</span>
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-              </span>
-            </div>
-          </div>
-          <div class="w-10 h-10 rounded-2xl bg-light-green border border-primary/30 flex items-center justify-center text-forest font-bold text-base shadow-sm">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-light-green border border-primary/30 flex items-center justify-center text-forest font-bold text-base shrink-0 shadow-xs">
             <svg class="w-5 h-5 text-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
           </div>
+          <div class="min-w-0 flex-1">
+            <div id="mitra-display-name" class="text-xs font-extrabold text-forest leading-tight truncate">Panti Asuhan Al-Ikhlas</div>
+            <div class="text-[10px] text-secondary-text flex items-center gap-1.5 mt-1">
+              <span class="inline-flex items-center gap-0.5 text-primary font-bold">
+                <svg class="w-3 h-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>Terverifikasi</span>
+              </span>
+              <span class="text-secondary-text/40">•</span>
+              <span class="truncate">35 Anak</span>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <div class="p-3">
+        <div class="text-[10px] font-bold uppercase tracking-wider text-secondary-text px-3 mb-2">Navigasi Utama</div>
+        <nav class="space-y-1" aria-label="Menu Dashboard Mitra">
+          <!-- Link 1: Katalog Surplus Terdekat -->
+          <button
+            type="button"
+            onclick="switchTab('catalog')"
+            id="sidebar-nav-catalog"
+            class="sidebar-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs transition-all border-l-4 bg-light-green text-forest font-bold border-primary cursor-pointer text-left">
+            <div class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M7 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/><path d="M12 12v4"/></svg>
+              <span>Katalog Surplus</span>
+            </div>
+            <span id="badge-catalog-count" class="px-2 py-0.5 rounded-full text-[11px] font-extrabold bg-primary text-white">4</span>
+          </button>
+
+          <!-- Link 2: Penjemputan & Klaim Saya -->
+          <button
+            type="button"
+            onclick="switchTab('pickup')"
+            id="sidebar-nav-pickup"
+            class="sidebar-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs transition-all border-l-4 text-secondary-text hover:text-forest hover:bg-soft-mint font-medium border-transparent cursor-pointer text-left">
+            <div class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18.5" r="2.5"/><circle cx="7" cy="18.5" r="2.5"/></svg>
+              <span>Penjemputan Saya</span>
+            </div>
+            <span id="badge-my-pickups" class="px-2 py-0.5 rounded-full text-[11px] font-extrabold bg-[#EA580C] text-white">2</span>
+          </button>
+
+          <!-- Link 3: Riwayat Selesai -->
+          <button
+            type="button"
+            onclick="switchTab('history')"
+            id="sidebar-nav-history"
+            class="sidebar-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs transition-all border-l-4 text-secondary-text hover:text-forest hover:bg-soft-mint font-medium border-transparent cursor-pointer text-left">
+            <div class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              <span>Riwayat Selesai</span>
+            </div>
+            <span id="badge-my-history" class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-soft-mint text-forest border border-border-color">1</span>
+          </button>
+        </nav>
       </div>
     </div>
-  </header>
 
-  <!-- Main Content -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow">
-
-    <!-- KPI Summary Row -->
-    <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8" aria-label="Ringkasan Performa Penyaluran">
-      <!-- KPI 1: Porsi Diterima -->
-      <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
-        <div class="flex items-center justify-between text-secondary-text mb-2">
-          <span class="text-xs font-bold uppercase tracking-wider">Porsi Diterima</span>
-          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M7 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/><path d="M12 12v4"/></svg>
+    <!-- Bottom Sidebar Section -->
+    <div class="p-3 border-t border-border-color bg-white space-y-1">
+      <a href="index.html" class="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-secondary-text hover:text-forest hover:bg-soft-mint transition-colors">
+        <div class="flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-secondary-text shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Beranda Publik</span>
         </div>
-        <div id="kpi-mitra-portions" class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">290</div>
-        <div class="text-xs text-secondary-text mt-1">
-          Tersalurkan ke 35 anak panti
+        <svg class="w-3.5 h-3.5 text-secondary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+
+      <a href="login.html" class="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-red-600 hover:text-red-700 hover:bg-red-50 transition-colors">
+        <div class="flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-red-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Keluar / Ganti Akun</span>
+        </div>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content Area Wrapper (Offset on Desktop lg:pl-64) -->
+  <div class="lg:pl-64 flex flex-col min-h-screen">
+
+    <!-- Top Header Bar -->
+    <header class="sticky top-0 z-20 bg-white/95 backdrop-blur-md border-b border-border-color h-16 lg:h-18 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <!-- Left: Mobile Hamburger + Breadcrumb & Title -->
+      <div class="flex items-center gap-3">
+        <button
+          type="button"
+          onclick="toggleMobileSidebar(true)"
+          class="lg:hidden p-2 rounded-xl text-forest hover:bg-soft-mint transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          aria-label="Buka Menu Navigasi">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+
+        <div class="flex flex-col">
+          <div class="text-[11px] text-secondary-text font-medium flex items-center gap-1.5 leading-none">
+            <span class="hidden sm:inline">Portal Mitra</span>
+            <svg class="hidden sm:inline w-3 h-3 text-secondary-text/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+            <span id="header-breadcrumb" class="font-bold text-forest">Katalog Surplus</span>
+          </div>
+          <h1 id="header-page-title" class="text-base sm:text-lg font-extrabold text-forest mt-0.5 leading-tight">Katalog Surplus Terdekat</h1>
         </div>
       </div>
 
-      <!-- KPI 2: Penjemputan Aktif -->
-      <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
-        <div class="flex items-center justify-between text-secondary-text mb-2">
-          <span class="text-xs font-bold uppercase tracking-wider">Jadwal Jemput Aktif</span>
-          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18.5" r="2.5"/><circle cx="7" cy="18.5" r="2.5"/></svg>
+      <!-- Right: Live Pulse Status & User Avatar Pill -->
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-light-green text-forest border border-primary/20 text-xs font-bold">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span>Sistem Aktif - Mode Demo</span>
         </div>
-        <div id="kpi-mitra-active" class="text-2xl sm:text-3xl font-extrabold text-primary font-mono">1</div>
-        <div class="text-xs text-secondary-text mt-1">
-          1 batch siap dijemput di outlet
+
+        <div class="flex items-center gap-2 pl-1 sm:pl-3 sm:border-l sm:border-border-color">
+          <div class="w-9 h-9 rounded-xl bg-light-green border border-primary/30 flex items-center justify-center text-forest font-bold text-sm shadow-xs">
+            <svg class="w-4 h-4 text-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </div>
+          <div class="hidden md:block text-left">
+            <div id="header-mitra-name" class="text-xs font-extrabold text-forest leading-tight truncate max-w-[120px]">Panti Al-Ikhlas</div>
+            <div class="text-[10px] text-secondary-text font-medium">Mitra Penyalur</div>
+          </div>
         </div>
       </div>
+    </header>
 
-      <!-- KPI 3: Estimasi Efisiensi Biaya -->
-      <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
-        <div class="flex items-center justify-between text-secondary-text mb-2">
-          <span class="text-xs font-bold uppercase tracking-wider">Efisiensi Pangan</span>
-          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
-        </div>
-        <div id="kpi-mitra-savings" class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">Rp 4.3 <span class="text-base font-sans font-semibold text-secondary-text">Jt</span></div>
-        <div class="text-xs text-secondary-text mt-1">
-          Penghematan anggaran operasional
-        </div>
-      </div>
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow">
 
-      <!-- KPI 4: Ketepatan Waktu -->
-      <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
-        <div class="flex items-center justify-between text-secondary-text mb-2">
-          <span class="text-xs font-bold uppercase tracking-wider">Ketepatan Waktu</span>
-          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <!-- KPI Summary Row -->
+      <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8" aria-label="Ringkasan Performa Penyaluran">
+        <!-- KPI 1: Porsi Diterima -->
+        <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
+          <div class="flex items-center justify-between text-secondary-text mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider">Porsi Diterima</span>
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M7 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/><path d="M12 12v4"/></svg>
+          </div>
+          <div id="kpi-mitra-portions" class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">290</div>
+          <div class="text-xs text-secondary-text mt-1">
+            Tersalurkan ke 35 anak panti
+          </div>
         </div>
-        <div class="flex items-baseline gap-2">
-          <span class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">99.2%</span>
-          <span class="text-xs text-primary font-bold">Prima</span>
+
+        <!-- KPI 2: Penjemputan Aktif -->
+        <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
+          <div class="flex items-center justify-between text-secondary-text mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider">Jadwal Jemput Aktif</span>
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18.5" r="2.5"/><circle cx="7" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div id="kpi-mitra-active" class="text-2xl sm:text-3xl font-extrabold text-primary font-mono">1</div>
+          <div class="text-xs text-secondary-text mt-1">
+            1 batch siap dijemput di outlet
+          </div>
         </div>
-        <div class="text-xs text-secondary-text mt-1">
-          Bebas mangkir / No-show
+
+        <!-- KPI 3: Estimasi Efisiensi Biaya -->
+        <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
+          <div class="flex items-center justify-between text-secondary-text mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider">Efisiensi Pangan</span>
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
+          </div>
+          <div id="kpi-mitra-savings" class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">Rp 4.3 <span class="text-base font-sans font-semibold text-secondary-text">Jt</span></div>
+          <div class="text-xs text-secondary-text mt-1">
+            Penghematan anggaran operasional
+          </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Navigation Tabs -->
-    <nav class="flex border-b border-border-color mb-8 gap-2 sm:gap-4 overflow-x-auto pb-1" aria-label="Tab Portal Mitra">
-      <button
-        type="button"
-        onclick="switchTab('catalog')"
-        id="tab-btn-catalog"
-        class="tab-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all border-b-2 border-primary text-forest bg-light-green/60 cursor-pointer">
-        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M7 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/><path d="M12 12v4"/></svg>
-        <span>Katalog Surplus Terdekat</span>
-        <span id="badge-catalog-count" class="px-2 py-0.5 rounded-full text-xs font-extrabold bg-primary text-white">4</span>
-      </button>
+        <!-- KPI 4: Ketepatan Waktu -->
+        <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
+          <div class="flex items-center justify-between text-secondary-text mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider">Ketepatan Waktu</span>
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div class="flex items-baseline gap-2">
+            <span class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">99.2%</span>
+            <span class="text-xs text-primary font-bold">Prima</span>
+          </div>
+          <div class="text-xs text-secondary-text mt-1">
+            Bebas mangkir / No-show
+          </div>
+        </div>
+      </section>
 
-      <button
-        type="button"
-        onclick="switchTab('pickup')"
-        id="tab-btn-pickup"
-        class="tab-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all border-b-2 border-transparent text-secondary-text hover:text-forest hover:bg-white cursor-pointer">
-        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18.5" r="2.5"/><circle cx="7" cy="18.5" r="2.5"/></svg>
-        <span>Penjemputan &amp; Klaim Saya</span>
-        <span id="badge-my-pickups" class="px-2 py-0.5 rounded-full text-xs font-extrabold bg-[#EA580C] text-white">2</span>
-      </button>
-    </nav>
-
-    <!-- TAB 1: Katalog Surplus Terdekat -->
-    <section id="tab-content-catalog" class="tab-pane block space-y-6">
+      <!-- TAB 1: Katalog Surplus Terdekat -->
+      <section id="tab-content-catalog" class="tab-pane block space-y-6">
 
       <!-- Filter & Search Bar -->
       <div class="bg-white rounded-2xl p-4 sm:p-5 border border-border-color shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -257,20 +352,24 @@
           <!-- Dynamically rendered -->
         </div>
       </div>
+    </section>
 
-      <!-- Completed History & Review -->
-      <div class="pt-6 border-t border-border-color">
-        <h3 class="text-base font-extrabold text-forest mb-3 flex items-center gap-2">
-          <svg class="w-4 h-4 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-          <span>Riwayat Penjemputan Selesai</span>
-        </h3>
-        <div id="container-mitra-completed-history" class="space-y-3">
-          <!-- Dynamically rendered -->
-        </div>
+    <!-- TAB 3: Riwayat Penjemputan Selesai -->
+    <section id="tab-content-history" class="tab-pane hidden space-y-6">
+      <div>
+        <h2 class="text-2xl font-extrabold text-forest">Riwayat Distribusi Pangan Selesai</h2>
+        <p class="text-sm text-secondary-text mt-1">
+          Daftar seluruh transaksi surplus pangan yang telah diserap dan diverifikasi dengan donatur.
+        </p>
+      </div>
+
+      <div id="container-mitra-completed-history" class="space-y-3">
+        <!-- Dynamically rendered -->
       </div>
     </section>
 
   </main>
+  </div> <!-- End Main Content Area Wrapper (lg:pl-64) -->
 
   <!-- Modal: Ajukan Klaim Makanan -->
   <div id="claim-modal" class="fixed inset-0 z-50 hidden overflow-y-auto" role="dialog" aria-modal="true">
@@ -472,28 +571,79 @@
       }, 3500);
     }
 
-    // 2. Tab Navigation
+    // Mobile Sidebar Drawer Controller
+    function toggleMobileSidebar(open) {
+      const sidebar = document.getElementById('app-sidebar');
+      const backdrop = document.getElementById('sidebar-backdrop');
+      if (!sidebar || !backdrop) return;
+      if (open) {
+        sidebar.classList.remove('-translate-x-full');
+        backdrop.classList.remove('opacity-0', 'pointer-events-none');
+        backdrop.classList.add('opacity-100', 'pointer-events-auto');
+        document.body.classList.add('overflow-hidden', 'lg:overflow-auto');
+      } else {
+        sidebar.classList.add('-translate-x-full');
+        backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+        backdrop.classList.add('opacity-0', 'pointer-events-none');
+        document.body.classList.remove('overflow-hidden', 'lg:overflow-auto');
+      }
+    }
+
+    // Keyboard ESC closes mobile sidebar
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') toggleMobileSidebar(false);
+    });
+
+    // 2. Tab Navigation with Header Title & Breadcrumb Sync
+    const TAB_METAS = {
+      catalog: { breadcrumb: 'Katalog Surplus', title: 'Katalog Surplus Terdekat' },
+      pickup: { breadcrumb: 'Penjemputan Saya', title: 'Penjemputan & Klaim Aktif' },
+      history: { breadcrumb: 'Riwayat Selesai', title: 'Riwayat Distribusi Pangan Selesai' }
+    };
+
     function switchTab(tabName) {
-      document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('border-primary', 'text-forest', 'bg-light-green/60');
-        btn.classList.add('border-transparent', 'text-secondary-text');
+      if (tabName === 'handover') tabName = 'pickup';
+      if (!TAB_METAS[tabName]) tabName = 'catalog';
+
+      // Update Sidebar Nav State
+      document.querySelectorAll('.sidebar-nav-item').forEach(btn => {
+        btn.classList.remove('bg-light-green', 'text-forest', 'font-bold', 'border-primary');
+        btn.classList.add('text-secondary-text', 'hover:text-forest', 'hover:bg-soft-mint', 'font-medium', 'border-transparent');
       });
+      const activeNav = document.getElementById(`sidebar-nav-${tabName}`);
+      if (activeNav) {
+        activeNav.classList.remove('text-secondary-text', 'hover:text-forest', 'hover:bg-soft-mint', 'font-medium', 'border-transparent');
+        activeNav.classList.add('bg-light-green', 'text-forest', 'font-bold', 'border-primary');
+      }
+
+      // Update Tab Panes
       document.querySelectorAll('.tab-pane').forEach(pane => {
         pane.classList.add('hidden');
         pane.classList.remove('block');
       });
-
-      const activeBtn = document.getElementById(`tab-btn-${tabName}`);
       const activePane = document.getElementById(`tab-content-${tabName}`);
-      if (activeBtn) {
-        activeBtn.classList.remove('border-transparent', 'text-secondary-text');
-        activeBtn.classList.add('border-primary', 'text-forest', 'bg-light-green/60');
-      }
       if (activePane) {
         activePane.classList.remove('hidden');
         activePane.classList.add('block');
       }
+
+      // Update Header Breadcrumb & Title
+      const meta = TAB_METAS[tabName];
+      if (meta) {
+        const bc = document.getElementById('header-breadcrumb');
+        const tit = document.getElementById('header-page-title');
+        if (bc) bc.innerText = meta.breadcrumb;
+        if (tit) tit.innerText = meta.title;
+      }
+
+      // Auto close mobile drawer on tab select
+      toggleMobileSidebar(false);
     }
+
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) switchTab(hash);
+    });
 
     // 3. Filter and Search
     function setCategoryFilter(cat) {
