@@ -254,10 +254,10 @@
     <section class="mb-10 bg-white rounded-3xl p-6 sm:p-8 border border-border-color shadow-card relative overflow-hidden" aria-label="Dashboard Metrik Dampak Lingkungan">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-border-color mb-6">
         <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-primary">MONITORING NASIONAL &amp; DAERAH</span>
-          <h1 class="text-2xl sm:text-3xl font-extrabold text-forest mt-0.5">Ringkasan Dampak Pangan &amp; Emisi Karbon</h1>
+          <span class="text-xs font-bold uppercase tracking-wider text-primary">PUSAT KENDALI TUMBUH PANGAN</span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-forest mt-0.5">Pantau Pergerakan Kebaikan Hari Ini</h1>
           <p class="text-xs sm:text-sm text-secondary-text mt-1">
-            Data ini bereaksi secara dinamis saat transaksi serah terima diselesaikan di browser.
+            Cek langsung porsi makanan yang terselamatkan, verifikasi mitra baru, dan pantau jejak emisi yang berhasil dicegah.
           </p>
         </div>
         <div class="flex items-center gap-2">
@@ -324,9 +324,9 @@
     <section id="tab-content-kyc" class="tab-pane block space-y-6">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h2 class="text-xl font-extrabold text-forest">Antrean Pendaftaran Kemitraan Baru</h2>
+          <h2 class="text-xl font-extrabold text-forest">Calon Mitra yang Mau Gabung</h2>
           <p class="text-xs sm:text-sm text-secondary-text mt-0.5">
-            Pendaftar dari form pendaftaran publik (daftar.html) memerlukan kurasi keamanan sebelum diaktifkan.
+            Yuk periksa data pendaftar biar ekosistem berbagi tetap aman dan terpercaya.
           </p>
         </div>
       </div>
@@ -340,9 +340,9 @@
     <section id="tab-content-audit" class="tab-pane hidden space-y-6">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h2 class="text-xl font-extrabold text-forest">Buku Besar Audit Log Transaksi</h2>
+          <h2 class="text-xl font-extrabold text-forest">Catatan Perjalanan Makanan</h2>
           <p class="text-xs sm:text-sm text-secondary-text mt-0.5">
-            Semua tahapan donasi, penerbitan PIN, hingga konfirmasi serah terima terekam tanpa bisa diubah.
+            Mulai dari dicatat donatur, disetujui, sampai sukses berpindah tangan dan dinikmati warga.
           </p>
         </div>
       </div>
@@ -442,9 +442,9 @@
     });
 
     const TAB_METAS = {
-      kyc: { breadcrumb: 'Antrean KYC Baru', title: 'Verifikasi Kemitraan Baru' },
-      audit: { breadcrumb: 'Buku Besar Transaksi', title: 'Audit Log & Transaksi Real-Time' },
-      users: { breadcrumb: 'Direktori Pengguna', title: 'Manajemen Donatur & Mitra Aktif' }
+      kyc: { breadcrumb: 'Calon Mitra Baru', title: 'Calon Mitra yang Mau Gabung' },
+      audit: { breadcrumb: 'Catatan Transaksi', title: 'Catatan Perjalanan Makanan' },
+      users: { breadcrumb: 'Teman Mitra & Donatur', title: 'Komunitas Baik yang Tergabung' }
     };
 
     // 2. Tab Navigation
@@ -489,16 +489,16 @@
     function handleVerifyKyc(kycId) {
       try {
         const kyc = TPStore.verifyUser(kycId, 'VERIFY');
-        showToast(`Akun "${kyc.orgName}" telah diverifikasi dan aktif di platform!`);
+        showToast(`Sip! Akun "${kyc.orgName}" berhasil diverifikasi dan sudah bisa mulai berbagi.`);
       } catch (err) {
-        alert(err.message || 'Gagal memverifikasi pendaftar.');
+        alert(err.message || 'Gagal memverifikasi pendaftar nih.');
       }
     }
 
     function handleRejectKyc(kycId) {
-      if (confirm('Tolak permohonan pendaftaran ini?')) {
+      if (confirm('Yakin mau menolak permohonan pendaftaran ini?')) {
         TPStore.verifyUser(kycId, 'REJECT');
-        showToast('Pendaftaran kemitraan ditolak.', 'error');
+        showToast('Pendaftaran kemitraan ditolak dulu ya.', 'error');
       }
     }
 
@@ -543,8 +543,8 @@
         kycContainer.innerHTML = `
           <div class="bg-white rounded-3xl p-10 border border-border-color text-center">
             <div class="w-12 h-12 rounded-2xl bg-light-green text-primary flex items-center justify-center mx-auto mb-3"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-            <h4 class="text-base font-extrabold text-forest">Semua Antrean KYC Telah Terverifikasi</h4>
-            <p class="text-xs text-secondary-text mt-1">Pendaftaran baru yang masuk melalui daftar.html akan otomatis muncul di sini secara real-time.</p>
+            <h4 class="text-base font-extrabold text-forest">Hore! Semua antrean pendaftar sudah beres diverifikasi</h4>
+            <p class="text-xs text-secondary-text mt-1">Kalau ada pendaftar baru dari halaman daftar, datanya bakal langsung nongol di sini.</p>
           </div>
         `;
       } else {
@@ -574,13 +574,13 @@
                 type="button"
                 onclick="handleRejectKyc('${k.id}')"
                 class="px-4 py-2.5 rounded-xl border border-red-200 text-red-600 hover:bg-red-50 text-xs font-bold transition-all cursor-pointer">
-                Tolak
+                Tolak Dulu
               </button>
               <button
                 type="button"
                 onclick="handleVerifyKyc('${k.id}')"
                 class="px-5 py-2.5 rounded-xl bg-primary hover:bg-forest text-white text-xs font-bold shadow-sm transition-all cursor-pointer">
-                <svg class="w-4 h-4 mr-1.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Verifikasi &amp; Terbitkan Akun
+                <svg class="w-4 h-4 mr-1.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Setujui &amp; Aktifkan Akun
               </button>
             </div>
           </div>

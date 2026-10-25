@@ -222,9 +222,9 @@
           <div class="text-[11px] text-secondary-text font-medium flex items-center gap-1.5 leading-none">
             <span class="hidden sm:inline">Portal Donatur</span>
             <svg class="hidden sm:inline w-3 h-3 text-secondary-text/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-            <span id="header-breadcrumb" class="font-bold text-forest">Buat Listing Surplus</span>
+            <span id="header-breadcrumb" class="font-bold text-forest">Catat Surplus</span>
           </div>
-          <h1 id="header-page-title" class="text-base sm:text-lg font-extrabold text-forest mt-0.5 leading-tight">Catat Surplus Pangan Baru</h1>
+          <h1 id="header-page-title" class="text-base sm:text-lg font-extrabold text-forest mt-0.5 leading-tight">Yuk, Catat Makanan Surplus Hari Ini</h1>
         </div>
       </div>
 
@@ -252,10 +252,10 @@
 
       <!-- KPI Summary Row -->
       <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8" aria-label="Ringkasan Performa Donatur">
-        <!-- KPI 1: Porsi Diselamatkan -->
+        <!-- KPI 1: Porsi Kamu Selamatkan -->
         <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
           <div class="flex items-center justify-between text-secondary-text mb-2">
-            <span class="text-xs font-bold uppercase tracking-wider">Porsi Diselamatkan</span>
+            <span class="text-xs font-bold uppercase tracking-wider">Porsi Kamu Selamatkan</span>
             <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M7 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/><path d="M12 12v4"/></svg>
           </div>
           <div id="kpi-portions" class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">340</div>
@@ -264,10 +264,10 @@
           </div>
         </div>
 
-        <!-- KPI 2: Total Kg Pangan -->
+        <!-- KPI 2: Total Makanan Terbagi -->
         <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
           <div class="flex items-center justify-between text-secondary-text mb-2">
-            <span class="text-xs font-bold uppercase tracking-wider">Volume Diselamatkan</span>
+            <span class="text-xs font-bold uppercase tracking-wider">Total Makanan Terbagi</span>
             <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
           </div>
           <div id="kpi-kg" class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">85 <span class="text-base font-sans font-semibold text-secondary-text">kg</span></div>
@@ -276,15 +276,15 @@
           </div>
         </div>
 
-        <!-- KPI 3: Batch Aktif -->
+        <!-- KPI 3: Klaim Menunggu Responmu -->
         <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
           <div class="flex items-center justify-between text-secondary-text mb-2">
-            <span class="text-xs font-bold uppercase tracking-wider">Batch Aktif</span>
+            <span class="text-xs font-bold uppercase tracking-wider">Klaim Menunggu Responmu</span>
             <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
           </div>
-          <div id="kpi-active-batches" class="text-2xl sm:text-3xl font-extrabold text-primary font-mono">2</div>
+          <div id="kpi-active-batches" class="text-2xl sm:text-3xl font-extrabold text-primary font-mono">1</div>
           <div class="text-xs text-secondary-text mt-1">
-            1 klaim menunggu persetujuan
+            Siap kamu tinjau dan setujui
           </div>
         </div>
 
@@ -310,9 +310,12 @@
       <div class="max-w-3xl bg-white rounded-3xl p-6 sm:p-10 border border-border-color shadow-card">
         <div class="flex items-start justify-between pb-6 mb-6 border-b border-border-color">
           <div>
-            <h2 class="text-2xl font-extrabold text-forest">Catat Surplus Makanan Baru</h2>
+            <h2 class="text-2xl font-extrabold text-forest">Ada Makanan Lebih Apa Hari Ini?</h2>
             <p class="text-sm text-secondary-text mt-1">
-              Data yang Anda publikasikan akan langsung muncul di Katalog Mitra Penyalur secara real-time.
+              Yuk catat detailnya biar cepat dipertemukan dengan mitra panti atau dapur sosial terdekat.
+            </p>
+            <p class="text-xs text-primary font-medium mt-1">
+              Tenang, data ini langsung muncul di layar mitra penyalur terdekat dalam radiusmu.
             </p>
           </div>
           <div class="w-12 h-12 rounded-2xl bg-light-green text-primary flex items-center justify-center shrink-0 border border-border-color">
@@ -332,7 +335,7 @@
               required
               placeholder="Contoh: Roti Tawar Gandum &amp; Croissant Cokelat"
               class="w-full px-4 py-3 rounded-xl border border-border-color focus:border-primary focus:ring-2 focus:ring-light-green text-sm transition-all outline-none">
-            <span class="text-[11px] text-secondary-text mt-1 block">Tuliskan nama produk secara jelas agar mitra dapat menyiapkan wadah yang tepat.</span>
+            <span class="text-[11px] text-secondary-text mt-1 block">Tuliskan nama makanan sejelas mungkin biar mitra gampang siapkan wadah yang pas.</span>
           </div>
 
           <!-- Kategori & Estimasi Porsi / Kg -->
@@ -471,7 +474,7 @@
               type="submit"
               id="btn-submit-listing"
               class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary hover:bg-forest text-white text-sm font-bold shadow-md transition-all cursor-pointer">
-              <span>Publikasikan ke Mitra Penyalur</span>
+              <span>Bagikan Makanan Sekarang</span>
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
           </div>
@@ -488,11 +491,11 @@
           <div>
             <h3 class="text-xl font-extrabold text-forest flex items-center gap-2">
               <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
-              <span>Klaim Masuk dari Mitra</span>
+              <span>Permohonan Masuk dari Mitra</span>
               <span id="count-pending-claims" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#EA580C] text-white">1 Permohonan</span>
             </h3>
             <p class="text-xs sm:text-sm text-secondary-text mt-0.5">
-              Tinjau permohonan penjemputan dari mitra penyalur sosial terdaftar sebelum waktu kedaluwarsa.
+              Ada mitra yang mau jemput makananmu nih, yuk cek kecocokannya.
             </p>
           </div>
         </div>
@@ -506,9 +509,9 @@
       <div>
         <div class="flex items-center justify-between mb-4">
           <div>
-            <h3 class="text-xl font-extrabold text-forest">Daftar Surplus Aktif Anda</h3>
+            <h3 class="text-xl font-extrabold text-forest">Daftar Surplus Aktif Kamu</h3>
             <p class="text-xs sm:text-sm text-secondary-text mt-0.5">
-              Batch makanan yang sedang tayang di katalog mitra dan menunggu permohonan penjemputan.
+              Makanan yang lagi tayang di katalog mitra dan menunggu permohonan penjemputan.
             </p>
           </div>
           <button
@@ -528,9 +531,9 @@
     <!-- TAB 3: Terminal Serah Terima (Handover QR & PIN) -->
     <section id="tab-content-terminal" class="tab-pane hidden space-y-8">
       <div>
-        <h2 class="text-2xl font-extrabold text-forest">Terminal Serah Terima (Handover Station)</h2>
+        <h2 class="text-2xl font-extrabold text-forest">Serah Terima Makanan</h2>
         <p class="text-sm text-secondary-text mt-1">
-          Gunakan kode QR atau 4-Digit PIN untuk memvalidasi penyerahan makanan kepada relawan mitra secara aman.
+          Tunjukkan QR Code ini ke mitra penjemput, atau masukkan 4 digit PIN yang mereka sebutkan.
         </p>
       </div>
 
@@ -603,9 +606,9 @@
 
     // 2. Tab Navigation with Header Title & Breadcrumb Sync
     const TAB_METAS = {
-      create: { breadcrumb: 'Buat Listing Surplus', title: 'Catat Surplus Pangan Baru' },
-      manage: { breadcrumb: 'Kelola Listing & Klaim', title: 'Kelola Listing & Klaim Masuk' },
-      terminal: { breadcrumb: 'Terminal Serah Terima', title: 'Terminal Serah Terima (PIN & QR)' }
+      create: { breadcrumb: 'Catat Surplus', title: 'Yuk, Catat Makanan Surplus Hari Ini' },
+      manage: { breadcrumb: 'Kelola Permohonan', title: 'Kelola Permohonan Masuk' },
+      terminal: { breadcrumb: 'Serah Terima', title: 'Terminal Serah Terima' }
     };
 
     function switchTab(tabName) {
@@ -687,7 +690,7 @@
         distanceKm: 1.2
       });
 
-      showToast(`Batch surplus "${title}" berhasil diterbitkan ke katalog mitra!`);
+      showToast('Mantap! Makanan surplusmu berhasil dicatat dan siap dijemput.');
       document.getElementById('form-create-listing').reset();
       document.getElementById('listing-portions').value = '20';
       document.getElementById('listing-kg').value = '5.0';
@@ -700,16 +703,16 @@
     function handleApproveClaim(claimId) {
       try {
         const result = TPStore.approveClaim(claimId);
-        showToast(`Klaim disetujui! PIN & QR transaksi telah diterbitkan untuk ${result.claim.mitraName}.`);
+        showToast('Sip, klaim mitra sudah disetujui. QR & PIN siap dipakai!');
         switchTab('terminal');
       } catch (err) {
-        alert(err.message || 'Gagal menyetujui klaim.');
+        alert(err.message || 'Gagal menyetujui klaim nih.');
       }
     }
 
     // 6. Reject Claim Handler
     function handleRejectClaim(claimId) {
-      if (confirm('Tolak permohonan klaim ini?')) {
+      if (confirm('Yakin mau menolak permohonan klaim ini?')) {
         TPStore.rejectClaim(claimId, 'Kapasitas surplus dialihkan ke prioritas lain.');
         showToast('Permohonan klaim telah ditolak.', 'info');
       }
@@ -721,15 +724,15 @@
       if (!input) return;
       const pin = input.value.trim();
       if (!pin || pin.length < 4) {
-        alert('Silakan masukkan 4 digit PIN verifikasi.');
+        alert('Yuk masukkan 4 digit PIN verifikasi dari mitra ya.');
         return;
       }
 
       const res = TPStore.verifyHandover(txId, pin);
       if (res.success) {
-        showToast('Serah terima BERHASIL! Status selesai & dampak lingkungan tercatat otomatis.');
+        showToast('Beres! Serah terima selesai. Terima kasih sudah berbagi hari ini!');
       } else {
-        alert(res.error || 'PIN tidak valid!');
+        alert(res.error || 'PIN-nya belum pas nih, coba cek lagi ya.');
       }
     }
 
@@ -764,10 +767,10 @@
             <div class="w-12 h-12 mx-auto rounded-2xl bg-light-green text-primary flex items-center justify-center mb-3">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7Z"/><path d="M9 10v4"/><path d="M15 10v4"/></svg>
             </div>
-            <p class="text-sm font-bold text-forest">Belum ada batch surplus yang aktif saat ini.</p>
-            <p class="text-xs text-secondary-text mt-1 mb-4">Buat listing baru untuk mulai menyelamatkan makanan berlebih dari dapur Anda.</p>
-            <button type="button" onclick="switchTab('create')" class="px-5 py-2.5 rounded-xl bg-primary text-white text-xs font-bold hover:bg-forest transition-colors">
-              Buat Listing Sekarang
+            <p class="text-sm font-bold text-forest">Belum ada surplus aktif nih.</p>
+            <p class="text-xs text-secondary-text mt-1 mb-4">Dapurmu lagi senggang atau semua porsi sudah ludes terjual? Kalau ada lebihan, yuk langsung catat di sini!</p>
+            <button type="button" onclick="switchTab('create')" class="px-5 py-2.5 rounded-xl bg-primary text-white text-xs font-bold hover:bg-forest transition-colors cursor-pointer">
+              Bagikan Makanan Sekarang
             </button>
           </div>
         `;
@@ -807,6 +810,7 @@
       const pendingClaims = claims.filter(c => c.status === 'PENDING');
       document.getElementById('badge-incoming-claims').innerText = pendingClaims.length;
       document.getElementById('count-pending-claims').innerText = `${pendingClaims.length} Permohonan`;
+      document.getElementById('kpi-active-batches').innerText = pendingClaims.length;
 
       const claimsContainer = document.getElementById('container-claims-list');
       if (pendingClaims.length === 0) {
@@ -815,8 +819,8 @@
             <div class="w-12 h-12 mx-auto rounded-2xl bg-light-green text-primary flex items-center justify-center mb-3">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
             </div>
-            <p class="text-sm font-bold text-forest">Semua klaim masuk telah diproses.</p>
-            <p class="text-xs text-secondary-text mt-0.5">Klaim baru dari mitra penyalur akan otomatis muncul di sini tanpa perlu muat ulang halaman.</p>
+            <p class="text-sm font-bold text-forest">Belum ada klaim masuk nih.</p>
+            <p class="text-xs text-secondary-text mt-0.5">Santai, kami lagi kabari mitra terdekat di sekitarmu! Begitu ada yang mengajukan, langsung muncul di sini.</p>
           </div>
         `;
       } else {
@@ -856,14 +860,14 @@
                     type="button"
                     onclick="handleRejectClaim('${c.id}')"
                     class="px-4 py-2 rounded-xl border border-red-200 text-red-600 hover:bg-red-50 text-xs font-bold transition-all cursor-pointer">
-                    Tolak
+                    Tolak Dulu
                   </button>
                   <button
                     type="button"
                     onclick="handleApproveClaim('${c.id}')"
                     class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-primary hover:bg-forest text-white text-xs font-bold shadow-sm transition-all cursor-pointer">
                     <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                    <span>Setujui Mitra Ini</span>
+                    <span>Setujui Penjemputan Ini</span>
                   </button>
                 </div>
               </div>
@@ -886,9 +890,9 @@
             <div class="w-14 h-14 mx-auto rounded-2xl bg-light-green text-primary flex items-center justify-center mb-3">
               <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3m0-7v.01m5 0v.01m-2-2v.01"/></svg>
             </div>
-            <h3 class="text-lg font-extrabold text-forest">Tidak Ada Penjemputan Berjalan</h3>
+            <h3 class="text-lg font-extrabold text-forest">Belum ada jadwal jemput aktif</h3>
             <p class="text-xs sm:text-sm text-secondary-text mt-1 max-w-md mx-auto">
-              Saat Anda menyetujui klaim mitra di tab Kelola Listing, kartu serah terima lengkap beserta QR Code dan PIN 4-digit akan aktif di sini.
+              Begitu kamu setujui klaim mitra, QR dan PIN langsung nongol di sini.
             </p>
           </div>
         `;
@@ -933,7 +937,7 @@
 
                 <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-[11px] text-amber-900 leading-relaxed flex items-start gap-2">
                   <svg class="w-4 h-4 text-amber-700 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
-                  <div><strong>Prosedur:</strong> Tunjukkan QR code di samping ke relawan mitra saat tiba di outlet, atau mintakan 4-digit PIN verifikasi.</div>
+                  <div><strong>Petunjuk:</strong> Tunjukkan QR Code ini ke mitra penjemput, atau masukkan 4 digit PIN yang mereka sebutkan.</div>
                 </div>
               </div>
 
@@ -953,7 +957,7 @@
                   ${tx.pin}
                 </div>
                 <p class="text-[11px] text-secondary-text mb-4">
-                  Sebutkan PIN ini ke mitra, atau masukkan PIN dari mitra di bawah ini jika memverifikasi lisan:
+                  Sebutkan PIN ini ke mitra, atau masukkan 4 digit PIN yang mereka sebutkan:
                 </p>
 
                 <div class="w-full space-y-2">
@@ -968,7 +972,7 @@
                     type="button"
                     onclick="handleVerifyTerminalPin('${tx.id}')"
                     class="w-full py-2.5 px-4 rounded-xl bg-primary hover:bg-forest text-white text-xs font-bold shadow transition-all cursor-pointer">
-                    Verifikasi &amp; Selesaikan
+                    Konfirmasi Makanan Sudah Diambil
                   </button>
                 </div>
               </div>

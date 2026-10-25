@@ -623,7 +623,7 @@
 
       const listing = state.listings.find(l => l.id === claimData.listingId);
       if (!listing) {
-        throw new Error('Listing tidak ditemukan');
+        throw new Error('Makanan ini belum ditemukan atau sudah tidak tersedia nih.');
       }
 
       const newClaim = {
@@ -655,7 +655,7 @@
     approveClaim(claimId) {
       const state = getRawState();
       const claim = state.claims.find(c => c.id === claimId);
-      if (!claim) throw new Error('Klaim tidak ditemukan');
+      if (!claim) throw new Error('Permohonan klaim tidak ditemukan nih.');
 
       claim.status = 'APPROVED';
 
@@ -700,7 +700,7 @@
     rejectClaim(claimId, reason = 'Kapasitas donasi telah dialihkan.') {
       const state = getRawState();
       const claim = state.claims.find(c => c.id === claimId);
-      if (!claim) throw new Error('Klaim tidak ditemukan');
+      if (!claim) throw new Error('Permohonan klaim tidak ditemukan nih.');
 
       claim.status = 'REJECTED';
       claim.rejectReason = reason;
@@ -734,17 +734,17 @@
       const state = getRawState();
       const tx = state.transactions.find(t => t.id === transactionId);
       if (!tx) {
-        return { success: false, error: 'Transaksi tidak ditemukan.' };
+        return { success: false, error: 'Data transaksi tidak ditemukan nih.' };
       }
 
       if (tx.status === 'COMPLETED') {
-        return { success: false, error: 'Transaksi ini telah diselesaikan sebelumnya.' };
+        return { success: false, error: 'Transaksi ini sudah pernah diselesaikan sebelumnya kok.' };
       }
 
       // Check PIN
       const cleanInput = String(pinInput).trim();
       if (cleanInput !== String(tx.pin).trim()) {
-        return { success: false, error: 'PIN tidak sesuai! Periksa 4-digit kode konfirmasi.' };
+        return { success: false, error: 'PIN-nya belum pas nih, coba cek lagi 4 digit angkanya ya.' };
       }
 
       // Mark COMPLETED
@@ -784,7 +784,7 @@
     submitRating(transactionId, ratingData) {
       const state = getRawState();
       const tx = state.transactions.find(t => t.id === transactionId);
-      if (!tx) throw new Error('Transaksi tidak ditemukan');
+      if (!tx) throw new Error('Data transaksi tidak ditemukan nih.');
 
       tx.rating = {
         stars: parseInt(ratingData.stars, 10) || 5,
@@ -836,7 +836,7 @@
     verifyUser(kycId, action = 'VERIFY') {
       const state = getRawState();
       const kyc = state.pendingKYC.find(k => k.id === kycId);
-      if (!kyc) throw new Error('Data pendaftar tidak ditemukan');
+      if (!kyc) throw new Error('Data pendaftar belum ditemukan nih.');
 
       if (action === 'VERIFY') {
         kyc.status = 'VERIFIED';
@@ -955,11 +955,11 @@
     },
 
     confirmResetDemo() {
-      if (confirm('Reset seluruh data demo ke kondisi awal (seed default)?')) {
+      if (confirm('Yakin mau reset semua data demo ke awal? Data yang baru kamu buat bakal kembali ke setelan pabrik ya.')) {
         this.resetDemoData();
         if (typeof window !== 'undefined') {
           // Show quick toast then reload
-          alert('Data demo berhasil di-reset ke kondisi awal!');
+          alert('Sip, data demo berhasil dikembalikan ke kondisi awal!');
           window.location.reload();
         }
       }
