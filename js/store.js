@@ -877,6 +877,26 @@
       return users;
     },
 
+    updateUserProfile(userId, updates) {
+      const state = getRawState();
+      const user = (state.users || []).find(u => u.id === userId);
+      if (user) {
+        Object.assign(user, updates);
+        setRawState(state);
+      }
+      return user;
+    },
+
+    cancelSurplusListing(listingId) {
+      const state = getRawState();
+      const item = (state.listings || []).find(l => l.id === listingId);
+      if (item) {
+        item.status = 'CANCELLED';
+        setRawState(state);
+      }
+      return item;
+    },
+
     // Reset Demo Data
     resetDemoData() {
       const freshSeed = JSON.parse(JSON.stringify(INITIAL_SEED));

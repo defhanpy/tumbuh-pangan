@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Mitra Penyalur | Tumbuh Pangan: Katalog Surplus &amp; Penjemputan</title>
-  <meta name="description" content="Portal Mitra Penyalur Tumbuh Pangan untuk melihat katalog surplus pangan terdekat, mengajukan klaim logistik, dan verifikasi serah terima.">
+  <title>Portal Mitra Penyalur | Tumbuh Pangan</title>
+  <meta name="description" content="Portal Mitra Penyalur &amp; Panti Asuhan Tumbuh Pangan. Cari surplus pangan terdekat, ajukan permohonan jemput, dan verifikasi serah terima makanan.">
   <meta name="theme-color" content="#104028">
   <link rel="icon" type="image/svg+xml" href="logo.svg">
 
@@ -12,6 +12,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tom Select v2.4.1 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.4.1/dist/css/tom-select.default.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.1/dist/js/tom-select.complete.min.js"></script>
 
   <!-- Tailwind Script & Config -->
   <script src="./tailwind.js"></script>
@@ -21,77 +25,29 @@
         extend: {
           colors: {
             forest: '#104028',
-            'forest-dark': '#0D3320',
             primary: '#27864B',
             secondary: '#4C9A61',
             'light-green': '#E8F5E9',
             'soft-mint': '#F5FAF5',
             'main-text': '#173C2F',
             'secondary-text': '#52665B',
-            'border-color': '#E2E8DE',
+            'border-color': '#DCE9DE',
             'warm-yellow': '#F4D77B',
-            canvas: '#F4F6F0',
           },
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
           },
           boxShadow: {
-            'soft': '0 4px 20px -2px rgba(16, 64, 40, 0.04), 0 2px 6px -1px rgba(16, 64, 40, 0.02)',
-            'card': '0 10px 30px -4px rgba(16, 64, 40, 0.07), 0 4px 12px -2px rgba(16, 64, 40, 0.03)',
+            'soft': '0 4px 20px -2px rgba(16, 64, 40, 0.06), 0 2px 6px -1px rgba(16, 64, 40, 0.04)',
+            'card': '0 10px 30px -4px rgba(16, 64, 40, 0.08), 0 4px 12px -2px rgba(16, 64, 40, 0.04)',
           }
         }
       }
     };
   </script>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.4.1/dist/css/tom-select.default.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.1/dist/js/tom-select.complete.min.js"></script>
-
   <style>
-    /* Custom Tom Select Styling matching Tumbuh Pangan */
-    .ts-wrapper.ts-tumbuh .ts-control {
-      border: 1px solid #E2E8DE;
-      border-radius: 0.75rem;
-      padding: 0.75rem 1rem;
-      font-size: 0.875rem;
-      color: #173C2F;
-      background-color: #FFFFFF;
-      box-shadow: none;
-      transition: all 0.2s ease;
-      min-height: 46px;
-      display: flex;
-      align-items: center;
-    }
-    .ts-wrapper.ts-tumbuh.focus .ts-control {
-      border-color: #27864B;
-      box-shadow: 0 0 0 3px rgba(39, 134, 75, 0.15);
-    }
-    .ts-wrapper.ts-tumbuh .ts-dropdown {
-      border: 1px solid #E2E8DE;
-      border-radius: 0.75rem;
-      box-shadow: 0 10px 25px -5px rgba(16, 64, 40, 0.08);
-      overflow: hidden;
-      margin-top: 4px;
-      z-index: 100;
-    }
-    .ts-wrapper.ts-tumbuh .ts-dropdown .option {
-      padding: 0.625rem 1rem;
-      font-size: 0.875rem;
-      color: #173C2F;
-      transition: background-color 0.15s ease;
-    }
-    .ts-wrapper.ts-tumbuh .ts-dropdown .option.active,
-    .ts-wrapper.ts-tumbuh .ts-dropdown .option:hover {
-      background-color: #E8F5E9;
-      color: #104028;
-      font-weight: 600;
-    }
-    .ts-wrapper.ts-tumbuh .ts-dropdown .option.selected {
-      background-color: #F5FAF5;
-      color: #27864B;
-      font-weight: 700;
-    }
     @media (prefers-reduced-motion: reduce) {
       *, ::before, ::after {
         animation-duration: 0.01ms !important;
@@ -104,6 +60,28 @@
       color: #173C2F;
       background-color: #F4F6F0;
       font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+    .ts-control {
+      border-radius: 0.75rem !important;
+      border-color: #DCE9DE !important;
+      padding: 0.65rem 0.85rem !important;
+      font-size: 0.8125rem !important;
+      font-weight: 600 !important;
+      color: #173C2F !important;
+      background-color: #FFFFFF !important;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03) !important;
+    }
+    .ts-control.focus {
+      border-color: #27864B !important;
+      box-shadow: 0 0 0 2px rgba(39, 134, 75, 0.15) !important;
+    }
+    .ts-dropdown {
+      border-radius: 0.75rem !important;
+      border-color: #DCE9DE !important;
+      box-shadow: 0 10px 25px -5px rgba(16, 64, 40, 0.1) !important;
+      overflow: hidden !important;
+      font-size: 0.8125rem !important;
+      z-index: 50 !important;
     }
   </style>
 </head>
@@ -125,10 +103,9 @@
           <img src="logo.svg" alt="Tumbuh Pangan Logo" class="h-8 w-auto">
           <div class="flex flex-col">
             <span class="font-extrabold text-white text-sm tracking-tight leading-none">Tumbuh Pangan</span>
-            <span class="text-[10px] text-emerald-300 font-semibold mt-0.5">Mitra Penyalur Hub</span>
+            <span class="text-[10px] text-emerald-300 font-semibold mt-0.5">Mitra Panti &amp; Relawan</span>
           </div>
         </a>
-        <!-- Close button for mobile drawer -->
         <button type="button" onclick="toggleMobileSidebar(false)" class="lg:hidden p-1.5 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Tutup Menu Sidebar">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
         </button>
@@ -139,7 +116,7 @@
         <div class="mb-2.5">
           <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#1B5E38] text-emerald-200 border border-emerald-500/30">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            PORTAL MITRA PENYALUR
+            PORTAL LEMBAGA SOSIAL
           </span>
         </div>
         <div class="flex items-center gap-3">
@@ -154,61 +131,98 @@
                 <span>Terverifikasi</span>
               </span>
               <span class="text-white/30">•</span>
-              <span class="truncate">35 Anak</span>
+              <span id="mitra-capacity-label" class="truncate">35 Anak</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Navigation Links -->
+      <!-- Navigation Links (6 Modules) -->
       <div class="p-3">
         <div class="text-[10px] font-bold uppercase tracking-wider text-emerald-300/60 px-3 mb-2">Navigasi Utama</div>
         <nav class="space-y-1" aria-label="Menu Dashboard Mitra">
-          <!-- Link 1: Katalog Surplus Terdekat -->
+          <!-- 1. Ringkasan Penyaluran -->
+          <button
+            type="button"
+            onclick="switchTab('dashboard')"
+            id="sidebar-nav-dashboard"
+            class="sidebar-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs transition-all bg-[#27864B] text-white font-bold shadow-sm cursor-pointer text-left">
+            <div class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+              <span>Ringkasan Penyaluran</span>
+            </div>
+          </button>
+
+          <!-- 2. Cari Makanan Terdekat -->
           <button
             type="button"
             onclick="switchTab('catalog')"
             id="sidebar-nav-catalog"
-            class="sidebar-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs transition-all bg-[#27864B] text-white font-bold shadow-sm cursor-pointer text-left">
+            class="sidebar-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs transition-all text-white/75 hover:text-white hover:bg-white/10 font-medium cursor-pointer text-left">
             <div class="flex items-center gap-2.5">
-              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M7 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/><path d="M12 12v4"/></svg>
-              <span>Katalog Surplus</span>
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <span>Cari Makanan</span>
             </div>
             <span id="badge-catalog-count" class="px-2 py-0.5 rounded-full text-[11px] font-extrabold bg-[#27864B] text-white">4</span>
           </button>
 
-          <!-- Link 2: Penjemputan & Klaim Saya -->
+          <!-- 3. Permohonan Menunggu -->
+          <button
+            type="button"
+            onclick="switchTab('claims')"
+            id="sidebar-nav-claims"
+            class="sidebar-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs transition-all text-white/75 hover:text-white hover:bg-white/10 font-medium cursor-pointer text-left">
+            <div class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Permohonan Menunggu</span>
+            </div>
+            <span id="badge-pending-claims" class="px-2 py-0.5 rounded-full text-[11px] font-extrabold bg-[#EA580C] text-white">1</span>
+          </button>
+
+          <!-- 4. Siap Kamu Ambil (Pickup Focus 1:1) -->
           <button
             type="button"
             onclick="switchTab('pickup')"
             id="sidebar-nav-pickup"
             class="sidebar-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs transition-all text-white/75 hover:text-white hover:bg-white/10 font-medium cursor-pointer text-left">
             <div class="flex items-center gap-2.5">
-              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18.5" r="2.5"/><circle cx="7" cy="18.5" r="2.5"/></svg>
-              <span>Penjemputan Saya</span>
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3m0-7v.01m5 0v.01m-2-2v.01"/></svg>
+              <span>Siap Kamu Ambil</span>
             </div>
-            <span id="badge-my-pickups" class="px-2 py-0.5 rounded-full text-[11px] font-extrabold bg-[#EA580C] text-white">2</span>
+            <span id="badge-ready-pickup" class="px-2 py-0.5 rounded-full text-[11px] font-extrabold bg-[#27864B] text-white">1</span>
           </button>
 
-          <!-- Link 3: Riwayat Selesai -->
+          <!-- 5. Riwayat Makanan Diterima -->
           <button
             type="button"
             onclick="switchTab('history')"
             id="sidebar-nav-history"
             class="sidebar-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs transition-all text-white/75 hover:text-white hover:bg-white/10 font-medium cursor-pointer text-left">
             <div class="flex items-center gap-2.5">
-              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-              <span>Riwayat Selesai</span>
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+              <span>Riwayat Makanan</span>
             </div>
-            <span id="badge-my-history" class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-white/20 text-white">1</span>
+          </button>
+
+          <!-- 6. Profil Lembaga / Panti -->
+          <button
+            type="button"
+            onclick="switchTab('profile')"
+            id="sidebar-nav-profile"
+            class="sidebar-nav-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs transition-all text-white/75 hover:text-white hover:bg-white/10 font-medium cursor-pointer text-left">
+            <div class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span>Profil Panti</span>
+            </div>
           </button>
         </nav>
       </div>
+
       <!-- Mobile Quick Role Switcher (Visible on mobile/tablet <1024px inside sidebar) -->
       <div class="p-3 border-t border-white/10 bg-[#0D3320]/80 lg:hidden">
         <div class="flex items-center justify-between gap-1 mb-2">
           <span class="inline-flex items-center gap-1 text-[10px] font-extrabold uppercase tracking-wider text-emerald-300">
-            <svg class="w-3 h-3 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0 0-5-2H2z"/></svg>
+            <svg class="w-3 h-3 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0 0-5-2H2z"/></svg>
             <span>Ganti Peran Demo</span>
           </span>
           <button type="button" onclick="TPStore.confirmResetDemo()" class="text-[10px] text-red-300 hover:text-red-100 hover:underline font-bold flex items-center gap-0.5">
@@ -234,23 +248,21 @@
     </div>
 
     <!-- Bottom Sidebar Section -->
-    <div class="p-3 border-t border-white/10 bg-[#104028] space-y-1">
+    <div class="p-3 border-t border-white/10 bg-[#0D3320] space-y-1">
       <a href="index.html" class="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-white/70 hover:text-white hover:bg-white/10 transition-colors">
         <div class="flex items-center gap-2.5">
           <svg class="w-4 h-4 text-white/70 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           <span>Beranda Publik</span>
         </div>
-        <svg class="w-3.5 h-3.5 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        <svg class="w-3.5 h-3.5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       </a>
 
-      <a href="login.html" class="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-red-300 hover:text-red-200 hover:bg-white/10 transition-colors">
+      <a href="login.html" class="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-red-300 hover:text-red-100 hover:bg-red-500/10 transition-colors">
         <div class="flex items-center gap-2.5">
           <svg class="w-4 h-4 text-red-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-          <span>Keluar / Ganti Akun</span>
+          <span>Keluar Sesi</span>
         </div>
       </a>
-    </div>
-  </aside>
     </div>
   </aside>
 
@@ -271,202 +283,357 @@
 
         <div class="flex flex-col">
           <div class="text-[11px] text-secondary-text font-medium flex items-center gap-1.5 leading-none">
-            <span class="hidden sm:inline">Portal Mitra</span>
+            <span id="header-mitra-name" class="hidden sm:inline">Panti Asuhan Al-Ikhlas</span>
             <svg class="hidden sm:inline w-3 h-3 text-secondary-text/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-            <span id="header-breadcrumb" class="font-bold text-forest">Katalog Surplus</span>
+            <span id="header-breadcrumb" class="font-bold text-forest">Ringkasan Penyaluran</span>
           </div>
-          <h1 id="header-page-title" class="text-base sm:text-lg font-extrabold text-forest mt-0.5 leading-tight">Surplus Pangan Terdekat Buat Komunitasmu</h1>
+          <h1 id="header-page-title" class="text-base sm:text-lg font-extrabold text-forest mt-0.5 leading-tight">Berbagi Nutrisi untuk Adik Panti</h1>
         </div>
       </div>
 
-      <!-- Right: Live Pulse Status & User Avatar Pill -->
-      <div class="flex items-center gap-3">
-        <div class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-light-green text-forest border border-primary/20 text-xs font-bold">
-          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-          <span>Sistem Aktif - Mode Demo</span>
+      <!-- Right: Action to Catalog -->
+      <div class="flex items-center gap-3 sm:gap-4">
+        <div class="hidden md:block text-right">
+          <div class="text-xs font-mono font-bold text-forest">Komunitas Terdaftar</div>
+          <div class="text-[10px] text-primary font-bold flex items-center justify-end gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+            <span>Siap Jemput Makanan</span>
+          </div>
         </div>
 
-        <div class="flex items-center gap-2 pl-1 sm:pl-3 sm:border-l sm:border-border-color">
-          <div class="w-9 h-9 rounded-xl bg-light-green border border-primary/30 flex items-center justify-center text-forest font-bold text-sm shadow-xs">
-            <svg class="w-4 h-4 text-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-          </div>
-          <div class="hidden md:block text-left">
-            <div id="header-mitra-name" class="text-xs font-extrabold text-forest leading-tight truncate max-w-[120px]">Panti Al-Ikhlas</div>
-            <div class="text-[10px] text-secondary-text font-medium">Mitra Penyalur</div>
-          </div>
-        </div>
+        <button
+          type="button"
+          onclick="switchTab('catalog')"
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-forest hover:bg-forest/90 text-white text-xs font-bold transition-all shadow-sm cursor-pointer">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="hidden sm:inline">Cari Makanan</span>
+        </button>
       </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow">
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow">
 
-      <!-- Welcome Banner -->
-      <div class="mb-6 bg-white rounded-3xl p-5 sm:p-6 border border-border-color shadow-soft flex items-center justify-between gap-4">
-        <div>
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-light-green text-forest mb-1.5">
-            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-            Siap Salurkan Kebaikan
-          </span>
-          <h2 class="text-lg sm:text-xl font-extrabold text-forest">Halo, Panti Asuhan Al-Ikhlas! Yuk cek surplus makanan layak santap hari ini.</h2>
-          <p class="text-xs sm:text-sm text-secondary-text mt-0.5">Semua makanan sudah lolos uji keamanan dan siap kamu jemput buat adik-adik atau warga dampingan.</p>
-        </div>
-      </div>
+      <!-- ========================================== -->
+      <!-- TAB 1: Ringkasan Penyaluran (Dashboard)    -->
+      <!-- ========================================== -->
+      <section id="tab-content-dashboard" class="tab-pane block space-y-8">
+        <!-- 4 KPI Summary Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div class="bg-white rounded-3xl p-5 sm:p-6 border border-border-color shadow-soft hover:border-primary transition-all">
+            <div class="flex items-center justify-between text-secondary-text mb-2">
+              <span class="text-[11px] font-bold uppercase tracking-wider">Porsi Kamu Terima</span>
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M7 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/><path d="M12 12v4"/></svg>
+            </div>
+            <div id="kpi-mitra-portions" class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">290</div>
+            <div class="text-xs text-secondary-text mt-1">Disalurkan ke 35 anak asuh</div>
+          </div>
 
-      <!-- KPI Summary Row -->
-      <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8" aria-label="Ringkasan Performa Penyaluran">
-        <!-- KPI 1: Porsi Kamu Terima -->
-        <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
-          <div class="flex items-center justify-between text-secondary-text mb-2">
-            <span class="text-xs font-bold uppercase tracking-wider">Porsi Kamu Terima</span>
-            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M7 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/><path d="M12 12v4"/></svg>
+          <div class="bg-white rounded-3xl p-5 sm:p-6 border border-border-color shadow-soft hover:border-primary transition-all">
+            <div class="flex items-center justify-between text-secondary-text mb-2">
+              <span class="text-[11px] font-bold uppercase tracking-wider">Siap Dijemput</span>
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+            </div>
+            <div id="kpi-mitra-ready" class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">1</div>
+            <div class="text-xs text-secondary-text mt-1">Kode QR &amp; PIN aktif</div>
           </div>
-          <div id="kpi-mitra-portions" class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">290</div>
-          <div class="text-xs text-secondary-text mt-1">
-            Tersalurkan ke 35 anak asuh
-          </div>
-        </div>
 
-        <!-- KPI 2: Jadwal Jemput Aktif -->
-        <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
-          <div class="flex items-center justify-between text-secondary-text mb-2">
-            <span class="text-xs font-bold uppercase tracking-wider">Jadwal Jemput Aktif</span>
-            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18.5" r="2.5"/><circle cx="7" cy="18.5" r="2.5"/></svg>
+          <div class="bg-white rounded-3xl p-5 sm:p-6 border border-border-color shadow-soft hover:border-primary transition-all">
+            <div class="flex items-center justify-between text-secondary-text mb-2">
+              <span class="text-[11px] font-bold uppercase tracking-wider">Permohonan Diproses</span>
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div id="kpi-mitra-pending" class="text-2xl sm:text-3xl font-extrabold text-[#EA580C] font-mono">1</div>
+            <div class="text-xs text-secondary-text mt-1">Menunggu respon toko</div>
           </div>
-          <div id="kpi-mitra-active" class="text-2xl sm:text-3xl font-extrabold text-primary font-mono">1</div>
-          <div class="text-xs text-secondary-text mt-1">
-            1 batch siap kamu jemput di outlet
-          </div>
-        </div>
 
-        <!-- KPI 3: Hemat Anggaran Pangan -->
-        <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
-          <div class="flex items-center justify-between text-secondary-text mb-2">
-            <span class="text-xs font-bold uppercase tracking-wider">Hemat Anggaran Pangan</span>
-            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
-          </div>
-          <div id="kpi-mitra-savings" class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">Rp 4.3 <span class="text-base font-sans font-semibold text-secondary-text">Jt</span></div>
-          <div class="text-xs text-secondary-text mt-1">
-            Penghematan belanja pangan sosial
+          <div class="bg-white rounded-3xl p-5 sm:p-6 border border-border-color shadow-soft hover:border-primary transition-all">
+            <div class="flex items-center justify-between text-secondary-text mb-2">
+              <span class="text-[11px] font-bold uppercase tracking-wider">Hemat Belanja Pangan</span>
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
+            </div>
+            <div class="flex items-baseline gap-1.5">
+              <span id="kpi-mitra-savings" class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">Rp 4.3</span>
+              <span class="text-sm font-sans font-semibold text-secondary-text">Jt</span>
+            </div>
+            <div class="text-xs text-primary font-bold mt-1">Sangat Bermanfaat</div>
           </div>
         </div>
 
-        <!-- KPI 4: Skor Jemput Tepat Waktu -->
-        <div class="bg-white rounded-2xl p-5 border border-border-color shadow-soft hover:shadow-card transition-shadow">
-          <div class="flex items-center justify-between text-secondary-text mb-2">
-            <span class="text-xs font-bold uppercase tracking-wider">Skor Jemput Tepat Waktu</span>
-            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <!-- Banner Ajakan & Status Panti -->
+        <div class="bg-gradient-to-r from-[#104028] to-[#1E5D3A] rounded-3xl p-6 sm:p-8 text-white flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-card">
+          <div class="space-y-2 max-w-xl">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/15 text-emerald-200">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              Peluang Jemput Sore Ini
+            </span>
+            <h2 class="text-xl sm:text-2xl font-extrabold">Ada 4 toko roti &amp; restoran sekitar yang siap berbagi</h2>
+            <p class="text-xs sm:text-sm text-white/80 leading-relaxed">
+              Cek makanan yang cocok dengan jumlah porsi adik-adik panti atau warga binaanmu sebelum waktu jemput habis.
+            </p>
           </div>
-          <div class="flex items-baseline gap-2">
-            <span class="text-2xl sm:text-3xl font-extrabold text-forest font-mono">99.2%</span>
-            <span class="text-xs text-primary font-bold">Prima</span>
+          <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+            <button
+              type="button"
+              onclick="switchTab('catalog')"
+              class="px-6 py-3.5 rounded-2xl bg-white hover:bg-white/90 text-forest text-sm font-extrabold transition-all shadow-md cursor-pointer flex items-center justify-center gap-2">
+              <svg class="w-4 h-4 text-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <span>Cari Makanan Sekarang</span>
+            </button>
+            <button
+              type="button"
+              onclick="switchTab('pickup')"
+              class="px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white text-sm font-bold border border-white/20 transition-all cursor-pointer flex items-center justify-center gap-2">
+              <span>Buka QR Jemput</span>
+            </button>
           </div>
-          <div class="text-xs text-secondary-text mt-1">
-            Bebas mangkir / No-show
+        </div>
+
+        <!-- Pedoman Pengambilan Makanan -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-border-color shadow-card space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-light-green text-primary flex items-center justify-center font-bold">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-base font-extrabold text-forest">Etika &amp; Tata Cara Penjemputan Makanan</h3>
+              <p class="text-xs text-secondary-text">Menjaga silaturahmi dan kepercayaan antara panti dengan para donatur makanan</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs">
+            <div class="p-4 rounded-2xl bg-soft-mint border border-border-color space-y-1">
+              <strong class="text-forest block font-bold">1. Hadir Tepat Waktu</strong>
+              <p class="text-secondary-text">Datang sebelum batas waktu penjemputan habis agar toko tidak repot saat waktu pergantian shift.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-soft-mint border border-border-color space-y-1">
+              <strong class="text-forest block font-bold">2. Bawa Wadah Higienis</strong>
+              <p class="text-secondary-text">Siapkan boks makanan bersih dan tertutup rapat agar makanan tetap steril saat dibawa di jalan.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-soft-mint border border-border-color space-y-1">
+              <strong class="text-forest block font-bold">3. Tunjukkan QR atau PIN</strong>
+              <p class="text-secondary-text">Tunjukkan layar ponselmu dengan QR Code atau sebutkan 4 digit PIN agar donatur mudah mencocokkan.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- TAB 1: Katalog Surplus Terdekat -->
-      <section id="tab-content-catalog" class="tab-pane block space-y-6">
+      <!-- ========================================== -->
+      <!-- TAB 2: Cari Makanan Terdekat (Catalog)     -->
+      <!-- ========================================== -->
+      <section id="tab-content-catalog" class="tab-pane hidden space-y-6">
         <div>
-          <h3 class="text-xl font-extrabold text-forest">Surplus Pangan Terdekat Buat Komunitasmu</h3>
-          <p class="text-xs sm:text-sm text-secondary-text mt-0.5">
-            Semua makanan di bawah sudah lolos uji keamanan dan siap kamu jemput.
+          <h2 class="text-2xl font-extrabold text-forest">Makanan Siap Santap dari Donatur Terdekat</h2>
+          <p class="text-xs sm:text-sm text-secondary-text mt-1">
+            Semua makanan di bawah ini higienis, layak konsumsi, dan siap diajukan untuk disalurkan ke panti.
           </p>
         </div>
 
-      <!-- Filter & Search Bar -->
-      <div class="bg-white rounded-2xl p-4 sm:p-5 border border-border-color shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <!-- Category Filter Pills -->
-        <div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0" id="category-pills">
-          <button type="button" onclick="setCategoryFilter('Semua')" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold transition-all bg-primary text-white shadow-sm cursor-pointer" data-category="Semua">
-            Semua Surplus
-          </button>
-          <button type="button" onclick="setCategoryFilter('Roti & Pastry')" class="cat-pill inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all bg-soft-mint text-secondary-text hover:text-forest cursor-pointer" data-category="Roti & Pastry">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7Z"/><path d="M9 10v4"/><path d="M15 10v4"/></svg>
-            <span>Roti &amp; Pastry</span>
-          </button>
-          <button type="button" onclick="setCategoryFilter('Siap Santap')" class="cat-pill inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all bg-soft-mint text-secondary-text hover:text-forest cursor-pointer" data-category="Siap Santap">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M7 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/><path d="M12 12v4"/></svg>
-            <span>Siap Santap</span>
-          </button>
-          <button type="button" onclick="setCategoryFilter('Sayur & Buah')" class="cat-pill inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all bg-soft-mint text-secondary-text hover:text-forest cursor-pointer" data-category="Sayur & Buah">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
-            <span>Sayur &amp; Buah</span>
-          </button>
-        </div>
+        <!-- Filter & Search Bar -->
+        <div class="bg-white rounded-2xl p-4 sm:p-5 border border-border-color shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <!-- Category Filter Pills -->
+          <div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0" id="category-pills">
+            <button type="button" onclick="setCategoryFilter('Semua')" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold transition-all bg-primary text-white shadow-sm cursor-pointer" data-category="Semua">
+              Semua Makanan
+            </button>
+            <button type="button" onclick="setCategoryFilter('Roti & Pastry')" class="cat-pill inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all bg-soft-mint text-secondary-text hover:text-forest cursor-pointer" data-category="Roti & Pastry">
+              <span>Roti &amp; Pastry</span>
+            </button>
+            <button type="button" onclick="setCategoryFilter('Siap Santap')" class="cat-pill inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all bg-soft-mint text-secondary-text hover:text-forest cursor-pointer" data-category="Siap Santap">
+              <span>Siap Santap</span>
+            </button>
+            <button type="button" onclick="setCategoryFilter('Sayur & Buah')" class="cat-pill inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all bg-soft-mint text-secondary-text hover:text-forest cursor-pointer" data-category="Sayur & Buah">
+              <span>Sayur &amp; Buah</span>
+            </button>
+          </div>
 
-        <!-- Search Bar -->
-        <div class="relative w-full md:w-72 shrink-0">
-          <input
-            type="text"
-            id="search-input"
-            oninput="handleSearch(this.value)"
-            placeholder="Cari makanan atau donatur..."
-            class="w-full pl-9 pr-4 py-2 rounded-xl border border-border-color focus:border-primary focus:ring-2 focus:ring-light-green text-xs transition-all outline-none">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-secondary-text">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <!-- Search Bar -->
+          <div class="relative w-full md:w-72 shrink-0">
+            <input
+              type="text"
+              id="search-input"
+              oninput="handleSearch(this.value)"
+              placeholder="Cari roti, lauk, nama toko..."
+              class="w-full pl-9 pr-4 py-2 rounded-xl border border-border-color focus:border-primary focus:ring-2 focus:ring-primary/20 text-xs text-forest outline-none transition-all">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-secondary-text">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Catalog Grid -->
-      <div id="container-surplus-catalog" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Dynamically rendered -->
-      </div>
-    </section>
-
-    <!-- TAB 2: Penjemputan Saya -->
-    <section id="tab-content-pickup" class="tab-pane hidden space-y-8">
-      <div>
-        <h2 class="text-2xl font-extrabold text-forest">Daftar Makanan yang Siap Kamu Ambil</h2>
-        <p class="text-sm text-secondary-text mt-1">
-          Pantau status persetujuan donatur, kode serah terima QR/PIN, serta selesaikan verifikasi di lokasi.
-        </p>
-      </div>
-
-      <!-- Active Handover Tasks (Approved) -->
-      <div>
-        <h3 class="text-base font-extrabold text-forest mb-3 flex items-center gap-2">
-          <svg class="w-4 h-4 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18.5" r="2.5"/><circle cx="7" cy="18.5" r="2.5"/></svg>
-          <span>Siap Dijemput! Yuk meluncur ke lokasi sebelum batas waktu habis</span>
-        </h3>
-        <div id="container-mitra-approved-tx" class="space-y-4">
+        <!-- Catalog Grid -->
+        <div id="container-surplus-catalog" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <!-- Dynamically rendered -->
         </div>
-      </div>
+      </section>
 
-      <!-- Pending Claims (Waiting for donor approval) -->
-      <div class="pt-4 border-t border-border-color">
-        <h3 class="text-base font-extrabold text-forest mb-3 flex items-center gap-2">
-          <svg class="w-4 h-4 text-[#EA580C] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>Menunggu Donatur Setuju (Sabar ya, pemilik usaha lagi cek permohonanmu)</span>
-        </h3>
-        <div id="container-mitra-pending-claims" class="space-y-3">
+      <!-- ========================================== -->
+      <!-- TAB 3: Permohonan Menunggu (Claims)        -->
+      <!-- ========================================== -->
+      <section id="tab-content-claims" class="tab-pane hidden space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-extrabold text-forest">Permohonan Jemput yang Sedang Kamu Tunggu</h2>
+            <p class="text-xs sm:text-sm text-secondary-text mt-0.5">
+              Pemilik toko sedang mengecek permohonanmu. Begitu disetujui, kode QR serah terima langsung aktif!
+            </p>
+          </div>
+          <span id="count-pending-claims" class="px-3 py-1 rounded-full text-xs font-bold bg-[#EA580C] text-white">1 Menunggu</span>
+        </div>
+
+        <div id="container-mitra-pending-claims" class="space-y-4">
           <!-- Dynamically rendered -->
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- TAB 3: Riwayat Penjemputan Selesai -->
-    <section id="tab-content-history" class="tab-pane hidden space-y-6">
-      <div>
-        <h2 class="text-2xl font-extrabold text-forest">Riwayat Distribusi Pangan Selesai</h2>
-        <p class="text-sm text-secondary-text mt-1">
-          Daftar seluruh transaksi surplus pangan yang telah diserap dan diverifikasi dengan donatur.
-        </p>
-      </div>
+      <!-- ========================================== -->
+      <!-- TAB 4: Siap Kamu Ambil (Pickup Focus 1:1)  -->
+      <!-- ========================================== -->
+      <section id="tab-content-pickup" class="tab-pane hidden space-y-6">
+        <div>
+          <h2 class="text-2xl font-extrabold text-forest">Makanan Siap Kamu Ambil Sekarang</h2>
+          <p class="text-xs sm:text-sm text-secondary-text mt-1">
+            Donatur sudah menyetujui permohonanmu. Tunjukkan QR Code ini ke kasir atau sebutkan 4 digit PIN saat tiba di lokasi.
+          </p>
+        </div>
 
-      <div id="container-mitra-completed-history" class="space-y-3">
-        <!-- Dynamically rendered -->
-      </div>
-    </section>
+        <!-- Single-Task Focus 1:1 Benchmark Grid -->
+        <div id="container-mitra-approved-tx" class="space-y-6">
+          <!-- Dynamically rendered -->
+        </div>
+      </section>
 
-  </main>
-  </div> <!-- End Main Content Area Wrapper (lg:pl-64) -->
+      <!-- ========================================== -->
+      <!-- TAB 5: Riwayat Makanan Diterima (History)  -->
+      <!-- ========================================== -->
+      <section id="tab-content-history" class="tab-pane hidden space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-extrabold text-forest">Riwayat Makanan yang Berhasil Diterima</h2>
+            <p class="text-xs sm:text-sm text-secondary-text mt-0.5">
+              Daftar seluruh bantuan makanan yang sudah sampai ke panti dan kamu beri ulasan ke donatur.
+            </p>
+          </div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-light-green text-forest text-xs font-bold">
+            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+            <span>Tersalurkan Tuntas</span>
+          </span>
+        </div>
 
-  <!-- Modal: Ajukan Klaim Makanan -->
+        <div id="container-mitra-completed-history" class="space-y-4">
+          <!-- Dynamically rendered -->
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 6: Profil Lembaga / Panti (Profile)    -->
+      <!-- ========================================== -->
+      <section id="tab-content-profile" class="tab-pane hidden">
+        <div class="max-w-2xl bg-white rounded-3xl p-6 sm:p-10 border border-border-color shadow-card mx-auto space-y-6">
+          <div class="flex items-start justify-between pb-4 border-b border-border-color">
+            <div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-light-green text-forest mb-2">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                Identitas Lembaga Sosial
+              </span>
+              <h2 class="text-2xl font-extrabold text-forest">Profil Panti / Komunitas</h2>
+              <p class="text-xs sm:text-sm text-secondary-text mt-0.5">Informasi ini membantu donatur dan admin memastikan keabsahan penyaluran.</p>
+            </div>
+          </div>
+
+          <form id="form-update-profile" onsubmit="handleUpdateProfile(event)" class="space-y-4">
+            <div>
+              <label for="profile-name" class="block text-xs font-bold text-forest mb-1.5">Nama Panti / Yayasan / Komunitas</label>
+              <input
+                type="text"
+                id="profile-name"
+                value="Panti Asuhan Al-Ikhlas"
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary text-xs sm:text-sm text-forest font-semibold outline-none">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="profile-capacity" class="block text-xs font-bold text-forest mb-1.5">Jumlah Anak Asuh / Warga Binaan</label>
+                <div class="flex items-center gap-2">
+                  <input
+                    type="number"
+                    id="profile-capacity"
+                    value="35"
+                    min="1"
+                    required
+                    class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary text-xs sm:text-sm text-forest font-mono font-bold outline-none">
+                  <span class="text-xs font-semibold text-secondary-text shrink-0">Orang</span>
+                </div>
+              </div>
+
+              <div>
+                <label for="profile-pic" class="block text-xs font-bold text-forest mb-1.5">Nama Pengurus / PIC Penjemput</label>
+                <input
+                  type="text"
+                  id="profile-pic"
+                  value="Ustadz Mansur"
+                  required
+                  class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary text-xs sm:text-sm text-forest outline-none">
+              </div>
+            </div>
+
+            <div>
+              <label for="profile-address" class="block text-xs font-bold text-forest mb-1.5">Alamat Lengkap Lembaga</label>
+              <input
+                type="text"
+                id="profile-address"
+                value="Jl. Kaliurang No. 12, Sumbersari, Jember"
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary text-xs sm:text-sm text-forest outline-none">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="profile-phone" class="block text-xs font-bold text-forest mb-1.5">Nomor WhatsApp Pengurus</label>
+                <input
+                  type="text"
+                  id="profile-phone"
+                  value="0821-9876-5401"
+                  required
+                  class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary text-xs sm:text-sm text-forest font-mono outline-none">
+              </div>
+
+              <div>
+                <label for="profile-email" class="block text-xs font-bold text-forest mb-1.5">Email Terdaftar</label>
+                <input
+                  type="email"
+                  id="profile-email"
+                  value="panti.alikhlas@gmail.com"
+                  readonly
+                  class="w-full px-4 py-2.5 rounded-xl border border-border-color bg-soft-mint text-xs sm:text-sm text-forest font-mono cursor-not-allowed">
+              </div>
+            </div>
+
+            <div>
+              <label for="profile-vehicle" class="block text-xs font-bold text-forest mb-1.5">Armada &amp; Wadah Makanan yang Dimiliki</label>
+              <input
+                type="text"
+                id="profile-vehicle"
+                value="Mobil operasional panti + 4 box kontainer higienis"
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary text-xs sm:text-sm text-forest outline-none">
+            </div>
+
+            <div class="pt-4 border-t border-border-color flex items-center justify-end gap-3">
+              <button
+                type="submit"
+                class="px-6 py-3 rounded-2xl bg-forest hover:bg-forest/90 text-white text-xs sm:text-sm font-bold shadow-sm transition-all cursor-pointer">
+                Simpan Perubahan
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Modal: Ajukan Permohonan Makanan -->
   <div id="claim-modal" class="fixed inset-0 z-50 hidden overflow-y-auto" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity" onclick="closeClaimModal()"></div>
     <div class="flex min-h-screen items-center justify-center p-4">
@@ -479,7 +646,7 @@
             <h3 id="claim-modal-title" class="text-xl font-extrabold text-forest">Aneka Roti Manis</h3>
             <p id="claim-modal-donatur" class="text-xs text-secondary-text mt-0.5">Donatur: Roti Nusantara Artisan (1.2 km)</p>
           </div>
-          <button type="button" onclick="closeClaimModal()" class="p-2 rounded-xl text-secondary-text hover:bg-light-green transition-colors" aria-label="Tutup Modal">
+          <button type="button" onclick="closeClaimModal()" class="p-2 rounded-xl text-secondary-text hover:bg-light-green transition-colors cursor-pointer" aria-label="Tutup Modal">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </button>
         </div>
@@ -490,7 +657,7 @@
           <!-- Jumlah Porsi yang Sanggup Diserap -->
           <div>
             <label for="claim-portions-input" class="block text-xs font-bold text-forest mb-1">
-              Mau Jemput Berapa Porsi? <span class="text-red-500">*</span>
+              Berapa Porsi yang Sanggup Panti Jemput? <span class="text-red-500">*</span>
             </label>
             <div class="flex items-center gap-3">
               <input
@@ -498,8 +665,8 @@
                 id="claim-portions-input"
                 min="1"
                 required
-                class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary font-mono text-base font-bold outline-none">
-              <span id="claim-max-portions-label" class="text-xs text-secondary-text whitespace-nowrap">Maks 24 Porsi</span>
+                class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary font-mono text-base font-bold text-forest outline-none">
+              <span id="claim-max-portions-label" class="text-xs text-secondary-text whitespace-nowrap">Maks 20 Porsi</span>
             </div>
             <span class="text-[11px] text-secondary-text mt-0.5 block">Sesuaikan dengan kapasitas anak asuh atau warga yang kamu dampingi ya.</span>
           </div>
@@ -507,7 +674,7 @@
           <!-- Rencana Armada Penjemput -->
           <div>
             <label for="claim-vehicle-input" class="block text-xs font-bold text-forest mb-1">
-              Armada &amp; Wadah Bersih yang Kamu Bawa <span class="text-red-500">*</span>
+              Armada &amp; Wadah Bersih yang Dibawa <span class="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -515,17 +682,15 @@
               required
               value="Mobil operasional panti + box makanan bersih"
               placeholder="Contoh: Motor roda tiga boks relawan + wadah tertutup"
-              class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary text-xs outline-none">
+              class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary text-xs text-forest outline-none">
           </div>
 
           <!-- Estimasi Menit Tiba -->
           <div>
             <label for="claim-eta-select" class="block text-xs font-bold text-forest mb-1">
-              Kira-kira Berapa Menit Kamu Sampai di Lokasi? <span class="text-red-500">*</span>
+              Kira-kira Berapa Menit Sampai di Lokasi? <span class="text-red-500">*</span>
             </label>
-            <select
-              id="claim-eta-select"
-              class="w-full px-4 py-2.5 rounded-xl border border-border-color focus:border-primary text-xs outline-none bg-white">
+            <select id="claim-eta-select" required>
               <option value="15">Sekitar 15 Menit</option>
               <option value="25" selected>Sekitar 25 - 30 Menit</option>
               <option value="45">Sekitar 45 Menit</option>
@@ -542,11 +707,11 @@
               id="claim-notes-input"
               rows="2"
               placeholder="Contoh: Untuk makan sore 35 adik panti asuhan."
-              class="w-full px-4 py-2 rounded-xl border border-border-color focus:border-primary text-xs outline-none resize-none"></textarea>
+              class="w-full px-4 py-2 rounded-xl border border-border-color focus:border-primary text-xs text-forest outline-none resize-none">Untuk makan sore 35 adik panti asuhan Al-Ikhlas.</textarea>
           </div>
 
           <div class="p-3 rounded-xl bg-soft-mint text-[11px] text-secondary-text flex items-start gap-2">
-            <svg class="w-4 h-4 text-amber-700 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+            <svg class="w-4 h-4 text-amber-700 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
             <div><strong>Komitmen Penyaluran:</strong> Makanan hasil klaim wajib disalurkan secara cuma-cuma dan dilarang diperjualbelikan.</div>
           </div>
 
@@ -559,7 +724,7 @@
             </button>
             <button
               type="submit"
-              class="px-6 py-2.5 rounded-xl bg-primary hover:bg-forest text-white text-xs font-bold shadow transition-all cursor-pointer">
+              class="px-6 py-2.5 rounded-xl bg-forest hover:bg-forest/90 text-white text-xs font-bold shadow transition-all cursor-pointer">
               Kirim Permohonan Jemput
             </button>
           </div>
@@ -576,9 +741,9 @@
         <div class="w-14 h-14 mx-auto rounded-2xl bg-light-green text-primary flex items-center justify-center mb-3">
           <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3z"/></svg>
         </div>
-        <h3 class="text-xl font-extrabold text-forest">Gimana Makanan &amp; Pelayanannya?</h3>
+        <h3 class="text-xl font-extrabold text-forest">Gimana Makanan &amp; Kerjasama Toko?</h3>
         <p class="text-xs text-secondary-text mt-1 mb-5">
-          Ulasan jujurmu bikin donatur makin semangat berbagi dengan standar terbaik.
+          Ulasan jujurmu bikin donatur makin bersemangat menjaga kualitas makanan terbaik.
         </p>
 
         <form id="form-submit-rating" onsubmit="handleRatingSubmit(event)" class="space-y-4 text-left">
@@ -601,8 +766,8 @@
           <div class="grid grid-cols-2 gap-3 text-xs">
             <div class="p-3 rounded-xl bg-white border border-border-color">
               <span class="font-bold text-forest block mb-1">Higienitas Wadah</span>
-              <select id="rating-hygiene" class="w-full text-xs border border-border-color rounded-lg p-1.5 outline-none bg-white">
-                <option value="5">Sangat Higienis (5/5)</option>
+              <select id="rating-hygiene">
+                <option value="5" selected>Sangat Higienis (5/5)</option>
                 <option value="4">Bersih Baik (4/5)</option>
                 <option value="3">Cukup (3/5)</option>
               </select>
@@ -610,8 +775,8 @@
 
             <div class="p-3 rounded-xl bg-white border border-border-color">
               <span class="font-bold text-forest block mb-1">Kemudahan Jemput</span>
-              <select id="rating-punctuality" class="w-full text-xs border border-border-color rounded-lg p-1.5 outline-none bg-white">
-                <option value="5">Sangat Cepat (5/5)</option>
+              <select id="rating-punctuality">
+                <option value="5" selected>Sangat Cepat (5/5)</option>
                 <option value="4">Sesuai Waktu (4/5)</option>
                 <option value="3">Ada Tunggu (3/5)</option>
               </select>
@@ -627,12 +792,12 @@
               id="rating-comment"
               rows="2"
               placeholder="Contoh: Makanan sangat segar dan adik-adik sangat senang menikmatinya!"
-              class="w-full p-2.5 text-xs rounded-xl border border-border-color focus:border-primary outline-none resize-none"></textarea>
+              class="w-full p-2.5 text-xs rounded-xl border border-border-color focus:border-primary outline-none resize-none">Alhamdulillah makanan sangat segar, hangat, dan adik-adik panti sangat lahap makannya. Berkah selalu untuk tokomu!</textarea>
           </div>
 
           <button
             type="submit"
-            class="w-full py-3 rounded-xl bg-primary hover:bg-forest text-white text-xs font-bold shadow-md transition-all cursor-pointer">
+            class="w-full py-3 rounded-xl bg-forest hover:bg-forest/90 text-white text-xs font-bold shadow-md transition-all cursor-pointer">
             Kirim Ulasan Kebaikan
           </button>
         </form>
@@ -650,10 +815,10 @@
     function showToast(message, type = 'success') {
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
-      const bgClass = type === 'success' ? 'bg-forest text-white' : 'bg-red-600 text-white';
+      const bgClass = type === 'success' ? 'bg-[#104028] text-white' : 'bg-red-600 text-white';
       const iconSvg = type === 'success'
-        ? `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>`
-        : `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>`;
+        ? `<svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>`
+        : `<svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>`;
       toast.className = `${bgClass} p-4 rounded-2xl shadow-xl flex items-center gap-3 text-xs sm:text-sm font-semibold pointer-events-auto transform transition-all duration-300`;
       toast.innerHTML = `
         <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center shrink-0">${iconSvg}</span>
@@ -685,33 +850,25 @@
       }
     }
 
-    // Keyboard ESC closes mobile sidebar
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') toggleMobileSidebar(false);
     });
 
     // 2. Tab Navigation with Header Title & Breadcrumb Sync
     const TAB_METAS = {
-      catalog: { breadcrumb: 'Katalog Makanan', title: 'Surplus Pangan Terdekat Buat Komunitasmu' },
-      pickup: { breadcrumb: 'Siap Kamu Ambil', title: 'Daftar Makanan yang Siap Kamu Ambil' },
-      history: { breadcrumb: 'Riwayat Selesai', title: 'Riwayat Distribusi Pangan Selesai' }
+      dashboard: { breadcrumb: 'Ringkasan Penyaluran', title: 'Berbagi Nutrisi untuk Adik Panti' },
+      catalog: { breadcrumb: 'Cari Makanan', title: 'Makanan Siap Santap dari Donatur Terdekat' },
+      claims: { breadcrumb: 'Permohonan Menunggu', title: 'Permohonan Jemput yang Sedang Kamu Tunggu' },
+      pickup: { breadcrumb: 'Siap Kamu Ambil', title: 'Makanan Siap Kamu Ambil Sekarang' },
+      history: { breadcrumb: 'Riwayat Makanan', title: 'Riwayat Makanan yang Berhasil Diterima' },
+      profile: { breadcrumb: 'Profil Panti', title: 'Profil & Kapasitas Panti Asuhan' }
     };
 
     function switchTab(tabName) {
       if (tabName === 'handover') tabName = 'pickup';
-      if (!TAB_METAS[tabName]) tabName = 'catalog';
+      if (!TAB_METAS[tabName]) tabName = 'dashboard';
 
-      // Hide or Show KPI Summary Row (Single-Task Focus on Pickup / Handover)
-      const kpiRow = document.querySelector('section[aria-label="Ringkasan Kinerja Mitra"]');
-      if (kpiRow) {
-        if (tabName === 'pickup') {
-          kpiRow.classList.add('hidden');
-        } else {
-          kpiRow.classList.remove('hidden');
-        }
-      }
-
-      // Update Sidebar Nav State for Dark Forest Green Sidebar
+      // Update Sidebar Nav State
       document.querySelectorAll('.sidebar-nav-item').forEach(btn => {
         btn.classList.remove('bg-[#27864B]', 'text-white', 'font-bold', 'shadow-sm');
         btn.classList.add('text-white/75', 'hover:text-white', 'hover:bg-white/10', 'font-medium');
@@ -742,14 +899,8 @@
         if (tit) tit.innerText = meta.title;
       }
 
-      // Auto close mobile drawer on tab select
       toggleMobileSidebar(false);
     }
-
-    window.addEventListener('hashchange', () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash) switchTab(hash);
-    });
 
     // 3. Filter and Search
     function setCategoryFilter(cat) {
@@ -758,7 +909,7 @@
         if (btn.dataset.category === cat) {
           btn.className = 'cat-pill px-4 py-2 rounded-xl text-xs font-bold transition-all bg-primary text-white shadow-sm cursor-pointer';
         } else {
-          btn.className = 'cat-pill px-4 py-2 rounded-xl text-xs font-bold transition-all bg-soft-mint text-secondary-text hover:text-forest cursor-pointer';
+          btn.className = 'cat-pill inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all bg-soft-mint text-secondary-text hover:text-forest cursor-pointer';
         }
       });
       renderCatalog();
@@ -806,8 +957,8 @@
         });
 
         closeClaimModal();
-        showToast('Permohonan jemput terkirim! Tinggal tunggu persetujuan donatur ya.');
-        switchTab('pickup');
+        showToast('Permohonan jemput terkirim! Tinggal tunggu konfirmasi dari pihak toko ya.');
+        switchTab('claims');
       } catch (err) {
         alert(err.message || 'Gagal mengajukan permohonan jemput nih.');
       }
@@ -817,21 +968,11 @@
     function handleMitraConfirmHandover(txId, pin) {
       const res = TPStore.verifyHandover(txId, pin);
       if (res.success) {
-        showToast('Beres! Serah terima selesai. Makanan berhasil diselamatkan dan siap disalurkan.');
+        showToast('Beres! Serah terima selesai. Makanan berhasil kamu terima.');
         openRatingModal(txId);
       } else {
         alert(res.error || 'PIN-nya belum pas nih, coba cek lagi ya.');
       }
-    }
-
-    function handleMitraVerifyPin(txId) {
-      const input = document.getElementById(`mitra-pin-input-${txId}`);
-      const pin = input ? input.value.trim() : '';
-      if (!pin || pin.length < 4) {
-        alert('Yuk masukkan 4 digit PIN transaksi dari donatur ya.');
-        return;
-      }
-      handleMitraConfirmHandover(txId, pin);
     }
 
     // 6. Rating Modal Actions
@@ -864,7 +1005,7 @@
       const stars = document.getElementById('rating-stars').value;
       const hygieneScore = document.getElementById('rating-hygiene').value;
       const punctualityScore = document.getElementById('rating-punctuality').value;
-      const notes = document.getElementById('rating-comment').value.trim() || 'Pelayanan prima dan makanan sangat layak santap.';
+      const notes = document.getElementById('rating-comment').value.trim() || 'Pelayanan prima dan makanan sangat berkah.';
 
       TPStore.submitRating(txId, {
         stars,
@@ -875,10 +1016,26 @@
       });
 
       closeRatingModal();
-      showToast('Terima kasih banyak! Ulasanmu sudah masuk ke profil donatur.');
+      showToast('Terima kasih banyak! Ulasanmu sudah masuk ke profil toko donatur.');
+      switchTab('history');
     }
 
-    // 7. Render Catalog
+    // 7. Update Profile Handler
+    function handleUpdateProfile(e) {
+      e.preventDefault();
+      const user = TPStore.getCurrentUser();
+      const name = document.getElementById('profile-name').value.trim();
+      const capacity = parseInt(document.getElementById('profile-capacity').value, 10);
+      const pic = document.getElementById('profile-pic').value.trim();
+      const address = document.getElementById('profile-address').value.trim();
+      const phone = document.getElementById('profile-phone').value.trim();
+      const vehicle = document.getElementById('profile-vehicle').value.trim();
+
+      TPStore.updateUserProfile(user.id, { name, capacity, pic, address, phone, vehicle });
+      showToast('Profil panti berhasil diperbarui!');
+    }
+
+    // 8. Render Catalog
     function renderCatalog() {
       const listings = TPStore.getSurplusListings({
         status: 'OPEN',
@@ -891,9 +1048,11 @@
       const container = document.getElementById('container-surplus-catalog');
       if (listings.length === 0) {
         container.innerHTML = `
-          <div class="col-span-full bg-white rounded-3xl p-10 border border-border-color text-center">
-            <div class="w-12 h-12 rounded-2xl bg-light-green text-primary flex items-center justify-center mx-auto mb-3"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-width="2"/><path d="m21 21-4.35-4.35" stroke-width="2" stroke-linecap="round"/></svg></div>
-            <h4 class="text-base font-extrabold text-forest">Wah, belum ada surplus di sekitarmu saat ini</h4>
+          <div class="col-span-full bg-white rounded-3xl p-10 border border-border-color text-center shadow-soft">
+            <div class="w-12 h-12 rounded-2xl bg-light-green text-primary flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-width="2"/><path d="m21 21-4.35-4.35" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h4 class="text-base font-extrabold text-forest">Wah, belum ada makanan di sekitarmu saat ini</h4>
             <p class="text-xs text-secondary-text mt-1">Coba cek kategori lain atau tunggu sebentar ya, donatur biasanya posting menjelang sore atau malam.</p>
           </div>
         `;
@@ -903,30 +1062,32 @@
       container.innerHTML = listings.map(item => `
         <div class="bg-white rounded-3xl p-6 border border-border-color shadow-soft hover:shadow-card transition-all flex flex-col justify-between">
           <div>
-            <!-- Top Badges -->
             <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-light-green text-forest">
-                ${item.category}
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-light-green text-forest">
+                ${TPStore.getCategorySvg(item.category, 'w-3.5 h-3.5')}
+                <span>${item.category}</span>
               </span>
               <span class="inline-flex items-center gap-1 text-[11px] font-bold text-[#EA580C] bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-200">
-                <svg class='w-3 h-3 shrink-0' fill='none' stroke='currentColor' viewBox='0 0 24 24'><circle cx='12' cy='12' r='10' stroke-width='2'/><polyline points='12 6 12 12 16 14' stroke-width='2' stroke-linecap='round'/></svg> ${item.expiresLabel || '2 Jam lagi'}
+                <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>Sisa: ${item.expiresLabel || '2 Jam lagi'}</span>
               </span>
             </div>
 
             <h4 class="text-lg font-extrabold text-forest">${item.title}</h4>
 
-            <!-- Donatur info -->
             <div class="text-xs text-secondary-text mt-2 flex items-center gap-2">
               <strong class="text-forest font-bold">${item.donaturName}</strong>
               <span>•</span>
-              <span class="text-primary font-bold"><svg class='w-3.5 h-3.5 text-primary shrink-0' fill='none' stroke='currentColor' viewBox='0 0 24 24'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z'/><circle cx='12' cy='10' r='3' stroke-width='2'/></svg> ${item.distanceKm} km</span>
+              <span class="text-primary font-bold flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>${item.distanceKm} km</span>
+              </span>
             </div>
 
             <p class="text-xs text-secondary-text mt-2 leading-relaxed line-clamp-2">
               ${item.notes}
             </p>
 
-            <!-- Condition and Portions -->
             <div class="grid grid-cols-2 gap-2 mt-4 p-3 rounded-2xl bg-soft-mint border border-border-color text-xs">
               <div>
                 <span class="text-[10px] text-secondary-text uppercase font-bold block">Porsi Tersedia</span>
@@ -939,16 +1100,15 @@
             </div>
           </div>
 
-          <!-- Bottom Action CTA -->
           <div class="mt-5 pt-4 border-t border-border-color flex items-center justify-between">
-            <span class="text-[11px] text-secondary-text">
-              Masak: ${item.cookedAt}
+            <span class="text-[11px] text-primary font-bold bg-light-green px-2 py-0.5 rounded-md">
+              95% Cocok untuk Pantimu
             </span>
             <button
               type="button"
               onclick="openClaimModal('${item.id}')"
-              class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-primary hover:bg-forest text-white text-xs font-bold shadow-sm transition-all cursor-pointer">
-              <span>Ajukan Klaim</span>
+              class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-forest hover:bg-forest/90 text-white text-xs font-bold shadow-sm transition-all cursor-pointer">
+              <span>Ajukan Jemput</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
           </div>
@@ -956,9 +1116,17 @@
       `).join('');
     }
 
-    // 8. Render Penjemputan Saya (Approved, Pending, History)
+    // 9. Render Penjemputan, Klaim, Riwayat
     function renderPickups() {
       const user = TPStore.getCurrentUser();
+
+      // Update User Name badges
+      const headerMitraName = document.getElementById('header-mitra-name');
+      if (headerMitraName && user) headerMitraName.innerText = user.name || 'Panti Al-Ikhlas';
+      const mitraDisplayName = document.getElementById('mitra-display-name');
+      if (mitraDisplayName && user) mitraDisplayName.innerText = user.name || 'Panti Asuhan Al-Ikhlas';
+      const mitraCapLabel = document.getElementById('mitra-capacity-label');
+      if (mitraCapLabel && user) mitraCapLabel.innerText = `${user.capacity || 35} Anak`;
 
       // Approved scheduled transactions
       const transactions = TPStore.getTransactions({ mitraId: user.id });
@@ -969,88 +1137,114 @@
       const claims = TPStore.getClaims({ mitraId: user.id });
       const pendingClaims = claims.filter(c => c.status === 'PENDING');
 
-      // Update badge count
-      document.getElementById('badge-my-pickups').innerText = activeApproved.length + pendingClaims.length;
+      // KPI & Badge Counts
+      document.getElementById('badge-pending-claims').innerText = pendingClaims.length;
+      document.getElementById('count-pending-claims').innerText = `${pendingClaims.length} Menunggu`;
+      document.getElementById('badge-ready-pickup').innerText = activeApproved.length;
 
-      // Render Active Approved Transactions (Ready to pick up)
+      document.getElementById('kpi-mitra-portions').innerText = (user.totalPortionsReceived || 290).toLocaleString();
+      document.getElementById('kpi-mitra-ready').innerText = activeApproved.length;
+      document.getElementById('kpi-mitra-pending').innerText = pendingClaims.length;
+
+      // Render Active Approved Transactions (Ready to pick up - Single Task Focus 1:1)
       const approvedContainer = document.getElementById('container-mitra-approved-tx');
       if (activeApproved.length === 0) {
         approvedContainer.innerHTML = `
-          <div class="bg-white rounded-3xl p-10 border border-border-color text-center shadow-sm max-w-xl mx-auto">
-            <div class="w-14 h-14 mx-auto rounded-full bg-[#E8F5E9] text-forest flex items-center justify-center mb-4">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <div class="bg-white rounded-3xl p-12 sm:p-16 border border-border-color shadow-sm text-center max-w-2xl mx-auto my-6">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-light-green text-forest flex items-center justify-center mb-4">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
             </div>
-            <h4 class="text-base font-bold text-forest mb-1">Semua Beres!</h4>
-            <p class="text-xs text-secondary-text leading-relaxed">
-              Belum ada makanan yang disetujui untuk dijemput saat ini. Yuk ajukan permohonan di tab Katalog Surplus!
+            <h3 class="text-xl font-extrabold text-forest">Semua Beres! Belum ada jadwal jemput aktif</h3>
+            <p class="text-xs sm:text-sm text-secondary-text mt-2 max-w-md mx-auto leading-relaxed">
+              Begitu tokomu menyetujui permohonan makanan, QR Code dan nomor PIN jemput akan langsung muncul di sini.
             </p>
+            <button type="button" onclick="switchTab('catalog')" class="mt-4 px-5 py-2.5 rounded-xl bg-forest text-white text-xs font-bold hover:bg-forest/90 transition-colors cursor-pointer">
+              Cari Makanan Lain
+            </button>
           </div>
         `;
       } else {
         approvedContainer.innerHTML = activeApproved.map(tx => `
           <div class="max-w-4xl mx-auto space-y-6">
-            <!-- Header Status Pill -->
-            <div class="flex flex-wrap items-center justify-between gap-3 px-2">
-              <div class="flex items-center gap-2">
-                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold bg-[#E8F5E9] text-forest border border-[#C8E6C9] shadow-xs">
-                  <span class="w-2.5 h-2.5 rounded-full bg-[#27864B] animate-pulse"></span>
+            <!-- Focused Header Bar -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-1">
+              <div class="flex items-center gap-3">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#104028] text-white shadow-xs">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                   DISETUJUI: SIAP KAMU AMBIL
                 </span>
-                <span class="text-xs text-secondary-text font-mono">${tx.id}</span>
+                <h3 class="text-xl sm:text-2xl font-extrabold text-forest">${tx.listingTitle}</h3>
               </div>
-              <div class="text-right">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-secondary-text block">Batas Waktu Penjemputan</span>
-                <span class="text-xs font-extrabold text-[#EA580C]">${tx.pickupDeadline}</span>
+              <div class="text-xs text-secondary-text">
+                Kode Transaksi: <span class="font-mono font-bold text-forest">${tx.id}</span>
               </div>
             </div>
 
-            <!-- Single-Task Focus 1:1 Benchmark Grid -->
+            <!-- Single-Task Focus 1:1 Two Column Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
               <!-- Left Column: Large QR Code Card -->
               <div class="bg-white rounded-3xl p-8 sm:p-10 border border-border-color shadow-sm flex flex-col items-center justify-center text-center">
-                <div class="text-[11px] font-bold uppercase tracking-wider text-secondary-text mb-4">KODE QR VERIFIKASI SERAH TERIMA</div>
+                <div class="text-[11px] font-bold uppercase tracking-wider text-secondary-text mb-4">
+                  KODE QR VERIFIKASI SERAH TERIMA
+                </div>
+
                 <div class="w-56 h-56 sm:w-64 sm:h-64 p-3 bg-white rounded-2xl border border-border-color shadow-xs flex items-center justify-center">
                   ${TPStore.generateQrSvg(tx.qrData, 220)}
                 </div>
+
                 <p class="text-xs sm:text-sm text-secondary-text mt-5 max-w-xs leading-relaxed">
-                  Tunjukkan kode QR ini ke petugas donatur di lokasi untuk dipindai secara langsung.
+                  Tunjukkan kode QR ini ke kasir atau petugas toko di lokasi untuk verifikasi serah terima.
                 </p>
+
+                <div class="mt-4 px-3 py-1 rounded-full bg-[#F4F6F0] text-[11px] font-mono text-secondary-text border border-border-color">
+                  ${tx.qrData}
+                </div>
               </div>
 
-              <!-- Right Column: Big Display PIN + 2-Col Metadata Box -->
+              <!-- Right Column: Big Display PIN + Expiry + 2-Col Metadata Box -->
               <div class="bg-white rounded-3xl p-8 sm:p-10 border border-border-color shadow-sm flex flex-col justify-between">
                 <div>
-                  <div class="flex items-center justify-between pb-2 border-b border-border-color">
+                  <!-- Expiry & Label Header -->
+                  <div class="flex items-center justify-between gap-2 mb-3">
                     <span class="text-[11px] font-bold uppercase tracking-wider text-secondary-text">PIN VERIFIKASI 4-DIGIT</span>
-                    <span class="inline-flex items-center gap-1 text-[11px] font-bold text-forest bg-[#E8F5E9] px-2.5 py-0.5 rounded-full">
-                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                      Aktif
+                    <span class="inline-flex items-center gap-1 text-[11px] font-bold text-[#EA580C] bg-orange-50 px-2.5 py-1 rounded-full border border-orange-200">
+                      <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      <span>Batas: ${tx.pickupDeadline}</span>
                     </span>
                   </div>
 
-                  <!-- High Emphasis Big PIN Display -->
-                  <div class="py-6 my-4 text-center rounded-2xl bg-[#F4F6F0] border border-border-color shadow-inner">
-                    <div class="text-5xl sm:text-6xl font-extrabold font-mono tracking-widest text-forest">${tx.pin}</div>
-                    <div class="text-[11px] text-secondary-text mt-1">Sebutkan PIN ini ke pihak donatur jika scanner bermasalah</div>
+                  <!-- High Emphasis Big Display PIN -->
+                  <div class="py-6 my-2 text-center rounded-2xl bg-[#F4F6F0] border border-border-color shadow-inner">
+                    <div class="text-5xl sm:text-6xl font-extrabold font-mono tracking-widest text-forest">
+                      ${tx.pin}
+                    </div>
                   </div>
 
-                  <!-- 2-Column Logistics Metadata Box -->
-                  <div class="grid grid-cols-2 gap-4 p-4 sm:p-5 rounded-2xl bg-[#F4F6F0] border border-border-color my-4">
-                    <div>
-                      <span class="block text-[11px] font-bold uppercase tracking-wider text-secondary-text mb-1">Jumlah Porsi / Paket</span>
-                      <div class="text-2xl sm:text-3xl font-extrabold font-mono text-forest">${tx.portions} Porsi</div>
+                  <p class="text-xs text-secondary-text text-center mt-2">
+                    Sebutkan 4 digit PIN ini ke pihak toko jika kamera scanner mereka bermasalah.
+                  </p>
+                </div>
+
+                <!-- 2-Column Logistics Metadata Box -->
+                <div class="grid grid-cols-2 gap-4 p-4 sm:p-5 rounded-2xl bg-[#F4F6F0] border border-border-color my-4">
+                  <div>
+                    <span class="block text-[11px] font-bold uppercase tracking-wider text-secondary-text mb-1">Jumlah Porsi / Paket</span>
+                    <div class="text-2xl sm:text-3xl font-extrabold font-mono text-forest">
+                      ${tx.portions} <span class="text-sm font-sans font-semibold text-secondary-text">Porsi</span>
                     </div>
-                    <div class="border-l border-border-color pl-4">
-                      <span class="block text-[11px] font-bold uppercase tracking-wider text-secondary-text mb-1">Berat Total Muatan</span>
-                      <div class="text-2xl sm:text-3xl font-extrabold font-mono text-forest">${tx.kg} kg</div>
+                  </div>
+                  <div class="border-l border-border-color pl-4">
+                    <span class="block text-[11px] font-bold uppercase tracking-wider text-secondary-text mb-1">Berat Total Muatan</span>
+                    <div class="text-2xl sm:text-3xl font-extrabold font-mono text-forest">
+                      ${tx.kg} <span class="text-sm font-sans font-semibold text-secondary-text">kg</span>
                     </div>
                   </div>
                 </div>
 
-                <!-- Logistics Meta Summary -->
-                <div class="pt-4 border-t border-border-color text-xs space-y-1 text-secondary-text">
+                <!-- Logistics Location Details -->
+                <div class="pt-2 border-t border-border-color text-xs space-y-1 text-secondary-text">
                   <div class="flex items-center justify-between">
-                    <span class="font-medium">Donatur:</span>
+                    <span class="font-medium">Nama Donatur:</span>
                     <span class="font-bold text-forest">${tx.donaturName}</span>
                   </div>
                   <div class="flex items-center justify-between">
@@ -1059,79 +1253,104 @@
                   </div>
                   <div class="flex items-center justify-between">
                     <span class="font-medium">Wadah/Armada:</span>
-                    <span class="font-bold text-forest">${tx.vehicleNotes || 'Kontainer higienis'}</span>
+                    <span class="font-bold text-forest">${tx.vehicleNotes || 'Boks kontainer bersih'}</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Bottom Wide Pill CTA Button -->
-            <button
-              type="button"
-              onclick="handleMitraConfirmHandover('${tx.id}', '${tx.pin}')"
-              class="w-full py-4 px-8 rounded-full bg-[#104028] hover:bg-[#185335] text-white text-base sm:text-lg font-bold shadow-lg shadow-[#104028]/15 transition-all flex items-center justify-center gap-3 cursor-pointer">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-              <span>Konfirmasi Penyaluran</span>
-            </button>
+            <!-- Bottom Action: Wide Pill CTA Button -->
+            <div class="pt-2">
+              <button
+                type="button"
+                onclick="handleMitraConfirmHandover('${tx.id}', '${tx.pin}')"
+                class="w-full py-4 px-8 rounded-full bg-[#104028] hover:bg-[#185335] active:scale-[0.99] text-white text-base sm:text-lg font-bold shadow-lg shadow-[#104028]/15 transition-all flex items-center justify-center gap-3 cursor-pointer">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>Konfirmasi Penyaluran</span>
+              </button>
+            </div>
           </div>
         `).join('');
       }
 
-      // Render Pending Claims
+      // Render Pending Claims (Tab: Claims)
       const pendingContainer = document.getElementById('container-mitra-pending-claims');
       if (pendingClaims.length === 0) {
         pendingContainer.innerHTML = `
-          <div class="bg-white rounded-2xl p-5 border border-border-color text-center text-xs text-secondary-text">
-            Tidak ada permohonan klaim yang sedang menunggu respon donatur.
+          <div class="bg-white rounded-3xl p-10 border border-border-color text-center shadow-soft">
+            <div class="w-12 h-12 mx-auto rounded-2xl bg-light-green text-primary flex items-center justify-center mb-3">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <p class="text-sm font-bold text-forest">Tidak ada permohonan yang sedang menunggu respon toko.</p>
+            <p class="text-xs text-secondary-text mt-1 mb-4">Kamu bisa cari makanan lain yang sedang tayang di katalog!</p>
+            <button type="button" onclick="switchTab('catalog')" class="px-5 py-2.5 rounded-xl bg-forest text-white text-xs font-bold hover:bg-forest/90 transition-colors cursor-pointer">
+              Buka Katalog Makanan
+            </button>
           </div>
         `;
       } else {
         pendingContainer.innerHTML = pendingClaims.map(c => `
-          <div class="bg-white rounded-2xl p-5 border border-border-color flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-            <div>
-              <div class="flex items-center gap-2 mb-1">
-                <span class="px-2 py-0.5 rounded-full font-bold text-[10px] bg-orange-100 text-[#EA580C]">MENUNGGU RESPON DONATUR</span>
-                <strong class="text-sm font-bold text-forest">${c.listingTitle}</strong>
+          <div class="bg-white rounded-3xl p-6 border border-border-color flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs shadow-soft hover:shadow-card transition-all">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-full font-bold text-[10px] bg-orange-100 text-[#EA580C]">MENUNGGU RESPON TOKO</span>
+                <strong class="text-base font-bold text-forest">${c.listingTitle}</strong>
               </div>
               <div class="text-secondary-text">
-                Donatur: <strong>${c.donaturName}</strong> • Permintaan: ${c.requestedPortions} Porsi (${c.kg} kg) • Estimasi tiba: ${c.etaMinutes} menit
+                Donatur: <strong>${c.donaturName}</strong> • Permintaan: <strong class="text-forest">${c.requestedPortions} Porsi (${c.kg} kg)</strong>
+              </div>
+              <div class="text-secondary-text">
+                Armada: ${c.vehicleNotes} • Estimasi Tiba: ${c.etaMinutes} menit
               </div>
             </div>
-            <div class="text-right">
+            <div class="text-right shrink-0">
               <span class="text-xs text-secondary-text block">Diajukan: ${new Date(c.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} WIB</span>
+              <span class="text-[11px] text-primary font-bold">Harap pantau berkala</span>
             </div>
           </div>
         `).join('');
       }
 
-      // Render Completed History
+      // Render Completed History (Tab: History)
       const historyContainer = document.getElementById('container-mitra-completed-history');
       if (completedHistory.length === 0) {
         historyContainer.innerHTML = `
-          <div class="text-xs text-secondary-text italic py-2">Belum ada riwayat penjemputan selesai.</div>
+          <div class="bg-white rounded-3xl p-10 border border-border-color text-center shadow-soft">
+            <p class="text-sm font-bold text-forest">Belum ada riwayat penjemputan selesai.</p>
+            <p class="text-xs text-secondary-text mt-1">Setiap serah terima yang tuntas akan tercatat di sini dan bisa kamu beri bintang ulasan.</p>
+          </div>
         `;
       } else {
         historyContainer.innerHTML = completedHistory.map(h => `
-          <div class="bg-white rounded-2xl p-4 border border-border-color flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-            <div>
+          <div class="bg-white rounded-3xl p-6 border border-border-color flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs shadow-soft hover:shadow-card transition-all">
+            <div class="space-y-1">
               <div class="flex items-center gap-2">
-                <span class="px-2 py-0.5 rounded-md font-bold text-[10px] bg-green-100 text-forest">SUKSES DITERIMA</span>
-                <strong class="text-sm font-bold text-forest">${h.listingTitle}</strong>
+                <span class="px-2.5 py-0.5 rounded-md font-bold text-[10px] bg-green-100 text-forest">SUKSES DITERIMA</span>
+                <strong class="text-base font-bold text-forest">${h.listingTitle}</strong>
               </div>
-              <div class="text-secondary-text mt-1">
-                Dari: <strong>${h.donaturName}</strong> (${h.portions} Porsi • ${h.kg} kg)
+              <div class="text-secondary-text">
+                Dari Toko: <strong>${h.donaturName}</strong> (${h.portions} Porsi • ${h.kg} kg makanan)
+              </div>
+              <div class="text-secondary-text">
+                Selesai pada: ${new Date(h.completedAt || h.createdAt).toLocaleDateString('id-ID')}
               </div>
             </div>
 
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3 shrink-0">
               ${h.rating ? `
-                <span class="text-primary font-bold">⭐ ${h.rating.stars}.0 / 5.0 (Sudah Diulas)</span>
+                <div class="text-right">
+                  <div class="text-primary font-bold flex items-center justify-end gap-1">
+                    <svg class="w-4 h-4 text-amber-500 fill-amber-500" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <span>${h.rating.stars}.0 / 5.0</span>
+                  </div>
+                  <span class="text-[11px] text-secondary-text">Sudah Diulas</span>
+                </div>
               ` : `
                 <button
                   type="button"
                   onclick="openRatingModal('${h.id}')"
-                  class="px-3 py-1.5 rounded-lg bg-warm-yellow/30 text-forest hover:bg-warm-yellow font-bold text-[11px] transition-colors cursor-pointer">
-                  ⭐ Beri Ulasan Donatur
+                  class="px-4 py-2.5 rounded-xl bg-warm-yellow/30 text-forest hover:bg-warm-yellow font-bold text-xs transition-colors cursor-pointer">
+                  ⭐ Beri Ulasan Toko
                 </button>
               `}
             </div>
@@ -1140,21 +1359,18 @@
       }
     }
 
-    // Initialize
+    // Initialize Tom Select & Event Subscriptions
     document.addEventListener('DOMContentLoaded', () => {
       TPStore.switchUserRole('mitra', 'mitra-1');
+
       renderCatalog();
       renderPickups();
 
       // Initialize Tom Select
       const tomConfig = {
+        create: false,
         controlInput: null,
-        wrapperClass: 'ts-wrapper ts-tumbuh',
-        render: {
-          dropdown: function() {
-            return '<div class="ts-dropdown"></div>';
-          }
-        }
+        plugins: ['no_backspace_delete']
       };
       if (document.getElementById('claim-eta-select')) new TomSelect('#claim-eta-select', tomConfig);
       if (document.getElementById('rating-hygiene')) new TomSelect('#rating-hygiene', tomConfig);
