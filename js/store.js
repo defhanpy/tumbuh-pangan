@@ -505,13 +505,13 @@
           const x = (8 + c * cellSize).toFixed(2);
           const y = (8 + r * cellSize).toFixed(2);
           const s = cellSize.toFixed(2);
-          rects += `<rect x="${x}" y="${y}" width="${s}" height="${s}" fill="#14532D" />`;
+          rects += `<rect x="${x}" y="${y}" width="${s}" height="${s}" fill="#104028" />`;
         }
       }
     }
 
     return `
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" class="mx-auto bg-white p-2 rounded-2xl shadow-inner border border-border-color" aria-label="QR Code Transaksi: ${data}">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" class="mx-auto bg-white p-2.5 rounded-2xl border border-[#E2E8DE]" aria-label="QR Code Transaksi: ${data}">
         <rect width="${size}" height="${size}" rx="12" fill="#FFFFFF"/>
         ${rects}
       </svg>
@@ -909,7 +909,7 @@
 
       return `
         <!-- Floating Demo Switcher: Desktop Only (Hidden on mobile <1024px to prevent blocking content) -->
-        <aside id="demo-switcher-bar" class="hidden lg:block fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl bg-forest/95 backdrop-blur-md text-white px-4 py-3 rounded-2xl shadow-2xl border border-white/20 transition-all duration-300" aria-label="Demo Role Switcher">
+        <aside id="demo-switcher-bar" class="hidden lg:block fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl bg-[#104028]/95 backdrop-blur-md text-white px-4 py-3 rounded-2xl shadow-2xl border border-white/20 transition-all duration-300" aria-label="Demo Role Switcher">
           <div class="flex flex-wrap items-center justify-between gap-3 text-xs">
             <!-- Left: Badge & Live Status -->
             <div class="flex items-center gap-2">
