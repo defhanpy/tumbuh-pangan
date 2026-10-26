@@ -1,0 +1,170 @@
+================================================================================
+                    PROJECT BRIEF & LATAR BELAKANG INOVASI
+                                TUMBUH PANGAN
+             Platform Redistribusi Pangan Kolaboratif Berbasis Digital
+================================================================================
+
+KOMPETISI   : FunDev International Competition 2026
+PENYELENGGARA: D3 Teknik Informatika, Fakultas Vokasi, Universitas Sumatera Utara (USU)
+TEMA        : Digital Creative Technology for Sustainable Development Goals (SDGs)
+FOKUS SDGS  : - SDG 2: Zero Hunger (Menghilangkan Kelaparan & Ketahanan Pangan)
+              - SDG 12.3: Halve Global Food Loss and Waste (Pengurangan 50% FLW)
+TIM         : Team Mandala
+ANGGOTA TIM : 1. Ilhan Awafi (Product Engineering & System Architecture)
+              2. Sarah Safira (Sustainability Research, Impact Modeling & UI/UX Design)
+INSTITUSI   : Institut Teknologi dan Sains Mandala (ITSM), Jember, Jawa Timur
+MITRA IND.  : Defhanpy Agency (agency.defhanpy.dev)
+LIVE DEMO   : https://tumbuh-pangan.dev-mode.web.id
+KONTAK      : defhanpy@gmail.com
+
+================================================================================
+1. LATAR BELAKANG MENDALAM & URGENSI MASALAH (THE CRISIS)
+================================================================================
+
+1.1. Paradoks Pangan Nasional
+Indonesia menghadapi paradoks ketahanan pangan yang sangat memprihatinkan. Di satu
+sisi, jutaan keluarga prasejahtera dan anak asuh di berbagai panti asuhan serta
+dapur sosial masih mengalami defisit asupan nutrisi harian. Namun di sisi lain,
+jutaan ton makanan layak konsumsi terbuang begitu saja setiap harinya.
+
+Berdasarkan laporan resmi Kementerian Perencanaan Pembangunan Nasional/Bappenas RI
+mengenai Food Loss and Waste (FLW):
+- Timbulan Makanan Terbuang: Mencapai 23 hingga 48 juta metrik ton per tahun
+  (setara dengan 115 - 184 kg per kapita setiap tahunnya).
+- Beban Kerugian Ekonomi: Menghilangkan nilai ekonomi sebesar Rp 213 hingga
+  Rp 551 triliun per tahun (setara dengan 4% - 5% Produk Domestik Bruto Indonesia).
+- Dampak Kerusakan Lingkungan: Menghasilkan emisi gas rumah kaca sebesar 7,29% dari
+  total emisi nasional, yang mempercepat pemanasan global akibat gas metana (CH4)
+  dari pembusukan makanan di TPA liar.
+
+1.2. Fakta Lapangan Sektor F&B Komersial
+Surplus makanan layak santap secara rutin dihasilkan setiap hari oleh pelaku usaha
+kuliner komersial (toko roti/pastry, restoran, katering, hotel, supermarket, dan
+UMKM kuliner). Makanan tersebut bukan sisa piring konsumen (plate waste), melainkan
+produk berlebih yang tidak habis terjual pada jam operasional harian.
+
+1.3. Akar Masalah & Hambatan Penyaluran Mandiri
+Mengapa donatur dan penerima belum terhubung dengan baik?
+1. Keterbatasan Waktu Donatur: Pelaku usaha F&B sangat sibuk saat jam tutup toko.
+   Mereka tidak memiliki waktu luang untuk mencari penerima atau mengantar makanan.
+2. Friksi Koordinasi Manual: Penyaluran konvensional via chat WhatsApp acak sering
+   berujung pada salah komunikasi waktu penjemputan, kapasitas yang tidak pas,
+   atau makanan kedaluwarsa sebelum sempat diambil.
+3. Kecemasan Pertanggungjawaban (Food Safety Liability): Donatur khawatir akan
+   risiko hukum atau komplain keracunan makanan jika tidak ada standar inspeksi
+   keamanan pangan yang jelas saat serah terima.
+4. Ketiadaan Transparansi & Data: Tidak ada rekaman data terverifikasi mengenai
+   berapa kilogram makanan yang telah diselamatkan dan berapa dampak nyata terhadap
+   lingkungan.
+
+================================================================================
+2. DESKRIPSI PRODUK & VISI TUMBUH PANGAN
+================================================================================
+
+Tumbuh Pangan adalah platform redistribusi pangan digital berbasis model B2B2C
+(Business-to-Business-to-Community). Platform ini TIDAK mendistribusikan makanan
+ke individu perorangan di jalanan, melainkan secara terakreditasi mempertemukan
+Pelaku Usaha Pangan (Donatur) dengan Lembaga Sosial & Komunitas Grassroots Resmi
+(Mitra Penyalur) seperti panti asuhan, yayasan yatim, dapur umum PMI, dan kelompok
+relawan sosial.
+
+Pendekatan ini dipilih demi menjamin:
+- Kecepatan logistik penjemputan mandiri (self-pickup).
+- Keamanan sanitasi dan rantai kendali pangan (chain of custody).
+- Kepastian kapasitas tampung warga asuhan yang jelas.
+- Perlindungan martabat sosial para penerima manfaat.
+
+================================================================================
+3. TRIAD INOVASI UTAMA (CORE TECHNOLOGY)
+================================================================================
+
+3.1. Smart Food Matching Engine (Algoritma Pencocokan Multi-Kriteria)
+Sistem cerdas berbasis bobot yang secara otomatis mencocokkan listing surplus
+makanan dengan profil mitra penyalur terdekat:
+- 40% Waktu Kritis Simpan (Golden Window): Memprioritaskan makanan siap saji yang
+  memiliki toleransi waktu konsumsi singkat.
+- 25% Kesesuaian Porsi & Nutrisi: Memastikan jumlah porsi donasi seimbang dengan
+  jumlah anak asuh / warga binaan di lembaga penerima (mencegah surplus mubazir baru).
+- 20% Radius Jarak Geografis: Membatasi rute penjemputan demi meminimalkan waktu
+  transit dan jejak karbon kendaraan.
+- 15% Kapasitas Fasilitas Mitra: Kesesuaian wadah angkut (cooler box, tas termal,
+  atau wadah kering).
+
+3.2. Digital Food Safety Gate (Gerbang Keamanan Pangan)
+Protokol wajib sebelum donasi dapat tayang:
+- Form deklarasi sensori terstruktur (inspeksi visual, aroma normal, tekstur baik,
+  dan kemasan tertutup rapat).
+- Validasi metode penyimpanan spesifik (Suhu Ruang, Warmer/Termal, atau Chiller 0-4°C).
+- Ketentuan Saling Menghormati (Terms of Mutual Respect): Batasan tanggung jawab
+  hukum yang melindungi niat baik donatur dari tuntutan sepihak selama standar
+  higienitas dipatuhi.
+
+3.3. Atomic Handover & Real-Time Impact Ledger
+- Token PIN 4-Digit / Dynamic QR: Serah terima fisik di outlet wajib divalidasi
+  menggunakan kode unik 4-digit dari mitra penjemput, mencegah pengambilan salah sasaran.
+- Otomasi Buku Besar Dampak Lingkungan: Setiap transaksi terkonfirmasi otomatis
+  mengalkulasikan metrik ekologis:
+  * Formula Reduksi Emisi: 1 kg Pangan Diselamatkan = 2,5 kg Reduksi Emisi CO2e.
+- Reputasi Dua Arah: Donatur dan mitra saling memberikan ulasan higienitas dan
+  ketepatan waktu pasca-serah terima demi menjaga integritas komunitas.
+
+================================================================================
+4. ARSITEKTUR SISTEM & FITUR APLIKASI
+================================================================================
+
+Platform dirancang dengan arsitektur multi-peran (3 Portal Terintegrasi):
+
+1. PORTAL DONATUR PANGAN (app-donatur.html)
+   - Formulir pencatatan surplus cepat dengan Tom Select (v2.4.1).
+   - Checklist deklarasi keamanan Food Safety Gate.
+   - Panel persetujuan permohonan klaim mitra terdekat.
+   - Terminal serah terima penjemputan dengan validasi PIN 4-digit.
+
+2. PORTAL MITRA PENYALUR (app-mitra.html)
+   - Katalog surplus aktif terdekat dilengkapi indikator skor Smart Matching.
+   - Formulir pengajuan penjemputan porsi.
+   - Kartu instruksi penjemputan mandiri dan penerbitan kode PIN 4-digit.
+   - Dialog evaluasi dan ulasan kepuasan dua arah pasca-penerimaan.
+
+3. PORTAL PUSAT KENDALI ADMIN (app-admin.html)
+   - Antrean verifikasi kemitraan baru (KYC) lembaga dan pelaku usaha.
+   - Buku besar audit transaksi logistik real-time tanpa manipulasi.
+   - Rekapitulasi Key Performance Indicators (KPI) dampak sosial & emisi nasional.
+
+4. HALAMAN PUBLIK & EDUKASI
+   - Beranda (index.html), Profil Misi (tentang.html), Panduan Alur (cara-kerja.html),
+     Dokumentasi Fitur & Simulator Radius (fitur.html), Dashboard Dampak (dampak.html),
+     dan Pusat Bantuan FAQ (faq.html).
+
+================================================================================
+5. RANCANGAN IMPLEMENTASI PRODUKSI (ROADMAP)
+================================================================================
+
+- Fase 1 (Current - Lomba FunDev USU 2026):
+  * Interactive Multi-Page Client Prototype (HTML5, Tailwind, Tom Select, Lucide SVG).
+  * Standalone Reactive Engine (js/store.js) berbasis localStorage untuk pengujian
+    simulasi end-to-end tanpa hambatan dependensi server backend.
+  * Live Deployment di Vercel Edge Network: https://tumbuh-pangan.dev-mode.web.id.
+
+- Fase 2 (Production Scalability):
+  * Backend API: Go (Golang) Microservice (Fiber / Chi) dengan arsitektur RESTful.
+  * Database: PostgreSQL 16 dengan TimescaleDB untuk pencatatan time-series logistik.
+  * Geolocation Engine: PostGIS untuk perhitungan radius dan rute jemput optimal.
+  * Notifikasi Cepat: Webhook real-time dan integrasi bot notifikasi status penjemputan.
+
+================================================================================
+6. PROFIL TIM PENGEMBANG
+================================================================================
+
+TEAM MANDALA
+Institut Teknologi dan Sains Mandala (ITSM), Jember
+
+1. ILHAN AWAFI
+   Peran: Product Engineering, Architecture & Fullstack Development
+2. SARAH SAFIRA
+   Peran: Sustainability Research, Impact Modeling & UI/UX Design
+
+Kolaborasi Pendukung: Defhanpy Agency (Web & Digital Solutions)
+Kontak Surat Elektronik: defhanpy@gmail.com
+Repositori Proyek: https://github.com/defhanpy/tumbuh-pangan
+================================================================================
