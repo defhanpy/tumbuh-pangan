@@ -160,7 +160,7 @@ Developed by **Team Mandala** for the **FunDev International Competition 2026**:
 Jember, East Java, Indonesia
 
 **Industry Collaboration Partner**:  
-**Defhanpy Agency** (Web & Digital Solutions) — `agency.defhanpy.dev`
+**Defhanpy** (Web & Digital Solutions) — `https://defhanpy.dev`
 
 ---
 
