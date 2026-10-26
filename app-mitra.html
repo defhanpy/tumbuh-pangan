@@ -271,43 +271,122 @@
 
     <!-- Top Header Bar -->
     <header class="sticky top-0 z-20 bg-white/95 backdrop-blur-md border-b border-border-color h-16 lg:h-18 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-      <!-- Left: Mobile Hamburger + Breadcrumb & Title -->
+      <!-- Left: Mobile Hamburger & Logo -->
       <div class="flex items-center gap-3">
         <button
           type="button"
           onclick="toggleMobileSidebar(true)"
-          class="lg:hidden p-2 rounded-xl text-forest hover:bg-soft-mint transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          class="lg:hidden p-2 -ml-1 rounded-xl text-forest hover:bg-soft-mint transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           aria-label="Buka Menu Navigasi">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
         </button>
 
-        <div class="flex flex-col">
-          <div class="text-[11px] text-secondary-text font-medium flex items-center gap-1.5 leading-none">
-            <span id="header-mitra-name" class="hidden sm:inline">Panti Asuhan Al-Ikhlas</span>
-            <svg class="hidden sm:inline w-3 h-3 text-secondary-text/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-            <span id="header-breadcrumb" class="font-bold text-forest">Ringkasan Penyaluran</span>
-          </div>
-          <h1 id="header-page-title" class="text-base sm:text-lg font-extrabold text-forest mt-0.5 leading-tight">Berbagi Nutrisi untuk Adik Panti</h1>
-        </div>
+        <a href="index.html" class="flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl" aria-label="Beranda Tumbuh Pangan">
+          <img src="logo.svg" alt="Tumbuh Pangan Logo" class="h-8 w-auto">
+        </a>
       </div>
 
-      <!-- Right: Action to Catalog -->
-      <div class="flex items-center gap-3 sm:gap-4">
-        <div class="hidden md:block text-right">
-          <div class="text-xs font-mono font-bold text-forest">Komunitas Terdaftar</div>
-          <div class="text-[10px] text-primary font-bold flex items-center justify-end gap-1">
-            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
-            <span>Siap Jemput Makanan</span>
-          </div>
-        </div>
-
+      <!-- Right: User Profile Button with Floating Dropdown -->
+      <div class="relative" id="profile-menu-container">
         <button
           type="button"
-          onclick="switchTab('catalog')"
-          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-forest hover:bg-forest/90 text-white text-xs font-bold transition-all shadow-sm cursor-pointer">
-          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <span class="hidden sm:inline">Cari Makanan</span>
+          id="profile-menu-button"
+          onclick="toggleProfileMenu()"
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-label="Menu Profil Pengguna"
+          class="flex items-center gap-2.5 p-1.5 sm:px-3 sm:py-2 rounded-2xl hover:bg-soft-mint transition-all border border-transparent hover:border-border-color cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-forest text-white flex items-center justify-center font-extrabold text-xs sm:text-sm shadow-xs shrink-0 ring-2 ring-emerald-500/20">
+            <span id="topbar-avatar-initial">PA</span>
+          </div>
+          <div class="hidden sm:flex flex-col text-left">
+            <span id="header-mitra-name" class="text-xs sm:text-sm font-bold text-forest leading-tight truncate max-w-[140px] lg:max-w-[180px]">Panti Asuhan Al-Ikhlas</span>
+            <span class="text-[10px] text-secondary-text font-semibold leading-none mt-0.5">Mitra Penerima</span>
+          </div>
+          <svg id="profile-chevron" class="w-4 h-4 text-secondary-text transition-transform duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m6 9 6 6 6-6"/>
+          </svg>
         </button>
+
+        <!-- Floating Dropdown Menu -->
+        <div
+          id="profile-dropdown"
+          class="hidden absolute right-0 mt-2 w-72 sm:w-80 bg-white rounded-3xl shadow-xl border border-border-color py-3 z-50 animate-in fade-in zoom-in-95 duration-150"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="profile-menu-button">
+
+          <div class="px-4 py-3 border-b border-border-color/60 bg-soft-mint/30 rounded-t-2xl -mt-3 mb-2">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-full bg-forest text-white flex items-center justify-center font-extrabold text-sm shrink-0 shadow-xs">
+                <span id="dropdown-avatar-initial">PA</span>
+              </div>
+              <div class="min-w-0 flex-1">
+                <div id="dropdown-mitra-name" class="font-extrabold text-sm text-forest truncate">Panti Asuhan Al-Ikhlas</div>
+                <div class="flex items-center gap-1.5 mt-1 flex-wrap">
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-primary/10 text-primary border border-primary/20">
+                    Penerima Manfaat • Sosial
+                  </span>
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    <svg class="w-2.5 h-2.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Terverifikasi</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-2 space-y-1">
+            <!-- 1. Akun Saya (Opens profile tab in Mitra) -->
+            <button
+              type="button"
+              onclick="handleProfileMenuSelect('account')"
+              class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-forest hover:bg-soft-mint hover:text-primary transition-colors text-left cursor-pointer"
+              role="menuitem">
+              <div class="w-8 h-8 rounded-lg bg-soft-mint text-primary flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-bold">Akun Saya</div>
+                <div class="text-[11px] text-secondary-text font-normal">Profil lembaga, kapasitas & kontak PIC</div>
+              </div>
+            </button>
+
+            <!-- 2. Beranda Publik -->
+            <a
+              href="index.html"
+              class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-forest hover:bg-soft-mint hover:text-primary transition-colors text-left"
+              role="menuitem">
+              <div class="w-8 h-8 rounded-lg bg-soft-mint text-primary flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-bold">Beranda Publik</div>
+                <div class="text-[11px] text-secondary-text font-normal">Kunjungi landing page utama</div>
+              </div>
+              <svg class="w-4 h-4 text-secondary-text/60 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+
+          <div class="my-2 border-t border-border-color/60"></div>
+
+          <!-- 3. Keluar / Ganti Akun -->
+          <div class="px-2">
+            <a
+              href="login.html"
+              class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold text-red-600 hover:bg-red-50 transition-colors text-left"
+              role="menuitem">
+              <div class="w-8 h-8 rounded-lg bg-red-100/70 text-red-600 flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-bold">Keluar / Ganti Akun</div>
+                <div class="text-[11px] text-red-500/80 font-normal">Akhiri sesi portal ini</div>
+              </div>
+            </a>
+          </div>
+
+        </div>
       </div>
     </header>
 
@@ -890,17 +969,67 @@
         activePane.classList.add('block');
       }
 
-      // Update Header Breadcrumb & Title
+      // Update Header Breadcrumb & Title (safe if not in DOM)
       const meta = TAB_METAS[tabName];
       if (meta) {
         const bc = document.getElementById('header-breadcrumb');
         const tit = document.getElementById('header-page-title');
         if (bc) bc.innerText = meta.breadcrumb;
         if (tit) tit.innerText = meta.title;
+        if (meta.title) document.title = `${meta.title} — Mitra Tumbuh Pangan`;
       }
 
+      closeProfileMenu();
       toggleMobileSidebar(false);
     }
+
+    // Profile Dropdown Handler
+    function toggleProfileMenu() {
+      const dropdown = document.getElementById('profile-dropdown');
+      const btn = document.getElementById('profile-menu-button');
+      const chevron = document.getElementById('profile-chevron');
+      if (!dropdown) return;
+      const isOpen = !dropdown.classList.contains('hidden');
+      if (isOpen) {
+        closeProfileMenu();
+      } else {
+        dropdown.classList.remove('hidden');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+        if (chevron) chevron.classList.add('rotate-180');
+      }
+    }
+
+    function closeProfileMenu() {
+      const dropdown = document.getElementById('profile-dropdown');
+      const btn = document.getElementById('profile-menu-button');
+      const chevron = document.getElementById('profile-chevron');
+      if (dropdown && !dropdown.classList.contains('hidden')) {
+        dropdown.classList.add('hidden');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+        if (chevron) chevron.classList.remove('rotate-180');
+      }
+    }
+
+    function handleProfileMenuSelect(action) {
+      closeProfileMenu();
+      if (action === 'account') {
+        switchTab('profile');
+      }
+    }
+
+    // Dismiss dropdown on click outside or Escape
+    document.addEventListener('click', function(e) {
+      const container = document.getElementById('profile-menu-container');
+      if (container && !container.contains(e.target)) {
+        closeProfileMenu();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeProfileMenu();
+      }
+    });
 
     // 3. Filter and Search
     function setCategoryFilter(cat) {
@@ -1122,7 +1251,9 @@
 
       // Update User Name badges
       const headerMitraName = document.getElementById('header-mitra-name');
-      if (headerMitraName && user) headerMitraName.innerText = user.name || 'Panti Al-Ikhlas';
+      if (headerMitraName && user) headerMitraName.innerText = user.name || 'Panti Asuhan Al-Ikhlas';
+      const dropdownMitraName = document.getElementById('dropdown-mitra-name');
+      if (dropdownMitraName && user) dropdownMitraName.innerText = user.name || 'Panti Asuhan Al-Ikhlas';
       const mitraDisplayName = document.getElementById('mitra-display-name');
       if (mitraDisplayName && user) mitraDisplayName.innerText = user.name || 'Panti Asuhan Al-Ikhlas';
       const mitraCapLabel = document.getElementById('mitra-capacity-label');
