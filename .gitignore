@@ -1,3 +1,27 @@
+# Internal Development Tasks & Sprint Reports
+TASK-*.md
+REPORT-*.md
+
+# Internal Briefs & Scripts
+DESIGN.md
+VIDEO_SCRIPT_*.md
+PROJECT_BRIEF*
+
+# Vercel & Node
+.vercel/
+node_modules/
+
+# Logs & Media Captures
+*.log
 run*.log
 preview_*.png
+test_*.webm
+test_*.mp4
+*.mp4
+*.webm
+
+# OS & Environment
 .DS_Store
+Thumbs.db
+.env
+.env.*
