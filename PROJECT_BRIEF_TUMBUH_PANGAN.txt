@@ -9,13 +9,13 @@ PENYELENGGARA: D3 Teknik Informatika, Fakultas Vokasi, Universitas Sumatera Utar
 TEMA        : Digital Creative Technology for Sustainable Development Goals (SDGs)
 FOKUS SDGS  : - SDG 2: Zero Hunger (Menghilangkan Kelaparan & Ketahanan Pangan)
               - SDG 12.3: Halve Global Food Loss and Waste (Pengurangan 50% FLW)
-TIM         : Team Mandala
+TIM         : Apa Yaa Namanya
 ANGGOTA TIM : 1. Ilhan Awafi (Product Engineering & System Architecture)
               2. Sarah Safira (Sustainability Research, Impact Modeling & UI/UX Design)
+SUPERVISOR  : Muhamat Abdul Rohim S.Kom., M.Si
 INSTITUSI   : Institut Teknologi dan Sains Mandala (ITSM), Jember, Jawa Timur
-MITRA IND.  : Defhanpy Agency (agency.defhanpy.dev)
+MITRA IND.  : Defhanpy (https://defhanpy.dev)
 LIVE DEMO   : https://tumbuh-pangan.dev-mode.web.id
-KONTAK      : defhanpy@gmail.com
 
 ================================================================================
 1. LATAR BELAKANG MENDALAM & URGENSI MASALAH (THE CRISIS)

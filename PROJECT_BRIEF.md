@@ -11,14 +11,14 @@
 - **Fokus SDGs**:
   - **SDG 2**: *Zero Hunger* (Menghilangkan Kelaparan, Mencapai Ketahanan Pangan)
   - **SDG 12.3**: *Halve Global Food Loss and Waste* (Mengurangi 50% Pemborosan Pangan)
-- **Nama Tim**: **Team Mandala**
+- **Nama Tim**: **Apa Yaa Namanya**
 - **Susunan Anggota**:
   1. **Ilhan Awafi** — *Product Engineering & System Architecture*
   2. **Sarah Safira** — *Sustainability Research, Impact Modeling & UI/UX Design*
+- **Dosen Pembimbing / Supervisor**: **Muhamat Abdul Rohim S.Kom., M.Si**
 - **Afiliasi Institusi**: **Institut Teknologi dan Sains Mandala (ITSM), Jember**
-- **Kolaborasi Industri**: **Defhanpy Agency** (Web & Digital Solutions) — `agency.defhanpy.dev`
+- **Kolaborasi Industri**: **Defhanpy** (Web & Digital Solutions) — `https://defhanpy.dev`
 - **Official Live URL**: **[https://tumbuh-pangan.dev-mode.web.id](https://tumbuh-pangan.dev-mode.web.id)**
-- **Kontak Resmi**: `defhanpy@gmail.com`
 
 ---
 

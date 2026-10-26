@@ -3,7 +3,9 @@
 **Proyek**: Tumbuh Pangan (Platform Redistribusi Pangan Kolaboratif)  
 **Kompetisi**: FunDev International Competition 2026 (Universitas Sumatera Utara)  
 **Institusi**: Institut Teknologi dan Sains Mandala (ITSM) Jember  
-**Tim**: Team Mandala (Ilhan Awafi & Sarah Safira)  
+**Tim**: Apa Yaa Namanya (Ilhan Awafi & Sarah Safira)  
+**Supervisor**: Muhamat Abdul Rohim S.Kom., M.Si  
+**Mitra Kolaborasi**: Defhanpy (https://defhanpy.dev)  
 **Status**: Dokumentasi Alur Resmi  
 
 ---

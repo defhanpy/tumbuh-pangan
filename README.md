@@ -5,8 +5,9 @@
 > **Theme**: *Digital Creative Technology for Sustainable Development Goals (SDGs)*  
 > **SDG Focus**: **Goal 2: Zero Hunger** & **Goal 12.3: Halve Global Food Loss and Waste (FLW)**  
 > **Institution**: **Institut Teknologi dan Sains Mandala (ITSM), Jember**  
-> **Team Name**: **Team Mandala**  
-> **Official Contact**: `defhanpy@gmail.com`
+> **Team Name**: **Apa Yaa Namanya**  
+> **Team Members**: **Ilhan Awafi**, **Sarah Safira**  
+> **Supervisor**: **Muhamat Abdul Rohim S.Kom., M.Si**  
 
 ---
 
@@ -150,10 +151,13 @@ For the FunDev 2026 jury evaluation, the prototype includes pre-seeded demo acco
 
 ## 👥 Project Team & Credits
 
-Developed by **Team Mandala** for the **FunDev International Competition 2026**:
+Developed by **Team Apa Yaa Namanya** for the **FunDev International Competition 2026**:
 
 - **Ilhan Awafi** — Product Engineering & System Architecture
 - **Sarah Safira** — Sustainability Research, Impact Modeling & UI/UX Design
+
+**Academic Supervisor**:  
+**Muhamat Abdul Rohim S.Kom., M.Si**
 
 **Affiliation**:  
 **Institut Teknologi dan Sains Mandala (ITSM)**  
