@@ -373,7 +373,7 @@
     </header>
 
     <!-- Main Content Container -->
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow">
+    <main class="w-full px-4 sm:px-6 lg:px-10 py-8 flex-grow">
 
       <!-- ========================================== -->
       <!-- TAB 1: Ringkasan Toko (Dashboard)          -->
@@ -482,7 +482,7 @@
       <!-- TAB 2: Catat Makanan Lebih (Formulir)      -->
       <!-- ========================================== -->
       <section id="tab-content-create" class="tab-pane hidden">
-        <div class="max-w-3xl bg-white rounded-3xl p-6 sm:p-10 border border-border-color shadow-card mx-auto">
+        <div class="max-w-4xl bg-white rounded-3xl p-6 sm:p-10 border border-border-color shadow-card">
           <div class="flex items-start justify-between pb-6 mb-6 border-b border-border-color">
             <div>
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-light-green text-forest mb-2">
@@ -675,7 +675,7 @@
           </button>
         </div>
 
-        <div id="container-my-listings" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div id="container-my-listings" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           <!-- Rendered dynamically -->
         </div>
       </section>
@@ -742,7 +742,7 @@
       <!-- TAB 7: Profil Tempat Usaha (Profile)       -->
       <!-- ========================================== -->
       <section id="tab-content-profile" class="tab-pane hidden">
-        <div class="max-w-2xl bg-white rounded-3xl p-6 sm:p-10 border border-border-color shadow-card mx-auto space-y-6">
+        <div class="max-w-2xl bg-white rounded-3xl p-6 sm:p-10 border border-border-color shadow-card space-y-6">
           <div class="flex items-start justify-between pb-4 border-b border-border-color">
             <div>
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-light-green text-forest mb-2">
@@ -1149,7 +1149,7 @@
       const listingsContainer = document.getElementById('container-my-listings');
       if (openListings.length === 0) {
         listingsContainer.innerHTML = `
-          <div class="col-span-2 bg-white rounded-3xl p-10 border border-border-color text-center shadow-soft">
+          <div class="col-span-full bg-white rounded-3xl p-10 border border-border-color text-center shadow-soft">
             <div class="w-12 h-12 mx-auto rounded-2xl bg-light-green text-primary flex items-center justify-center mb-3">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M4 10a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7Z"/><path d="M9 10v4"/><path d="M15 10v4"/></svg>
             </div>
@@ -1278,7 +1278,7 @@
       const activeTerminalContainer = document.getElementById('container-active-handovers');
       if (activeTx.length === 0) {
         activeTerminalContainer.innerHTML = `
-          <div class="bg-white rounded-3xl p-12 sm:p-16 border border-border-color shadow-sm text-center max-w-2xl mx-auto my-6">
+          <div class="bg-white rounded-3xl p-12 sm:p-16 border border-border-color shadow-sm text-center max-w-2xl my-6">
             <div class="w-16 h-16 mx-auto rounded-2xl bg-light-green text-forest flex items-center justify-center mb-4">
               <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3m0-7v.01m5 0v.01m-2-2v.01"/></svg>
             </div>
@@ -1290,7 +1290,7 @@
         `;
       } else {
         activeTerminalContainer.innerHTML = activeTx.map(tx => `
-          <div class="max-w-4xl mx-auto space-y-6">
+          <div class="max-w-5xl space-y-6">
             <!-- Focused Header Bar -->
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-1">
               <div class="flex items-center gap-3">
