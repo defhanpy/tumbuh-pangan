@@ -1506,6 +1506,12 @@
       renderCatalog();
       renderPickups();
 
+      // Check initial hash
+      const initialHash = window.location.hash.replace('#', '');
+      if (initialHash) {
+        switchTab(initialHash);
+      }
+
       // Initialize Tom Select
       const tomConfig = {
         create: false,

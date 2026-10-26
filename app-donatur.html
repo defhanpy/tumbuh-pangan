@@ -1447,6 +1447,12 @@
 
       renderPortal();
 
+      // Check initial hash
+      const initialHash = window.location.hash.replace('#', '');
+      if (initialHash) {
+        switchTab(initialHash);
+      }
+
       TPStore.subscribe(() => {
         renderPortal();
       });
