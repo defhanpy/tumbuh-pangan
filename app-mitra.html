@@ -85,7 +85,7 @@
     }
   </style>
 </head>
-<body class="bg-[#F4F6F0] text-main-text antialiased min-h-screen selection:bg-light-green selection:text-forest">
+<body class="bg-[#F4F6F0] text-main-text antialiased min-h-screen pb-10 selection:bg-light-green selection:text-forest">
 
   <!-- Toast Container -->
   <div id="toast-container" class="fixed top-5 right-5 z-[60] flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
@@ -509,7 +509,7 @@
         </div>
 
         <!-- Catalog Grid -->
-        <div id="container-surplus-catalog" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div id="container-surplus-catalog" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
           <!-- Dynamically rendered -->
         </div>
       </section>
@@ -528,7 +528,7 @@
           <span id="count-pending-claims" class="px-3 py-1 rounded-full text-xs font-bold bg-[#EA580C] text-white">1 Menunggu</span>
         </div>
 
-        <div id="container-mitra-pending-claims" class="space-y-4">
+        <div id="container-mitra-pending-claims" class="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
           <!-- Dynamically rendered -->
         </div>
       </section>
@@ -576,7 +576,7 @@
       <!-- TAB 6: Profil Lembaga / Panti (Profile)    -->
       <!-- ========================================== -->
       <section id="tab-content-profile" class="tab-pane hidden">
-        <div class="max-w-2xl bg-white rounded-3xl p-6 sm:p-10 border border-border-color shadow-card space-y-6">
+        <div class="w-full bg-white rounded-3xl p-6 sm:p-10 border border-border-color shadow-card space-y-6">
           <div class="flex items-start justify-between pb-4 border-b border-border-color">
             <div>
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-light-green text-forest mb-2">
@@ -1305,7 +1305,7 @@
         `;
       } else {
         approvedContainer.innerHTML = activeApproved.map(tx => `
-          <div class="max-w-5xl space-y-6">
+          <div class="w-full space-y-6">
             <!-- Focused Header Bar -->
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-1">
               <div class="flex items-center gap-3">
@@ -1526,12 +1526,6 @@
         renderCatalog();
         renderPickups();
       });
-
-      // Inject Demo Switcher Floating Bar (Desktop Only)
-      const switcherMount = document.createElement('div');
-      switcherMount.className = 'hidden lg:block';
-      switcherMount.innerHTML = TPStore.renderDemoSwitcher('mitra');
-      document.body.appendChild(switcherMount);
     });
   </script>
 </body>

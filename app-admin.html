@@ -96,7 +96,7 @@
     }
   </style>
 </head>
-<body class="bg-[#F4F6F0] text-main-text antialiased min-h-screen selection:bg-light-green selection:text-forest">
+<body class="bg-[#F4F6F0] text-main-text antialiased min-h-screen pb-10 selection:bg-light-green selection:text-forest">
 
   <!-- Toast Container -->
   <div id="toast-container" class="fixed top-5 right-5 z-[60] flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
@@ -1413,12 +1413,6 @@
       TPStore.subscribe(() => {
         renderAdminPortal();
       });
-
-      // Inject Demo Switcher Floating Bar (Desktop Only)
-      const switcherMount = document.createElement('div');
-      switcherMount.className = 'hidden lg:block';
-      switcherMount.innerHTML = TPStore.renderDemoSwitcher('admin');
-      document.body.appendChild(switcherMount);
     });
   </script>
 </body>
